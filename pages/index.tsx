@@ -1,26 +1,37 @@
+// React
+import React, { useState } from "react";
+
 import Image from "next/image";
 
 export default function Home() {
-    return (
-        <div className="flex flex-col xl:flex-row m-auto py-16 justify-center items-center">
+  const images = [
+    "/images/me.webp",
+    "/images/8-bit-serge.webp",
+    "/images/futurama-simulation.webp",
+  ];
+  const [currentImage, setCurrentImage] = useState<number>(0);
 
-            {/* Image growing evenly */}
-            <div className="flex flex-grow max-w-lg 2xl:max-w-2xl xl:mr-16 ">
-                <Image
-                    src="/images/me.webp"
-                    alt="Profile Picture"
-                    width={500}
-                    height={500}
-                    className="rounded-full bg-accent"
-                    loading="eager"
-                />
-            </div>
+  const handleImageClick = () => {
+    setCurrentImage((prevImage) => (prevImage + 1) % images.length);
+  };
 
+  return (
+    <div className="m-auto flex flex-col items-center justify-center px-2 lg:-mx-32 lg:flex-row xl:-mx-64">
+      <div className="my-8 flex aspect-square max-h-64 lg:mr-16 lg:max-h-96 xl:max-h-[32rem]">
+        <Image
+          src={images[currentImage]}
+          alt="Profile Picture"
+          width={500}
+          height={500}
+          className="cursor-pointer rounded-full bg-accent"
+          loading="eager"
+          onClick={handleImageClick}
+        />
+      </div>
 
-            <div className="mt-16 xl:mt-0 font-black text-5xl sm:text-6xl 2xl:text-8xl text-center xl:text-left">
-                <h1 className="">KOTCHOURKO SERGE</h1>
-                <h1 className="">COMPUTER SCIENTIST</h1>
-            </div>
-        </div>
-    )
+      <h1 className="whitespace-nowrap text-3xl font-black lg:text-left lg:text-7xl xl:text-8xl">
+        KOTCHOURKO SERGE <br /> COMPUTER SCIENTIST
+      </h1>
+    </div>
+  );
 }

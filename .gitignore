@@ -41,14 +41,4 @@ yarn-error.log*
 next-env.d.ts
 
 # for static data, like images, fonts, etc.
-/public/fonts 
-# /public/images
-# /public/pdf
-
-# styles
-/styles/katex.min.css
-
-#other resources
-/other
-/.script
-/backup
+public/fonts

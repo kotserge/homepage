@@ -10,3 +10,23 @@
 
     font-display: swap;
 }
+
+/* JetBrains Mono */
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url("../public/fonts/jetbrains-mono/JetBrainsMono[wght].ttf") format('truetype');
+
+    font-style: normal;
+
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url("../public/fonts/jetbrains-mono/JetBrainsMono-Italic[wght].ttf") format('truetype');
+
+    font-style: italic;
+
+    font-display: swap;
+}

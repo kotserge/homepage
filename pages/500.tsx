@@ -3,9 +3,8 @@ import Head from "next/head";
 export default function Custom500() {
     return (
         <div className="flex flex-col h-full items-center justify-center">
-
             <Head>
-                <title>Kotchourko: 500</title>
+                <title>500 · Kotchourko</title>
             </Head>
 
             <h1 className="text-9xl font-black">500</h1>

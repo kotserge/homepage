@@ -27,5 +27,5 @@ The contents and works on these pages created by the site operator are subject t
 
 --------------------
 
-Quelle: [eRecht24](https://www.e-recht24.de) \
-Last updated: 14.05.2023
+Quelle: [eRecht24](https://www.e-recht24.de/impressum-generator.html) \
+Last updated: 25.05.2025

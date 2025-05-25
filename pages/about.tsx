@@ -3,66 +3,50 @@ import Link from "next/link";
 import Head from "next/head";
 
 // Import icons
-import { GitHub, LinkedIn, Notes } from "iconoir-react";
+import { Github, Linkedin, Notes } from "iconoir-react";
 
 export default function About() {
-    return (
-        <div className="flex flex-col my-16 xl:m-auto xl:py-16 justify-center items-center">
+  return (
+    <div className="my-auto flex flex-col items-center space-y-8 py-16">
+      <Head>
+        <title>About · Kotchourko</title>
+      </Head>
 
-            <Head>
-                <title>Kotchourko: About</title>
-            </Head>
-
-            <div className="flex flex-col-reverse xl:flex-row items-center">
-
-                <div className="mt-4 xl:mt-0 xl:mr-16 p-4 text-2xl">
-                    Hello! I&apos;m Serge, a computer science student from Germany working on my master&apos;s degree. <br />
-                    I&apos;m passionate about various areas of computer science, but I&apos;m particularly interested in its theoretical aspects. <br />
-                    Currently, I&apos;m focusing on information security and artificial intelligence, as I find the complexity and challenges in these fields fascinating. <br />
-                </div>
-
-                <div className="flex w-48 h-48 2xl:w-72 2xl:h-72 aspect-square justify-center items-center bg-accent rounded-full">
-                    <h1 className="text-ellipsis font-black text-4xl 2xl:text-6xl p-6 text-center">ABOUT ME</h1>
-                </div>
-
-            </div>
-
-            <div className="flex flex-col mt-16 xl:flex-row items-center">
-
-                <div className="flex w-48 h-48 2xl:w-72 2xl:h-72 aspect-square justify-center items-center bg-accent rounded-full">
-                    <h1 className="text-ellipsis font-black text-4xl 2xl:text-6xl p-6 text-center">BLOG</h1>
-                </div>
-
-                <div className="mt-4 xl:mt-0 xl:ml-16 p-4 text-2xl">
-                    During my times as an academic tutor, I found joy in making complex concepts and ideas accessible to others. <br />
-                    This blog is my attempt to translate this excitement into written form. <br />
-                    To this end, I write about topics that I find interesting and that I believe others might enjoy as well. <br />
-                </div>
-
-            </div>
-
-            {/* Icon row with links */}
-            <div className="flex flex-row space-x-8 my-16">
-
-                <div className="flex flex-grow aspect-square justify-center items-center bg-accent rounded-full min-w-max group hover:scale-110 transition-all duration-500">
-                    <Link href="https://github.com/confusedSerge">
-                        <GitHub className="text-5xl p-4 2xl:text-7xl 2xl:p-8 text-center" />
-                    </Link>
-                </div>
-
-
-                <div className="flex flex-grow aspect-square justify-center items-center bg-accent rounded-full min-w-max hover:scale-110 transition-all duration-500">
-                    <Link href="https://www.linkedin.com/in/kotchourko-serge/">
-                        <LinkedIn className="text-5xl p-4 2xl:text-7xl 2xl:p-8 text-center" />
-                    </Link>
-                </div>
-
-                <div className="flex flex-grow aspect-square justify-center items-center bg-accent rounded-full min-w-max hover:scale-110 transition-all duration-500">
-                    <a href="/pdf/resume.pdf" target="_blank">
-                        <Notes className="text-5xl p-4 2xl:text-7xl 2xl:p-8 text-center" />
-                    </a>
-                </div>
-            </div>
+      <div className="flex flex-col items-center lg:flex-row">
+        <div className="flex aspect-square h-32 items-center justify-center rounded-full bg-accent">
+          <h1 className="text-ellipsis p-6 text-center text-2xl font-black">
+            ABOUT ME
+          </h1>
         </div>
-    )
+        <div className="m-8 text-justify">
+          Hey there! I&apos;m Serge, a computer science student from Germany
+          finishing up my master&apos;s degree. I enjoy learning all things
+          related and unrelated to my field, though artificial intelligence and
+          information security scratch an itch for me. On the side, I enjoy
+          working as a software engineer, pursuing small projects, and doing all
+          sorts of hobbies that keep me occupied. Hit me up if you want to chat!
+        </div>
+      </div>
+
+      <div className="my-16 flex flex-row space-x-8">
+        <div className="flex aspect-square h-16 items-center justify-center rounded-full bg-accent transition-all duration-500 hover:scale-110">
+          <Link href="https://github.com/kotserge">
+            <Github className="p-4 text-center text-4xl" />
+          </Link>
+        </div>
+
+        <div className="flex aspect-square h-16 items-center justify-center rounded-full bg-accent transition-all duration-500 hover:scale-110">
+          <Link href="https://www.linkedin.com/in/kotchourko-serge/">
+            <Linkedin className="p-4 text-center text-4xl" />
+          </Link>
+        </div>
+
+        <div className="flex aspect-square h-16 items-center justify-center rounded-full bg-accent transition-all duration-500 hover:scale-110">
+          <a href="/pdf/resume.pdf" target="_blank">
+            <Notes className="p-4 text-center text-4xl" />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
 }

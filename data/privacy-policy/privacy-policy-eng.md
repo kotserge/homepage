@@ -1,3 +1,7 @@
+## 0. Preface
+
+This privacy policy is a translation of the German version. In case of discrepancies between the German and English versions, the German version shall prevail.
+
 ## 1. Data protection at a glance
 
 ### General Information
@@ -56,7 +60,7 @@ Lange Straße 24 \
 Sielmingen, 70794 Filderstadt, Germany
 
 Telefon: +49 (0) 157 39134817 \
-E-Mail: serge.kotchourko@gmail.com 
+E-Mail: serge.kotchourko@gmail.com
 
 The responsible party is the natural or legal person who alone or jointly with others determines the purposes and means of the processing of personal data (e.g. names, e-mail addresses, etc.).
 
@@ -67,6 +71,10 @@ Unless a specific storage period has been specified within this privacy policy, 
 ### General information on the legal basis for data processing on this website
 
 If you have given your consent for data processing, we process your personal data on the basis of Article 6 Paragraph 1 Letter a) GDPR or Article 9 Paragraph 2 Letter a) GDPR, if special categories of data are processed according to Article 9 Paragraph 1 GDPR. In the case of explicit consent to the transfer of personal data to third countries, the data processing is also based on Article 49 Paragraph 1 Letter a) GDPR. If you have consented to the storage of cookies or to the access to information on your device (e.g. via device fingerprinting), the data processing is additionally carried out on the basis of Article 25 Paragraph 1 TTDSG. The consent can be revoked at any time. If your data is required for the performance of a contract or for the implementation of pre-contractual measures, we process your data on the basis of Article 6 Paragraph 1 Letter b) GDPR. Furthermore, if your data is required for the fulfillment of a legal obligation, we process it on the basis of Article 6 Paragraph 1 Letter c) GDPR. Furthermore, the data processing may be carried out on the basis of our legitimate interest according to Article 6 Paragraph 1 Letter f) GDPR. Information about the relevant legal basis in each individual case is provided in the following paragraphs of this privacy policy.
+
+### Recipients of Personal Data
+
+In the course of our business activities, we collaborate with various external parties. This sometimes requires the transfer of personal data to these external parties. We only share personal data with external parties when it is necessary for the fulfillment of a contract, when we are legally obligated to do so (e.g., sharing data with tax authorities), when we have a legitimate interest in the transfer according to Art. 6 Paragraph 1 Letter f GDPR, or when another legal basis permits the data transfer. When using processors, we only share our customers' personal data based on a valid contract for data processing. In the case of joint processing, a contract for joint processing is established.
 
 ### Revocation of your consent to data processing
 
@@ -120,4 +128,4 @@ The data you send to us via inquiries will remain with us until you request us t
 --------------------
 
 Source used: [eRecht24](https://www.e-recht24.de) \
-Last updated: 14.05.2023
+Last updated: 25.05.2025

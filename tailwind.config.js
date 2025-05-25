@@ -1,4 +1,7 @@
-/** @type {import('tailwindcss').Config} */
+/**
+ * @type {import('tailwindcss').Config}
+ * */
+
 module.exports = {
     content: [
         "./app/**/*.{js,ts,jsx,tsx}",
@@ -11,55 +14,34 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                'space-grotesk': ['Space Grotesk', 'sans-serif'],
+                sans: ["Space Grotesk", "sans-serif"],
+                mono: ["JetBrains Mono", "monospace"],
             },
 
             colors: {
-
-                // Summer Red
-                // "primary": "#f6f6f6",
-                // "secondary": "#1a1e24",
-                // "accent": "#EE6352",
-
-                // Cyan
-                "primary": "#f6f6f6",
-                "secondary": "#151515",
-                "accent": "#d0ffd6",
-
-                // Orange
-                // "primary": "#f6f6f6",
-                // "secondary": "#151515",
-                // "accent": "#FFA630",
-            },
-
-            screens: {
-                'xs': '320px',    // phones
-                'sm': '640px',    // phones
-                'md': '768px',    // tablets, small laptops
-                'lg': '1000px',   // tablets, small laptops
-                'xl': '1200px',   // laptops, desktops and upwards
+                // Emerald
+                primary: "#f6f6f6",
+                secondary: "#060606",
+                accent: "#20EE88",
             },
 
             keyframes: {
                 wiggle: {
-                    '0%, 100%': { transform: 'rotate(-3deg)' },
-                    '50%': { transform: 'rotate(3deg)' },
+                    "0%, 100%": { transform: "rotate(-3deg)" },
+                    "50%": { transform: "rotate(3deg)" },
                 },
 
                 rotate: {
-                    '0%': { transform: 'rotate(0deg)' },
-                    '100%': { transform: 'rotate(360deg)' },
+                    "0%": { transform: "rotate(0deg)" },
+                    "100%": { transform: "rotate(360deg)" },
                 },
-
             },
 
             animation: {
-                wiggle: 'wiggle 1s ease-in-out infinite',
-                spin: 'rotate 1.5s linear infinite',
+                wiggle: "wiggle 1s ease-in-out infinite",
+                spin: "rotate 1.5s linear infinite",
             },
         },
     },
-    plugins: [
-        require('@tailwindcss/typography'),
-    ],
-}
+    plugins: [require("@tailwindcss/typography")],
+};

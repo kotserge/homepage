@@ -7,95 +7,66 @@ import Head from "next/head";
 // Custom Components
 import { getMarkdownFormatted } from "@/lib/util/useMarkdown";
 
-// Icons
-import { SwitchOff, SwitchOn } from "iconoir-react";
+// Components
+import Header from "@/components/head";
+import Toggle from "@/components/toggle";
 
+export default function PrivacyPolicyPage({
+  de,
+  eng,
+}: Readonly<{
+  de: string;
+  eng: string;
+}>) {
+  const [isOn, setIsOn] = useState(true);
 
-export default function PrivacyPolicyPage({ de, eng }: { de: string, eng: string }) {
+  return (
+    <div className="mx-16 my-16 h-full justify-center">
+      <Head>
+        {isOn ? (
+          <title>Datenschutzerklärung · Kotchourko</title>
+        ) : (
+          <title>Privacy Policy · Kotchourko</title>
+        )}
+      </Head>
 
-    const [isOn, setIsOn] = useState(true);
+      <Header
+        title={isOn ? "Datenschutzerklärung" : "Privacy Policy"}
+        description={
+          isOn
+            ? "Im Folgenden finden Sie Informationen zur Datenschutzerklärung."
+            : "In the following you will find information on our privacy policy."
+        }
+      />
 
-    return (
-        <div className="h-full justify-center my-16 px-8 overflow-hidden sm:overflow-visible">
+      <Toggle
+        on={isOn}
+        onClick={() => setIsOn(!isOn)}
+        leftText="ENG"
+        rightText="DE"
+      />
 
-            <Head>
-                {isOn ?
-                    <title> Kotchourko: Datenschutzerklärung</title>
-                    :
-                    <title> Kotchourko: Privacy Policy</title>
-                }
-            </Head>
-
-            <div className="flex relative">
-                <div className="absolute w-fit h-full -left-16 aspect-square rounded-full  bg-accent" />
-
-                <div className="py-8 z-10">
-                    <h1 className="text-2xl sm:text-5xl font-bold">
-                        {
-                            isOn ?
-                                "Datenschutzerklärung"
-                                :
-                                "Privacy Policy"
-                        }
-                    </h1>
-
-                    <div className="flex">
-                        <div className="markdown-page">
-                            {
-                                isOn ?
-                                    "Im Folgenden finden Sie Informationen zur Datenschutzerklärung."
-                                    :
-                                    "Below you will find information about our privacy policy. Note that this is a translation of the German version. In case of any discrepancies, the German version shall prevail."
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <Switch on={isOn} onClick={() => setIsOn(!isOn)} leftText="ENG" rightText="DE" />
-
-            <div className="markdown-legal my-4" dangerouslySetInnerHTML={{ __html: isOn ? de : eng }} />
-        </div>
-    );
-
+      <div
+        className="markdown-page"
+        dangerouslySetInnerHTML={{ __html: isOn ? de : eng }}
+      />
+    </div>
+  );
 }
-
 
 export async function getStaticProps() {
-    const legalnoticede: string = getMarkdownFormatted('', 'data/privacy-policy/privacy-policy-de.md');
-    const legalnoticeeng: string = getMarkdownFormatted('', 'data/privacy-policy/privacy-policy-eng.md');
-    return {
-        props: {
-            de: JSON.parse(JSON.stringify(legalnoticede)),
-            eng: JSON.parse(JSON.stringify(legalnoticeeng)),
-        },
-    };
-}
-
-interface ISwitchProps {
-    on: boolean;
-    onClick: () => void;
-
-    leftText: string;
-    rightText: string;
-}
-
-const Switch: React.FC<ISwitchProps> = ({ on, onClick, leftText, rightText }) => {
-
-    return (
-        <div className="flex flex-row items-center justify-end cursor-pointer" onClick={
-            () => {
-                onClick();
-            }
-        }>
-            <div className="font-bold cursor-pointer">
-                {leftText}
-            </div>
-
-            {on ? <SwitchOn className="text-5xl px-4" /> : <SwitchOff className="text-5xl px-4" />}
-
-            <div className="font-bold">
-                {rightText}
-            </div>
-        </div>
-    )
+  const legalnoticede: string = getMarkdownFormatted(
+    "",
+    "data/privacy-policy/privacy-policy-de.md",
+  );
+  const legalnoticeeng: string = getMarkdownFormatted(
+    "",
+    "data/privacy-policy/privacy-policy-eng.md",
+  );
+  return {
+    props: {
+      de: JSON.parse(JSON.stringify(legalnoticede)),
+      eng: JSON.parse(JSON.stringify(legalnoticeeng)),
+    },
+  };
 }

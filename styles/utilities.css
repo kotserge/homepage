@@ -2,6 +2,10 @@
 
 @layer utilities {
 
+    * {
+        font-synthesis: none;
+    }
+
     /* https://dev.to/afif/100-underline-overlay-animation-the-ultimate-css-collection-4p40 */
     .smooth-underline {
         background: linear-gradient(currentColor 0 0) var(--p, 0) 100% /var(--d, 0) 3px no-repeat;
@@ -11,6 +15,10 @@
     .smooth-underline-active {
         --d: 100%;
         --p: 100%;
+    }
+
+    ::selection {
+        @apply bg-accent
     }
 
 }
