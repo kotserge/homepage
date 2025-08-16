@@ -19,12 +19,12 @@ export default function About() {
           </h1>
         </div>
         <div className="m-8 text-justify">
-          Hey there! I&apos;m Serge, a computer science student from Germany
-          finishing up my master&apos;s degree. I enjoy learning all things
-          related and unrelated to my field, though artificial intelligence and
-          information security scratch an itch for me. On the side, I enjoy
-          working as a software engineer, pursuing small projects, and doing all
-          sorts of hobbies that keep me occupied. Hit me up if you want to chat!
+          Hej there! I am Serge, a computer scientist working as a Software
+          Engineer to refactor some code written before my time. On the side, I
+          research artificial intelligence and information security, currently
+          focusing on Scientific Machine Learning for Physics. I do enjoy some
+          respite from this, by trying out all sorts of activities unrelated to
+          my field. Hit me up, if you want to have a chat.
         </div>
       </div>
 
