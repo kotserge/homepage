@@ -4,21 +4,21 @@
 
     <!-- Home -->
     <url>
-        <loc>https://kotchourko-serge.de/</loc>
+        <loc>https://kotchourko.dev/</loc>
         <lastmod>2023-05-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>1.0</priority>
     </url>
 
     <url>
-        <loc>https://kotchourko-serge.de/about/</loc>
+        <loc>https://kotchourko.dev/about/</loc>
         <lastmod>2023-05-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://kotchourko-serge.de/blog/</loc>
+        <loc>https://kotchourko.dev/blog/</loc>
         <lastmod>2023-05-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
@@ -29,19 +29,19 @@
 
     <!-- Legal -->
     <url>
-        <loc>https://kotchourko-serge.de/privacy-policy/</loc>
+        <loc>https://kotchourko.dev/privacy-policy/</loc>
         <lastmod>2023-05-28</lastmod>
         <changefreq>monthly</changefreq>
     </url>
 
     <url>
-        <loc>https://kotchourko-serge.de/legal-notice/</loc>
+        <loc>https://kotchourko.dev/legal-notice/</loc>
         <lastmod>2023-05-28</lastmod>
         <changefreq>monthly</changefreq>
     </url>
 
     <url>
-        <loc>https://kotchourko-serge.de/licenses/</loc>
+        <loc>https://kotchourko.dev/licenses/</loc>
         <lastmod>2023-05-28</lastmod>
         <changefreq>monthly</changefreq>
     </url>
