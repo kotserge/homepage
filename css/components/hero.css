@@ -1,0 +1,60 @@
+.hero {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /*margin: 0 -8rem;*/
+}
+
+.hero .image-container {
+    width: 24rem;
+    height: 24rem;
+    margin-right: 4rem;
+}
+
+.hero .profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.hero h1 {
+    font-size: 6rem;
+    font-weight: 900;
+    white-space: nowrap;
+    line-height: 0.9;
+}
+
+@media (max-width: 1440px) {
+    .hero .image-container {
+        width: 16rem;
+        height: 16rem;
+    }
+
+    .hero h1 {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .hero {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+    }
+
+    .hero .image-container {
+        width: 12rem;
+        height: 12rem;
+        margin-right: 0rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+}

@@ -1,0 +1,36 @@
+/* Variables */
+
+:root {
+    --primary-color: #f6f6f6;
+    --secondary-color: #060606;
+    --accent-color: #20ee88;
+}
+
+/* Fonts */
+
+@font-face {
+    font-family: "Space Grotesk";
+    src: url("../assets/fonts/space-grotesk/SpaceGrotesk-VariableFont_wght.ttf")
+        format("truetype");
+
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("../assets/fonts/jetbrains-mono/JetBrainsMono[wght].ttf")
+        format("truetype");
+
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("../assets/fonts/jetbrains-mono/JetBrainsMono-Italic[wght].ttf")
+        format("truetype");
+
+    font-style: italic;
+    font-display: swap;
+}
