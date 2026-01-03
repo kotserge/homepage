@@ -1,0 +1,27 @@
+.social-links {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+    margin: 4rem 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-links > a {
+    display: flex;
+    aspect-ratio: 1;
+    height: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-links > a > img {
+    transition: filter 0.5s ease-in-out;
+    aspect-ratio: 1;
+    height: 1.5rem;
+}
+
+.social-links > a:hover > img {
+    filter: invert(63%) sepia(91%) saturate(401%) hue-rotate(95deg)
+        brightness(102%) contrast(93%);
+}

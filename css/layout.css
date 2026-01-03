@@ -61,7 +61,7 @@ nav > ul > li {
 nav > ul > li > a {
     cursor: pointer;
     text-decoration: none;
-    color: var(--secondary);
+    color: var(--secondary-color);
 }
 
 footer a {
