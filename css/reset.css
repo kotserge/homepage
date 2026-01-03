@@ -3,3 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+@media (max-width: 512px) {
+    * {
+        font-size: 12px;
+    }
+}
