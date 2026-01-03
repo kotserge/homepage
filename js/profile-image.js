@@ -1,7 +1,7 @@
 const images = [
-    ["/assets/images/me.webp", "Profile Picture"],
-    ["/assets/images/8-bit-serge.webp", "8-bit Serge"],
-    ["/assets/images/futurama-simulation.webp", "Futurama Simulation"],
+    ["/assets/media/me.webp", "Profile Picture"],
+    ["/assets/media/8-bit-serge.webp", "8-bit Serge"],
+    ["/assets/media/futurama-simulation.webp", "Futurama Simulation"],
 ];
 
 let currentImage = 0;
