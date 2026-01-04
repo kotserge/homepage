@@ -3,6 +3,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    padding: 3rem 0;
 }
 
 .hero > div {
