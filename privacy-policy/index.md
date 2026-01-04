@@ -11,7 +11,7 @@ Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren 
 
 #### Wer ist verantwortlich für die Datenerfassung auf dieser Website?
 
-Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Abschnitt „Hinweis zur verantwortlichen Stelle“ in dieser Datenschutzerklärung entnehmen.
+Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Abschnitt „Hinweis zur Verantwortlichen Stelle“ in dieser Datenschutzerklärung entnehmen.
 
 #### Wie erfassen wir Ihre Daten?
 
@@ -21,11 +21,13 @@ Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Web
 
 #### Wofür nutzen wir Ihre Daten?
 
-Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden.
+Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden. Sofern über die Website Verträge geschlossen oder angebahnt werden können, werden die übermittelten Daten auch für Vertragsangebote, Bestellungen oder sonstige Auftragsanfragen verarbeitet.
 
 #### Welche Rechte haben Sie bezüglich Ihrer Daten?
 
-Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese Einwilligung jederzeit für die Zukunft widerrufen. Außerdem haben Sie das Recht, unter bestimmten Umständen die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit an uns wenden.
+Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese Einwilligung jederzeit für die Zukunft widerrufen. Außerdem haben Sie das Recht, unter bestimmten Umständen die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.
+
+Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit an uns wenden.
 
 ## 2. Hosting
 
@@ -35,7 +37,7 @@ Wir hosten die Inhalte unserer Website bei folgendem Anbieter:
 
 Anbieter ist die IONOS SE, Elgendorfer Str. 57, 56410 Montabaur (nachfolgend IONOS). Wenn Sie unsere Website besuchen, erfasst IONOS verschiedene Logfiles inklusive Ihrer IP-Adressen. Details entnehmen Sie der Datenschutzerklärung von IONOS: https://www.ionos.de/terms-gtc/terms-privacy.
 
-Die Verwendung von IONOS erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an einer möglichst zuverlässigen Darstellung unserer Website. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TTDSG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im Endgerät des Nutzers (z. B. Device-Fingerprinting) im Sinne des TTDSG umfasst. Die Einwilligung ist jederzeit widerrufbar.
+Die Verwendung von IONOS erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an einer möglichst zuverlässigen Darstellung unserer Website. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im Endgerät des Nutzers (z. B. Device-Fingerprinting) im Sinne des TDDDG umfasst. Die Einwilligung ist jederzeit widerrufbar.
 
 #### Auftragsverarbeitung
 
@@ -70,7 +72,7 @@ Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer ge
 
 ### Allgemeine Hinweise zu den Rechtsgrundlagen der Datenverarbeitung auf dieser Website
 
-Sofern Sie in die Datenverarbeitung eingewilligt haben, verarbeiten wir Ihre personenbezogenen Daten auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO bzw. Art. 9 Abs. 2 lit. a DSGVO, sofern besondere Datenkategorien nach Art. 9 Abs. 1 DSGVO verarbeitet werden. Im Falle einer ausdrücklichen Einwilligung in die Übertragung personenbezogener Daten in Drittstaaten erfolgt die Datenverarbeitung außerdem auf Grundlage von Art. 49 Abs. 1 lit. a DSGVO. Sofern Sie in die Speicherung von Cookies oder in den Zugriff auf Informationen in Ihr Endgerät (z. B. via Device-Fingerprinting) eingewilligt haben, erfolgt die Datenverarbeitung zusätzlich auf Grundlage von § 25 Abs. 1 TTDSG. Die Einwilligung ist jederzeit widerrufbar. Sind Ihre Daten zur Vertragserfüllung oder zur Durchführung vorvertraglicher Maßnahmen erforderlich, verarbeiten wir Ihre Daten auf Grundlage des Art. 6 Abs. 1 lit. b DSGVO. Des Weiteren verarbeiten wir Ihre Daten, sofern diese zur Erfüllung einer rechtlichen Verpflichtung erforderlich sind auf Grundlage von Art. 6 Abs. 1 lit. c DSGVO. Die Datenverarbeitung kann ferner auf Grundlage unseres berechtigten Interesses nach Art. 6 Abs. 1 lit. f DSGVO erfolgen. Über die jeweils im Einzelfall einschlägigen Rechtsgrundlagen wird in den folgenden Absätzen dieser Datenschutzerklärung informiert.
+Sofern Sie in die Datenverarbeitung eingewilligt haben, verarbeiten wir Ihre personenbezogenen Daten auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO bzw. Art. 9 Abs. 2 lit. a DSGVO, sofern besondere Datenkategorien nach Art. 9 Abs. 1 DSGVO verarbeitet werden. Im Falle einer ausdrücklichen Einwilligung in die Übertragung personenbezogener Daten in Drittstaaten erfolgt die Datenverarbeitung außerdem auf Grundlage von Art. 49 Abs. 1 lit. a DSGVO. Sofern Sie in die Speicherung von Cookies oder in den Zugriff auf Informationen in Ihr Endgerät (z. B. via Device-Fingerprinting) eingewilligt haben, erfolgt die Datenverarbeitung zusätzlich auf Grundlage von § 25 Abs. 1 TDDDG. Die Einwilligung ist jederzeit widerrufbar. Sind Ihre Daten zur Vertragserfüllung oder zur Durchführung vorvertraglicher Maßnahmen erforderlich, verarbeiten wir Ihre Daten auf Grundlage des Art. 6 Abs. 1 lit. b DSGVO. Des Weiteren verarbeiten wir Ihre Daten, sofern diese zur Erfüllung einer rechtlichen Verpflichtung erforderlich sind auf Grundlage von Art. 6 Abs. 1 lit. c DSGVO. Die Datenverarbeitung kann ferner auf Grundlage unseres berechtigten Interesses nach Art. 6 Abs. 1 lit. f DSGVO erfolgen. Über die jeweils im Einzelfall einschlägigen Rechtsgrundlagen wird in den folgenden Absätzen dieser Datenschutzerklärung informiert.
 
 ### Empfänger von personenbezogenen Daten
 
@@ -113,7 +115,7 @@ Wenn Sie die Verarbeitung Ihrer personenbezogenen Daten eingeschränkt haben, d�
 
 Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel Bestellungen oder Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL- bzw. TLS- Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://“ auf „https://“ wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
 
-Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden
+Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden.
 
 ## 4. Datenerfassung auf dieser Website
 
@@ -151,11 +153,13 @@ Other data is collected automatically or after your consent is given when you vi
 
 #### What do we use your data for?
 
-Some of the data is collected to ensure error-free operation of the website. Other data may be used to analyze your user behavior.
+Some of the data is collected to ensure error-free operation of the website. Other data may be used to analyze your user behavior. If contracts can be concluded or initiated via the website, the transmitted data will also be processed for contract offers, orders, or other order inquiries.
 
 #### What rights do you have regarding your data?
 
-You have the right at any time to receive information free of charge about the origin, recipient and purpose of your stored personal data. You also have a right to request the correction or deletion of this data. If you have given your consent to data processing, you can revoke this consent at any time for the future. You also have the right to request restrictions on the processing of your personal data under certain circumstances. Furthermore, you have the right to file a complaint with the relevant supervisory authority. For this purpose, as well as for further questions on the subject of data protection, you can contact us at any time.
+You have the right at any time to receive information free of charge about the origin, recipient and purpose of your stored personal data. You also have a right to request the correction or deletion of this data. If you have given your consent to data processing, you can revoke this consent at any time for the future. You also have the right to request restrictions on the processing of your personal data under certain circumstances. Furthermore, you have the right to file a complaint with the relevant supervisory authority. 
+
+For this purpose, as well as for further questions on the subject of data protection, you can contact us at any time.
 
 ## 2. Hosting
 
@@ -165,7 +169,7 @@ We host the content of our website at the following provider:
 
 The provider is IONOS SE, Elgendorfer Str. 57, 56410 Montabaur (hereinafter referred to as IONOS). When you visit our website, IONOS collects various log files including your IP addresses. For details, please refer to the IONOS privacy policy: https://www.ionos.de/terms-gtc/terms-privacy.
 
-The use of IONOS is based on Article 6 Paragraph 1 Letter f) GDPR (German Data Protection Act). We have a legitimate interest in the most reliable presentation of our website. Insofar as a corresponding consent has been requested, the processing is carried out exclusively on the basis of Article 6 Paragraph 1 Letter a) GDPR and Article 25 Paragraph 1 TTDSG (Telekommunikation-Telemedien-Datenschutz-Gesetz), insofar as the consent includes the storage of cookies or access to information in the user's terminal device (e.g. device fingerprinting) within the meaning of the TTDSG. The consent can be revoked at any time.
+The use of IONOS is based on Article 6 Paragraph 1 Letter f) GDPR (German Data Protection Act). We have a legitimate interest in the most reliable presentation of our website. Insofar as a corresponding consent has been requested, the processing is carried out exclusively on the basis of Article 6 Paragraph 1 Letter a) GDPR and Article 25 Paragraph 1 TTDDG, insofar as the consent includes the storage of cookies or access to information in the user's terminal device (e.g. device fingerprinting) within the meaning of the TTDDG. The consent can be revoked at any time.
 
 
 #### Auftragsverarbeitung
@@ -176,7 +180,7 @@ We have concluded a contract on "Auftragsverarbeitung" (AVV) for the use of the 
 
 ### Data protection
 
-The operators of these pages take the protection of your personal data very seriously. We treat your personal data confidentially and in accordance with the statutory data protection regulations and this privacy policy (according to the GDPR and the TTDSG).
+The operators of these pages take the protection of your personal data very seriously. We treat your personal data confidentially and in accordance with the statutory data protection regulations and this privacy policy (according to the GDPR and the TTDDG).
 
 When you use this website, various personal data are collected. Personal data is data with which you can be personally identified. This privacy policy explains what data we collect and what we use it for. It also explains how and for what purpose this is done.
 
@@ -201,7 +205,7 @@ Unless a specific storage period has been specified within this privacy policy, 
 
 ### General information on the legal basis for data processing on this website
 
-If you have given your consent for data processing, we process your personal data on the basis of Article 6 Paragraph 1 Letter a) GDPR or Article 9 Paragraph 2 Letter a) GDPR, if special categories of data are processed according to Article 9 Paragraph 1 GDPR. In the case of explicit consent to the transfer of personal data to third countries, the data processing is also based on Article 49 Paragraph 1 Letter a) GDPR. If you have consented to the storage of cookies or to the access to information on your device (e.g. via device fingerprinting), the data processing is additionally carried out on the basis of Article 25 Paragraph 1 TTDSG. The consent can be revoked at any time. If your data is required for the performance of a contract or for the implementation of pre-contractual measures, we process your data on the basis of Article 6 Paragraph 1 Letter b) GDPR. Furthermore, if your data is required for the fulfillment of a legal obligation, we process it on the basis of Article 6 Paragraph 1 Letter c) GDPR. Furthermore, the data processing may be carried out on the basis of our legitimate interest according to Article 6 Paragraph 1 Letter f) GDPR. Information about the relevant legal basis in each individual case is provided in the following paragraphs of this privacy policy.
+If you have given your consent for data processing, we process your personal data on the basis of Article 6 Paragraph 1 Letter a) GDPR or Article 9 Paragraph 2 Letter a) GDPR, if special categories of data are processed according to Article 9 Paragraph 1 GDPR. In the case of explicit consent to the transfer of personal data to third countries, the data processing is also based on Article 49 Paragraph 1 Letter a) GDPR. If you have consented to the storage of cookies or to the access to information on your device (e.g. via device fingerprinting), the data processing is additionally carried out on the basis of Article 25 Paragraph 1 TTDDG. The consent can be revoked at any time. If your data is required for the performance of a contract or for the implementation of pre-contractual measures, we process your data on the basis of Article 6 Paragraph 1 Letter b) GDPR. Furthermore, if your data is required for the fulfillment of a legal obligation, we process it on the basis of Article 6 Paragraph 1 Letter c) GDPR. Furthermore, the data processing may be carried out on the basis of our legitimate interest according to Article 6 Paragraph 1 Letter f) GDPR. Information about the relevant legal basis in each individual case is provided in the following paragraphs of this privacy policy.
 
 ### Recipients of Personal Data
 
