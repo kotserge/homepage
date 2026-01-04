@@ -1,0 +1,24 @@
+# Error Routing
+ErrorDocument 404 404.html
+
+# Compression
+# check that mod_headers is enabled
+<IfModule mod_headers.c>
+    # enable the runtime rewrite engine
+    RewriteEngine On
+
+    RewriteCond "%{HTTP:Accept-encoding}" "gzip"
+    RewriteCond "%{REQUEST_FILENAME}.gz" -s
+    RewriteRule "^(.*)\.(html|css|js)$" "/$1.$2.gz" [QSA]
+
+    RewriteRule "\.css\.gz$" "-" [T=text/css,E=no-brotli:1,E=no-gzip:1]
+    RewriteRule "\.js\.gz$" "-" [T=text/javascript,E=no-brotli:1,E=no-gzip:1]
+    RewriteRule "\.ttf\.gz$" "-" [T=font/ttf,E=no-brotli:1,E=no-gzip:1]
+    RewriteRule "\.woff\.gz$" "-" [T=font/woff,E=no-brotli:1,E=no-gzip:1]
+    RewriteRule "\.woff2\.gz$" "-" [T=font/woff2,E=no-brotli:1,E=no-gzip:1]
+
+    <FilesMatch "(\.js\.gz|\.css\.gz|\.ttf\.gz|\.woff\.gz|\.woff2\.gz)$">
+      Header append Content-Encoding gzip
+      Header append Vary Accept-Encoding
+    </FilesMatch>
+</IfModule>
