@@ -1,5 +1,5 @@
 # Error Routing
-ErrorDocument 404 404.html
+ErrorDocument 404 /404.html
 
 # Compression
 # check that mod_headers is enabled
