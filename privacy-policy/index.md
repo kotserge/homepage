@@ -262,4 +262,4 @@ The data you send to us via inquiries will remain with us until you request us t
 
 ## Quelle
 ---
-[eRecht24](https://www.e-recht24.de), Stand: 25.05.2025
+[eRecht24](https://www.e-recht24.de), Stand: 04.01.2026
