@@ -4,7 +4,7 @@
 
 This repository contains the source code for my [homepage](https://kotchourko.dev/).
 
-![Homepage](media/homepage.png)
+![Homepage](assets/media/homepage.png)
 
 Currently my [homepage](https://kotchourko.dev/) is hosted on [IONOS](https://www.ionos.de/). The homepage is built using plain HTML+CSS+JS.
 
