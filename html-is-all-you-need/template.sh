@@ -13,6 +13,7 @@ Options:
   -t, --title TEXT     Replace <!--TITLE--> with TEXT
   -d, --desc TEXT      Replace <!--DESCRIPTION--> with TEXT
   -k, --keywords TEXT  Replace <!--KEYWORDS--> with TEXT
+  -c, --code           Replace <!--CODE--> with code syntax highlighting includes
   -h, --help           Show this help message
 
 Placeholders:
@@ -20,9 +21,10 @@ Placeholders:
   <!--TITLE-->         Optional; replaced if --title is provided
   <!--DESCRIPTION-->   Optional; replaced if --desc is provided
   <!--KEYWORDS-->      Optional; replaced if --keywords is provided
+  <!--CODE-->          Optional; replaced with code includes if --code flag is set
 
 Example:
-  cat content.html | $0 template.html -t "My Page" -d "A description" > output.html
+  cat content.html | $0 template.html -t "My Page" -d "A description" -c > output.html
 EOF
 }
 
@@ -69,6 +71,7 @@ shift
 title=""
 description=""
 keywords=""
+code_flag=false
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -96,6 +99,10 @@ while [[ $# -gt 0 ]]; do
             fi
             keywords=$2
             shift 2
+            ;;
+        -c|--code)
+            code_flag=true
+            shift
             ;;
         *)
             echo "Unknown option: $1" >&2
@@ -129,6 +136,18 @@ substitute_placeholder "$tmp" "<!--DESCRIPTION-->" "$description"
 
 # Replace <!--KEYWORDS--> with keywords or empty string
 substitute_placeholder "$tmp" "<!--KEYWORDS-->" "$keywords"
+
+# Replace <!--CODE--> with code includes if flag is set, otherwise empty string
+if [[ "$code_flag" == true ]]; then
+    code="
+        <!-- Syntax highlighting -->
+        <script src="/js/prism.js"></script>
+        <link rel="stylesheet" href="/css/components/code.css" />
+        "
+else
+    code=""
+fi
+substitute_placeholder "$tmp" "<!--CODE-->" "$code"
 
 # Output result and cleanup
 cat "$tmp"
