@@ -1,0 +1,9 @@
+@import url("./katex.min.css");
+
+span:is(.katex-display) {
+    overflow-x: scroll;
+}
+
+p:has(span:is(.katex-display)) {
+    display: grid;
+}
