@@ -1,3 +1,18 @@
+/* Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+@media (max-width: 512px) {
+    * {
+        font-size: 12px;
+    }
+}
+
 /* Variables */
 
 :root {
@@ -12,7 +27,7 @@
 
 @font-face {
     font-family: "Space Grotesk";
-    src: url("../assets/fonts/space-grotesk/SpaceGrotesk-VariableFont_wght.ttf")
+    src: url("../../assets/fonts/space-grotesk/SpaceGrotesk-VariableFont_wght.ttf")
         format("truetype");
 
     font-style: normal;
@@ -21,7 +36,7 @@
 
 @font-face {
     font-family: "JetBrains Mono";
-    src: url("../assets/fonts/jetbrains-mono/JetBrainsMono[wght].ttf")
+    src: url("../../assets/fonts/jetbrains-mono/JetBrainsMono[wght].ttf")
         format("truetype");
 
     font-style: normal;
@@ -30,7 +45,7 @@
 
 @font-face {
     font-family: "JetBrains Mono";
-    src: url("../assets/fonts/jetbrains-mono/JetBrainsMono-Italic[wght].ttf")
+    src: url("../../assets/fonts/jetbrains-mono/JetBrainsMono-Italic[wght].ttf")
         format("truetype");
 
     font-style: italic;

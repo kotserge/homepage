@@ -1,3 +1,5 @@
+/* Layout */
+
 body {
     font-family: "Space Grotesk", sans-serif;
     text-align: justify;
@@ -14,19 +16,6 @@ body {
     align-items: center;
     margin: 0 auto;
     padding: 1.5rem 1.5rem;
-}
-
-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem 0;
-}
-
-main > * {
-    width: 100%;
 }
 
 nav {
@@ -58,6 +47,19 @@ nav > ul > li > a {
     cursor: pointer;
     text-decoration: none;
     color: var(--secondary-color);
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 0;
+}
+
+main > * {
+    width: 100%;
 }
 
 footer {
