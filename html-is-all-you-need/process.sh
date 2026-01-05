@@ -57,11 +57,9 @@ if [[ "$hr_headings" == true ]]; then
 fi
 
 if [[ "$code_blocks" == true ]]; then
-    # Wrap <pre><code class="language-xxx"> blocks in div with language label
-    # This handles: <pre><code class="language-python">...</code></pre>
     body=$(printf '%s' "$body" | sed -E '
         # Match <pre><code class="language-LANG"> and wrap with div
-        s#<pre><code class="language-([^"]+)">#<div class="code-block-wrapper"><div class="code-block-header">\1</div><pre><code class="language-\1">#g
+        s#<pre><code class="language-([^"]+)">#<div class="code-block-wrapper"><div class="code-block-header"><span class="code-block-header-lang">\1</span><div class="code-block-header-controls"><span></span><span></span><span></span></div></div><pre><code class="language-\1">#g
         # Close the wrapper div after </code></pre>
         s#</code></pre>#</code></pre></div>#g
     ')
