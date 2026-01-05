@@ -1,0 +1,61 @@
+@import url("./prism.css");
+
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("../../assets/fonts/jetbrains-mono/JetBrainsMono[wght].ttf")
+        format("truetype");
+
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("../../assets/fonts/jetbrains-mono/JetBrainsMono-Italic[wght].ttf")
+        format("truetype");
+
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Code Blocks */
+
+div:is(.code-block-wrapper) {
+    background-color: #2e3440;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.1);
+    margin: 1rem 0;
+    padding: 1.25rem 1.5rem;
+    overflow-x: auto;
+}
+
+div:is(.code-block-wrapper) *::selection {
+    background-color: #eceff4;
+}
+
+div:is(.code-block-wrapper) > div:is(.code-block-header) {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.75rem;
+    color: #eceff4;
+    background-color: inherit;
+}
+
+div:is(.code-block-wrapper) > pre[class*="language-"] {
+    background-color: inherit;
+    padding: 0;
+    margin: 0.5rem 0;
+}
+
+div:is(.code-block-wrapper)
+    > pre[class*="language-"]
+    > code[class*="language-"] {
+    font-family: "JetBrains Mono", monospace;
+    background-color: inherit;
+}
+
+div:is(.code-block-wrapper)
+    > pre[class*="language-"]
+    > code[class*="language-"]
+    > span[class*="token"] {
+    font-size: 0.875rem;
+}
