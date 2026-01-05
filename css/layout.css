@@ -61,12 +61,12 @@ nav > ul > li > a {
 }
 
 footer {
-    opacity: 0.5;
+    color: var(--secondary-color-light);
     font-size: 0.875rem;
 }
 
 footer a {
-    color: var(--secondary-color);
+    color: inherit;
     text-decoration: none;
 }
 
