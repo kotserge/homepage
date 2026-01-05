@@ -7,7 +7,7 @@ Project: [Space Grotesk](https://github.com/floriankarsten/space-grotesk)
 
 License: SIL Open Font License, Version 1.1
 
-<blockquote>
+<blockquote cite="https://github.com/floriankarsten/space-grotesk/blob/master/OFL.txt">
 
 Copyright 2020 The Space Grotesk Project Authors (https://github.com/floriankarsten/space-grotesk)
 
@@ -111,7 +111,7 @@ Project: [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono)
 
 License: SIL Open Font License, Version 1.1
 
-<blockquote>
+<blockquote cite="https://github.com/JetBrains/JetBrainsMono/blob/master/OFL.txt">
 
 Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)
 
@@ -215,7 +215,7 @@ Project: [Iconoir](https://github.com/iconoir-icons/iconoir)
 
 License: MIT License
 
-<blockquote>
+<blockquote cite="https://github.com/iconoir-icons/iconoir/blob/main/LICENSE">
 
 MIT License
 
