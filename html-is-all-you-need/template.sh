@@ -141,8 +141,8 @@ substitute_placeholder "$tmp" "<!--KEYWORDS-->" "$keywords"
 if [[ "$code_flag" == true ]]; then
     code="
         <!-- Syntax highlighting -->
-        <script src="/js/prism.js"></script>
-        <link rel="stylesheet" href="/css/components/code.css" />
+        <script defer src=\"/js/prism.js\"></script>
+        <link defer rel=\"stylesheet\" href=\"/css/components/code.css\" />
         "
 else
     code=""
