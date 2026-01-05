@@ -98,16 +98,8 @@ div:is(.code-block-wrapper) > pre[class*="language-"] {
     margin: 0.5rem 0;
 }
 
-div:is(.code-block-wrapper)
-    > pre[class*="language-"]
-    > code[class*="language-"] {
+div:is(.code-block-wrapper) > pre[class*="language-"] * {
     font-family: "JetBrains Mono", monospace;
-    background-color: inherit;
-}
-
-div:is(.code-block-wrapper)
-    > pre[class*="language-"]
-    > code[class*="language-"]
-    > span[class*="token"] {
     font-size: 0.875rem;
+    background-color: inherit;
 }
