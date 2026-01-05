@@ -20,7 +20,8 @@
     --secondary-color: #060606;
     --accent-color: #20ee88;
 
-    --secondary-color-light: #06060690;
+    --primary-color-light: #fafafa;
+    --secondary-color-light: #767676;
 }
 
 /* Fonts */
@@ -31,24 +32,6 @@
         format("truetype");
 
     font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "JetBrains Mono";
-    src: url("../../assets/fonts/jetbrains-mono/JetBrainsMono[wght].ttf")
-        format("truetype");
-
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "JetBrains Mono";
-    src: url("../../assets/fonts/jetbrains-mono/JetBrainsMono-Italic[wght].ttf")
-        format("truetype");
-
-    font-style: italic;
     font-display: swap;
 }
 /* Layout */
@@ -102,6 +85,11 @@ nav > ul > li > a {
     color: var(--secondary-color);
 }
 
+nav a:hover,
+nav a:visited {
+    color: var(--secondary);
+}
+
 main {
     flex: 1;
     display: flex;
@@ -128,9 +116,7 @@ footer a {
 footer span {
     padding: 0 0.5rem;
 }
-::selection {
-    background-color: var(--accent-color);
-}
+/* Headings */
 
 h1,
 h2,
@@ -158,6 +144,14 @@ h4 {
     font-size: 1rem;
 }
 
+h1 + h2,
+h2 + h3,
+h3 + h4 {
+    margin-top: 0.5rem;
+}
+
+/* Horizontal Rules */
+
 h1 + hr,
 h2 + hr,
 h3 + hr,
@@ -165,22 +159,53 @@ h4 + hr {
     margin-top: 0.5rem;
 }
 
-h1 + h2,
-h2 + h3,
-h3 + h4 {
-    margin-top: 0.5rem;
-}
+/* Paragraphs */
 
 p {
     margin: 0.5rem 0;
 }
 
+/* Lists */
+
 li {
     margin: 0.5rem 1rem;
 }
+
+/* Links */
+
+a {
+    color: var(--secondary-color);
+    text-decoration-style: underline;
+}
+
+a:visited {
+    color: var(--secondary-color-light);
+}
+
+/* Quotes */
 
 blockquote {
     margin: 0.5rem 0;
     padding-left: 1rem;
     border-left: 2px solid var(--secondary-color-light);
+}
+
+/* Images */
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin: 0.5rem;
+    background-color: inherit;
+}
+
+img:is(.full-image) {
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.1);
+}
+
+/* Selection */
+
+::selection {
+    background-color: var(--accent-color);
 }

@@ -49,6 +49,11 @@ nav > ul > li > a {
     color: var(--secondary-color);
 }
 
+nav a:hover,
+nav a:visited {
+    color: var(--secondary);
+}
+
 main {
     flex: 1;
     display: flex;
