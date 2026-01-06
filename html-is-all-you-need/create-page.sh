@@ -11,8 +11,8 @@ Options:
   -d, --desc TEXT      Replace <!--DESCRIPTION--> with TEXT
   -k, --keywords TEXT  Replace <!--KEYWORDS--> with TEXT
   -c, --code           Replace <!--CODE--> with code syntax highlighting includes
-  -g, --chart          Replace <!--CHART--> with chart syntax highlighting includes
-  -m, --math           Replace <!--MATH--> with math syntax highlighting includes
+  -g, --chart          Replace <!--CHART--> with charts
+  -m, --math           Replace <!--MATH--> with math symbols
   -h, --help           Show this help message
 
 Arguments:
@@ -61,14 +61,20 @@ if [[ ${1:-} == "--help" || ${1:-} == "-h" ]]; then
 fi
 
 # Initialize variables
+template_file=""
+
+# Substitute
 title=""
 description=""
 keywords=""
+
+# Flags
 code_flag=false
 math_flag=false
 code_blocks=false
 chart_flag=false
-template_file=""
+anchor_flag=true # in most cases I want this
+
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -173,6 +179,20 @@ if [[ "$code_blocks" == true ]]; then
         s#<pre><code class="language-([^"]+)">#<div class="code-block-wrapper"><div class="code-block-header"><span class="code-block-header-lang">\1</span><div class="code-block-header-controls"><span></span><span></span><span></span></div></div><pre><code class="language-\1">#g
         # Close the wrapper div after </code></pre>
         s#</code></pre>#</code></pre></div>#g
+    ')
+fi
+
+# Anchors
+if [[ "$anchor_flag" == true ]]; then
+main=$(echo "$main" | perl -pe '
+        if (/<h([1-6])>(.+?)<\/h\1>/i) {
+            my $level = $1;
+            my $content = $2;
+            my $id = lc($content);
+            $id =~ s/\s+/-/g;
+            $id =~ s/[^a-z0-9-]//g;
+            $_ = "<h$level id=\"$id\">\n    <a href=\"#$id\" class=\"anchor\">$content</a>\n</h$level>\n";
+        }
     ')
 fi
 

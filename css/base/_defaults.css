@@ -77,6 +77,14 @@ a:visited {
     color: var(--secondary-color-light);
 }
 
+a:is(.anchor),
+a:is(.anchor):visited {
+    font-size: inherit;
+    font-weight: inherit;
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
 /* Quotes */
 
 blockquote {
