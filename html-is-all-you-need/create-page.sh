@@ -74,7 +74,8 @@ math_flag=false
 code_blocks=false
 chart_flag=false
 anchor_flag=true # in most cases I want this
-
+footnotes_flag=true # in most cases I want this
+reference_flag=true # in most cases I want this
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -184,17 +185,61 @@ fi
 
 # Anchors
 if [[ "$anchor_flag" == true ]]; then
-main=$(echo "$main" | perl -pe '
+    main=$(echo "$main" | perl -pe '
         if (/<h([1-6])>(.+?)<\/h\1>/i) {
             my $level = $1;
             my $content = $2;
             my $id = lc($content);
             $id =~ s/\s+/-/g;
             $id =~ s/[^a-z0-9-]//g;
-            $_ = "<h$level id=\"$id\">\n    <a href=\"#$id\" class=\"anchor\">$content</a>\n</h$level>\n";
+            $_ = "\n<h$level id=\"$id\">\n    <a href=\"#$id\" class=\"anchor\">$content</a>\n</h$level>\n";
         }
     ')
 fi
+
+# Footnotes
+if [[ "$footnotes_flag" == true ]]; then
+    # Convert footnotes to HTML
+    main=$(echo "$main" | perl -pe '
+        if (/\[\^(\d+)\]:(.+)<\/p>/m) {
+            my $id = $1;
+            my $content = $2;
+            $_ = "<tr id=\"footnote-$id\" class=\"footnote-target\"><td class=\"footnote-target-id\"><a href=\"#footnote-$id-backlink\">$id</a></td><td>$content</td></tr>";
+        }
+
+        s/\[\^(\d+)\]/<sup><a id="footnote-$1-backlink" href="#footnote-$1" class="footnote">$1<\/a><\/sup>/g;
+    ')
+
+    # Surround footnotes with <ol> (works, because all are in one line)
+    main=$(echo "$main" | perl -pe '
+        if (/<tr id=\"footnote-\d+\" class=\"footnote-target\">/m) {
+            $_ = "<table class=\"footnotes-table\">\n$_</table>";
+        }
+    ')
+fi
+
+# References
+if [[ "$reference_flag" == true ]]; then
+    # Convert references to HTML
+    main=$(echo "$main" | perl -pe '
+        if (/\[\^(\S+)\]:(.+)<\/p>/m) {
+            my $id = $1;
+            my $content = $2;
+            # $_ = "<li id=\"reference-$id\" class=\"reference-target\">$content</li>";
+            $_ = "<tr id=\"reference-$id\" class=\"reference-target\"><td class=\"reference-target-id\"><a href=\"#reference-$id-backlink\">$id</a></td><td>$content</td></tr>";
+        }
+
+        s/\[\^(\S+)\]/<sup><a id="reference-$1-backlink" href="#reference-$1" class="reference">$1<\/a><\/sup>/g;
+    ')
+
+    # Surround references with <table>
+    main=$(echo "$main" | perl -pe '
+        if (/<tr id=\"reference-\S+\" class=\"reference-target\">/m) {
+            $_ = "<table class=\"reference-table\">\n$_</table>";
+        }
+    ')
+fi
+
 
 # Create temporary file and copy template
 tmp=$(mktemp)

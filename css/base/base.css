@@ -6,6 +6,7 @@
     box-sizing: border-box;
     font-size: 16px;
     scroll-behavior: smooth;
+    scroll-padding: 16vh;
 }
 
 @media (max-width: 512px) {
@@ -105,6 +106,7 @@ main > * {
 }
 
 footer {
+    margin-top: 2rem;
     color: var(--secondary-color-light);
     font-size: 0.875rem;
 }
@@ -166,6 +168,12 @@ p {
     margin: 0.5rem 0;
 }
 
+/* Text */
+
+::target-text {
+    color: var(--secondary-color);
+}
+
 /* Mark */
 
 ::selection,
@@ -210,6 +218,32 @@ blockquote {
     margin: 0.5rem 0;
     padding-left: 1rem;
     border-left: 2px solid var(--secondary-color-light);
+}
+
+/* Footnotes & References */
+
+.footnote,
+.reference {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--secondary-color);
+    /*margin-left: -0.125rem;*/
+}
+
+.footnote-table,
+.reference-table {
+    margin: 0.5rem 0;
+}
+
+.footnote-target-id {
+    font-weight: 300;
+    font-style: italic;
+    color: var(--secondary-color);
+}
+
+.reference-target-id {
+    font-style: italic;
+    color: var(--secondary-color);
 }
 
 /* Images */

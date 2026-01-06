@@ -68,6 +68,7 @@ main > * {
 }
 
 footer {
+    margin-top: 2rem;
     color: var(--secondary-color-light);
     font-size: 0.875rem;
 }
