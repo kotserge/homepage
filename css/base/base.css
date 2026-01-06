@@ -165,6 +165,19 @@ p {
     margin: 0.5rem 0;
 }
 
+/* Mark */
+
+::selection,
+mark {
+    background-color: var(--accent-color);
+    padding: 0rem 0.25rem;
+    border-radius: 0.25rem;
+}
+
+mark::selection {
+    background-color: var(--secondary-color-light);
+}
+
 /* Lists */
 
 li {
@@ -202,10 +215,4 @@ img {
 img:is(.full-image) {
     border-radius: 0.5rem;
     box-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.1);
-}
-
-/* Selection */
-
-::selection {
-    background-color: var(--accent-color);
 }
