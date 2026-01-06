@@ -1,0 +1,14 @@
+div:is(.chart-container) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+    position: relative;
+    min-height: 256px;
+    margin: 0.5rem auto;
+}
+
+/* Make the canvas fill its grid cell */
+/*.chart-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}*/

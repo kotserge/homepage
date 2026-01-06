@@ -11,6 +11,7 @@ Options:
   -d, --desc TEXT      Replace <!--DESCRIPTION--> with TEXT
   -k, --keywords TEXT  Replace <!--KEYWORDS--> with TEXT
   -c, --code           Replace <!--CODE--> with code syntax highlighting includes
+  -g, --chart          Replace <!--CHART--> with chart syntax highlighting includes
   -m, --math           Replace <!--MATH--> with math syntax highlighting includes
   -h, --help           Show this help message
 
@@ -23,6 +24,7 @@ Placeholders:
   <!--DESCRIPTION-->   Optional; replaced if --desc is provided
   <!--KEYWORDS-->      Optional; replaced if --keywords is provided
   <!--CODE-->          Optional; replaced with code includes if --code flag is set
+  <!--CHART-->         Optional; replaced with chart includes if --chart flag is set
   <!--MATH-->          Optional; replaced with math includes if --math flag is set
 
 Example:
@@ -65,6 +67,7 @@ keywords=""
 code_flag=false
 math_flag=false
 code_blocks=false
+chart_flag=false
 template_file=""
 
 # Parse command line arguments
@@ -103,6 +106,10 @@ while [[ $# -gt 0 ]]; do
             math_flag=true
             shift
             ;;
+        -g|--chart)
+            chart_flag=true
+            shift
+            ;;
         -h|--help)
             show_help
             exit 0
@@ -127,9 +134,6 @@ if [[ -z "$template_file" ]]; then
     exit 1
 fi
 
-# Export variables
-export NODE_PATH=$(npm root -g)
-
 # Verify template file exists
 if [[ ! -f $template_file ]]; then
     echo "Error: Template file '$template_file' not found" >&2
@@ -144,6 +148,10 @@ if [[ -z "$main" ]]; then
     exit 1
 fi
 
+
+# Export variables
+export NODE_PATH=$(npm root -g)
+
 # Math processing
 if [[ "$math_flag" == true ]]; then
     path=$(dirname "$0")
@@ -153,6 +161,12 @@ fi
 # Markdown processing
 main=$(printf '%s' "$main" | md2html)
 
+# Charts processing
+if [[ "$chart_flag" == true ]]; then
+    main=$(printf '%s' "$main" | sed -E 's#<chart id="([^"]+)"/>#<div class="chart-container">\n<canvas id="chart-\1"></canvas>\n<script type="module" src="chart-\1.js"></script>\n</div>#g')
+fi
+
+# Code Blocks
 if [[ "$code_blocks" == true ]]; then
     main=$(printf '%s' "$main" | sed -E '
         # Match <pre><code class="language-LANG"> and wrap with div
@@ -200,6 +214,18 @@ else
     math=""
 fi
 substitute_placeholder "$tmp" "<!--MATH-->" "$math"
+
+# Replace <!--CHART--> with chart includes if flag is set, otherwise empty string
+if [[ "$chart_flag" == true ]]; then
+    chart="
+        <!-- Chart -->
+        <script defer src="/js/chart.umd.min.js"></script>
+        <link rel="stylesheet" href="/css/components/chart.css" />
+        "
+else
+    chart=""
+fi
+substitute_placeholder "$tmp" "<!--CHART-->" "$chart"
 
 # Output result and cleanup
 cat "$tmp"
