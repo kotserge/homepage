@@ -232,7 +232,13 @@ blockquote {
 
 .footnote-table,
 .reference-table {
+    width: 100%;
     margin: 0.5rem 0;
+}
+
+.footnote-table > tbody,
+.reference-table > tbody {
+    border: none;
 }
 
 .footnote-target-id {
@@ -244,6 +250,19 @@ blockquote {
 .reference-target-id {
     font-style: italic;
     color: var(--secondary-color);
+}
+
+/* Tables */
+
+table {
+    border-collapse: collapse;
+    margin: 1rem auto;
+    width: 75%;
+    min-width: 256px;
+}
+
+tbody {
+    border-top: 2px solid var(--secondary-color);
 }
 
 /* Images */

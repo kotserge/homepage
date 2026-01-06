@@ -166,7 +166,7 @@ if [[ "$math_flag" == true ]]; then
 fi
 
 # Markdown processing
-main=$(printf '%s' "$main" | md2html)
+main=$(printf '%s' "$main" | md2html --ftables)
 
 # Charts processing
 if [[ "$chart_flag" == true ]]; then
@@ -213,7 +213,7 @@ if [[ "$footnotes_flag" == true ]]; then
     # Surround footnotes with <ol> (works, because all are in one line)
     main=$(echo "$main" | perl -pe '
         if (/<tr id=\"footnote-\d+\" class=\"footnote-target\">/m) {
-            $_ = "<table class=\"footnotes-table\">\n$_</table>";
+            $_ = "<table class=\"footnote-table\">\n$_</table>";
         }
     ')
 fi
