@@ -173,7 +173,14 @@ if [[ "$chart_flag" == true ]]; then
     main=$(printf '%s' "$main" | sed -E 's#<chart id="([^"]+)"/>#<div class="chart-container">\n<canvas id="chart-\1"></canvas>\n<script type="module" src="chart-\1.js"></script>\n</div>#g')
 fi
 
-main=$(printf '%s' "$main" | perl -0777 -pe 's#<blockquote cite="([^"]+)" title="([^"]+)">(.+?)</blockquote>#<div class="blockquote">\n<blockquote cite="$1" title="$2">$3</blockquote>\n<cite><a href="$1" title="$2">--$2</a></cite>\n</div>#gs')
+# Blockquotes processing
+main=$(printf '%s' "$main" | perl -0777 -pe 's#<blockquote cite="([^"]+)" title="([^"]+)">(.+?)</blockquote>#<blockquote cite="$1" title="$2">$3</blockquote>\n<cite><a href="$1">&mdash; $2</a></cite>\n</blockquote>#gs')
+main=$(printf '%s' "$main" | perl -0777 -pe 's#<blockquote title="([^"]+)">(.+?)</blockquote>#<blockquote cite="" title="$1">$2</blockquote>\n<cite>&mdash; $1</cite>\n</blockquote>#gs')
+
+# Image processing
+main=$(printf '%s' "$main" | perl -0777 -pe 's#<img src="([^"]+)" alt="([^"]+)">#<img src="$1" alt="$2">\n<figcaption>&mdash; $2</figcaption>#gs')
+main=$(printf '%s' "$main" | perl -0777 -pe 's#<img class="([^"]+)" src="([^"]+)" alt="([^"]+)">#<img class="$1" src="$2" alt="$3">\n<figcaption>&mdash; $3</figcaption>#gs')
+main=$(printf '%s' "$main" | perl -0777 -pe 's#<img class="([^"]+)" src="([^"]+)" alt="([^"]+)" title="([^"]+)">#<img class="$1" src="$2" alt="$3" title="$4">\n<figcaption><a href="$4">&mdash; $3</figcaption>#gs')
 
 # Code Blocks
 if [[ "$code_blocks" == true ]]; then
