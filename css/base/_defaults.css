@@ -121,7 +121,6 @@ cite {
 cite > a {
     font-size: 0.875rem;
     font-weight: 300;
-    font-style: italic;
     color: var(--secondary-color);
     text-decoration: none;
 }
@@ -149,12 +148,10 @@ cite > a {
 
 .footnote-target-id {
     font-weight: 300;
-    font-style: italic;
     color: var(--secondary-color);
 }
 
 .reference-target-id {
-    font-style: italic;
     color: var(--secondary-color);
 }
 
@@ -192,7 +189,6 @@ figcaption {
 
     font-size: 0.875rem;
     font-weight: 300;
-    font-style: italic;
     color: var(--secondary-color);
 }
 
