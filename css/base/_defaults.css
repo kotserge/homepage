@@ -68,8 +68,17 @@ mark::selection {
 
 /* Lists */
 
+ol,
+ul {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 2.5rem;
+}
+
 li {
-    margin: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
 }
 
 /* Links */
@@ -94,9 +103,14 @@ a:is(.anchor):visited {
 /* Quotes */
 
 blockquote {
-    margin: 0.5rem 0;
+    margin: 1rem 0;
     padding-left: 1rem;
     border-left: 2px solid var(--secondary-color-light);
+}
+
+blockquote > ol,
+blockquote > ul {
+    margin-left: 1rem;
 }
 
 /* Footnotes & References */
