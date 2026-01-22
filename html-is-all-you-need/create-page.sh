@@ -4,7 +4,7 @@ show_help() {
     cat << EOF
 Usage: $0 [OPTIONS] <template.html>
 
-Process HTML from STDIN and replace placeholders in the template file.
+Process HTML from STDIN markdown and replace placeholders in the template file.
 
 Options:
   -t, --title TEXT     Replace <!--TITLE--> with TEXT
@@ -28,7 +28,7 @@ Placeholders:
   <!--MATH-->          Optional; replaced with math includes if --math flag is set
 
 Example:
-  cat content.html | $0 -t "My Page" -d "A description" -c template.html > output.html
+  cat content.md | $0 -t "My Page" -d "A description" -c template.html > output.html
 EOF
 }
 
