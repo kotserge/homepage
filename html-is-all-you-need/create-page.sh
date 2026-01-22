@@ -173,6 +173,8 @@ if [[ "$chart_flag" == true ]]; then
     main=$(printf '%s' "$main" | sed -E 's#<chart id="([^"]+)"/>#<div class="chart-container">\n<canvas id="chart-\1"></canvas>\n<script type="module" src="chart-\1.js"></script>\n</div>#g')
 fi
 
+main=$(printf '%s' "$main" | perl -0777 -pe 's#<blockquote cite="([^"]+)" title="([^"]+)">(.+?)</blockquote>#<div class="blockquote">\n<blockquote cite="$1" title="$2">$3</blockquote>\n<cite><a href="$1" title="$2">--$2</a></cite>\n</div>#gs')
+
 # Code Blocks
 if [[ "$code_blocks" == true ]]; then
     main=$(printf '%s' "$main" | sed -E '

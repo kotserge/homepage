@@ -235,6 +235,19 @@ blockquote > ul {
     margin-left: 1rem;
 }
 
+.blockquote > cite {
+    display: block;
+    text-align: right;
+}
+
+.blockquote > cite > a {
+    font-size: 0.875rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
 /* Footnotes & References */
 
 .footnote,
