@@ -158,7 +158,7 @@ h3 + h4 {
 hr {
     margin-top: 0.5rem;
     border-style: solid;
-    border-color: var(--secondary-color);
+    border-color: var(--secondary-color-light);
 }
 
 /* Paragraphs */
