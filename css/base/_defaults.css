@@ -71,7 +71,7 @@ ol,
 ul {
     margin-top: 1rem;
     margin-bottom: 1rem;
-    margin-left: 2.5rem;
+    padding-left: 1rem;
 
     li {
         margin-top: 0.5rem;
@@ -108,7 +108,7 @@ blockquote {
 
     ol,
     ul {
-        margin-left: 1rem;
+        padding-left: 1rem;
     }
 }
 
