@@ -110,6 +110,14 @@ blockquote {
     ul {
         padding-left: 1rem;
     }
+
+    code {
+        display: block;
+        text-align: center;
+        white-space-collapse: preserve-breaks;
+        overflow-wrap: break-word;
+        font-size: 1rem;
+    }
 }
 
 /* Footnotes & References */
