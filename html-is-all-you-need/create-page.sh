@@ -156,19 +156,16 @@ if [[ -z "$main" ]]; then
 fi
 
 
-# Export variables
-export NODE_PATH=$(npm root -g)
-
 # Math processing
 if [[ "$math_flag" == true ]]; then
     path=$(dirname "$0")
-    main=$(printf '%s' "$main" | node "$path/process-math.js")
+    main=$(printf '%s' "$main" | bun run "$path/process-math.js")
 fi
 
 # Code Fences processing
 if [[ "$code_flag" == true ]]; then
     path=$(dirname "$0")
-    main=$(printf '%s' "$main" | node "$path/process-code.js")
+    main=$(printf '%s' "$main" | bun run "$path/process-code.js")
 fi
 
 # Markdown processing
