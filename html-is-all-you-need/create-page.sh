@@ -174,13 +174,10 @@ if [[ "$chart_flag" == true ]]; then
 fi
 
 # Blockquotes processing
-main=$(printf '%s' "$main" | perl -0777 -pe 's#<blockquote cite="([^"]+)" title="([^"]+)">(.+?)</blockquote>#<blockquote cite="$1" title="$2">$3</blockquote>\n<cite><a href="$1">&mdash; $2</a></cite>\n</blockquote>#gs')
-main=$(printf '%s' "$main" | perl -0777 -pe 's#<blockquote title="([^"]+)">(.+?)</blockquote>#<blockquote cite="" title="$1">$2</blockquote>\n<cite>&mdash; $1</cite>\n</blockquote>#gs')
+main=$(printf '%s' "$main" | perl -0777 -pe 's#<blockquote(?:\s+cite="([^"]+)")?(?:\s+title="([^"]+)")?>(.+?)</blockquote>#"<blockquote" . (defined($1) ? " cite=\"$1\"" : "") . (defined($2) ? " title=\"$2\"" : "") . ">$3</blockquote>" . (defined($2) ? "\n<cite>" . (defined($1) ? "<a href=\"$1\">" : "") . "&mdash; $2" . (defined($1) ? "</a>" : "") . "</cite>" : "")#gse')
 
 # Image processing
-main=$(printf '%s' "$main" | perl -0777 -pe 's#<img src="([^"]+)" alt="([^"]+)">#<img src="$1" alt="$2">\n<figcaption>&mdash; $2</figcaption>#gs')
-main=$(printf '%s' "$main" | perl -0777 -pe 's#<img class="([^"]+)" src="([^"]+)" alt="([^"]+)">#<img class="$1" src="$2" alt="$3">\n<figcaption>&mdash; $3</figcaption>#gs')
-main=$(printf '%s' "$main" | perl -0777 -pe 's#<img class="([^"]+)" src="([^"]+)" alt="([^"]+)" title="([^"]+)">#<img class="$1" src="$2" alt="$3" title="$4">\n<figcaption><a href="$4">&mdash; $3</figcaption>#gs')
+main=$(printf '%s' "$main" | perl -0777 -pe 's#<img(?:\s+class="([^"]+)")?\s+src="([^"]+)"\s+alt="([^"]+)"(?:\s+title="([^"]+)")?(?:\s+ref="([^"]+)")?>#"<img" . (defined($1) ? " class=\"$1\"" : "") . " src=\"$2\" alt=\"$3\"" . (defined($4) ? " title=\"$4\"" : "") . ">" . (defined($4) ? "\n<figcaption>" . (defined($5) ? "<a href=\"$5\">" : "") . "&mdash; $4" . (defined($5) ? "</a>" : "") . "</figcaption>" : "")#gse')
 
 # Code Blocks
 if [[ "$code_blocks" == true ]]; then
