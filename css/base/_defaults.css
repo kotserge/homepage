@@ -34,11 +34,10 @@ h3 + h4 {
 
 /* Horizontal Rules */
 
-h1 + hr,
-h2 + hr,
-h3 + hr,
-h4 + hr {
+hr {
     margin-top: 0.5rem;
+    border-style: solid;
+    border-color: var(--secondary-color);
 }
 
 /* Paragraphs */
@@ -73,12 +72,12 @@ ul {
     margin-top: 1rem;
     margin-bottom: 1rem;
     margin-left: 2.5rem;
-}
 
-li {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    padding-left: 0.5rem;
+    li {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        padding-left: 0.5rem;
+    }
 }
 
 /* Links */
@@ -86,10 +85,10 @@ li {
 a {
     color: var(--secondary-color);
     text-decoration-style: underline;
-}
 
-a:visited {
-    color: var(--secondary-color-light);
+    :visited {
+        color: var(--secondary-color-light);
+    }
 }
 
 a:is(.anchor),
@@ -106,23 +105,11 @@ blockquote {
     margin: 0.5rem 0;
     padding-left: 1rem;
     border-left: 2px solid var(--secondary-color-light);
-}
 
-blockquote > ol,
-blockquote > ul {
-    margin-left: 1rem;
-}
-
-cite {
-    display: block;
-    text-align: right;
-}
-
-cite > a {
-    font-size: 0.875rem;
-    font-weight: 300;
-    color: var(--secondary-color);
-    text-decoration: none;
+    ol,
+    ul {
+        margin-left: 1rem;
+    }
 }
 
 /* Footnotes & References */
@@ -139,11 +126,10 @@ cite > a {
 .reference-table {
     width: 100%;
     margin: 0.5rem 0;
-}
 
-.footnote-table > tbody,
-.reference-table > tbody {
-    border: none;
+    tbody {
+        border: none;
+    }
 }
 
 .footnote-target-id {
@@ -182,20 +168,23 @@ img:is(.full-image) {
     box-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.1);
 }
 
+/* Citations and Captions */
+
+cite,
 figcaption {
     display: block;
     text-align: right;
-    /*margin-top: 0.5rem;*/
+    margin-bottom: 0.5rem;
 
     font-size: 0.875rem;
     font-weight: 300;
     color: var(--secondary-color);
-}
 
-figcaption > a {
-    font-size: inherit;
-    font-weight: inherit;
-    font-style: inherit;
-    color: var(--secondary-color);
-    text-decoration: none;
+    a {
+        font-size: inherit;
+        font-weight: inherit;
+        font-style: inherit;
+        color: var(--secondary-color);
+        text-decoration: none;
+    }
 }
