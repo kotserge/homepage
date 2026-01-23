@@ -177,7 +177,7 @@ fi
 main=$(printf '%s' "$main" | perl -0777 -pe 's#<blockquote(?:\s+cite="([^"]+)")?(?:\s+title="([^"]+)")?>(.+?)</blockquote>#"<blockquote" . (defined($1) ? " cite=\"$1\"" : "") . (defined($2) ? " title=\"$2\"" : "") . ">$3</blockquote>" . (defined($2) ? "\n<cite>" . (defined($1) ? "<a href=\"$1\">" : "") . "&mdash; $2" . (defined($1) ? "</a>" : "") . "</cite>" : "")#gse')
 
 # Image processing
-main=$(printf '%s' "$main" | perl -0777 -pe 's#<img(?:\s+class="([^"]+)")?\s+src="([^"]+)"\s+alt="([^"]+)"(?:\s+title="([^"]+)")?(?:\s+ref="([^"]+)")?>#"<img" . (defined($1) ? " class=\"$1\"" : "") . " src=\"$2\" alt=\"$3\"" . (defined($4) ? " title=\"$4\"" : "") . ">" . (defined($4) ? "\n<figcaption>" . (defined($5) ? "<a href=\"$5\">" : "") . "&mdash; $4" . (defined($5) ? "</a>" : "") . "</figcaption>" : "")#gse')
+main=$(printf '%s' "$main" | perl -0777 -pe 's#<img(?:\s+class="([^"]+)")?\s+src="([^"]+)"\s+alt="([^"]+)"(?:\s+title="([^"]+)")?(?:\s+ref="([^"]+)")?>#"<img" . (defined($1) ? " class=\"$1\"" : "") . " src=\"$2\" alt=\"$3\"" . (defined($4) ? " title=\"$4\"" : "") . " loading=\"lazy\" fetchpriority=\"low\">" . (defined($4) ? "\n<figcaption>" . (defined($5) ? "<a href=\"$5\">" : "") . "&mdash; $4" . (defined($5) ? "</a>" : "") . "</figcaption>" : "")#gse')
 
 # Code Blocks
 if [[ "$code_blocks" == true ]]; then
@@ -290,7 +290,7 @@ substitute_placeholder "$tmp" "<!--MATH-->" "$math"
 if [[ "$chart_flag" == true ]]; then
     chart="
         <!-- Chart -->
-        <script defer src=\"/js/chart.umd.min.js\"></script>
+        <script async src=\"/js/chart.umd.min.js\"></script>
         <link rel=\"stylesheet\" href=\"/css/components/chart.css\" />
         "
 else
