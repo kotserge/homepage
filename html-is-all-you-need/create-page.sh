@@ -295,7 +295,7 @@ substitute_placeholder "$tmp" "<!--MATH-->" "$math"
 if [[ "$chart_flag" == true ]]; then
     chart="
         <!-- Chart -->
-        <script async src=\"/js/chart.umd.min.js\"></script>
+        <script defer src=\"/js/chart.umd.min.js\"></script>
         <link rel=\"stylesheet\" href=\"/css/components/chart.css\" />
         "
 else
