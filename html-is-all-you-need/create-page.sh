@@ -165,6 +165,12 @@ if [[ "$math_flag" == true ]]; then
     main=$(printf '%s' "$main" | node "$path/process-math.js")
 fi
 
+# Code Fences processing
+if [[ "$code_flag" == true ]]; then
+    path=$(dirname "$0")
+    main=$(printf '%s' "$main" | node "$path/process-code.js")
+fi
+
 # Markdown processing
 main=$(printf '%s' "$main" | md2html --ftables)
 
@@ -182,8 +188,8 @@ main=$(printf '%s' "$main" | perl -0777 -pe 's#<img(?:\s+class="([^"]+)")?\s+src
 # Code Blocks
 if [[ "$code_blocks" == true ]]; then
     main=$(printf '%s' "$main" | sed -E '
-        # Match <pre><code class="language-LANG"> and wrap with div
-        s#<pre><code class="language-([^"]+)">#<div class="code-block-wrapper"><div class="code-block-header"><span class="code-block-header-lang">\1</span><div class="code-block-header-controls"><span></span><span></span><span></span></div></div><pre><code class="language-\1">#g
+        # Match <pre class="language-LANG"><code class="language-LANG"> and wrap with div
+        s#<pre class="language-([^"]+)"><code class="language-\1">#<div class="code-block-wrapper"><div class="code-block-header"><span class="code-block-header-lang">\1</span><div class="code-block-header-controls"><span></span><span></span><span></span></div></div><pre class="language-\1"><code class="language-\1">#g
         # Close the wrapper div after </code></pre>
         s#</code></pre>#</code></pre></div>#g
     ')
@@ -267,7 +273,6 @@ substitute_placeholder "$tmp" "<!--KEYWORDS-->" "$keywords"
 if [[ "$code_flag" == true ]]; then
     code="
         <!-- Syntax highlighting -->
-        <script defer src=\"/js/prism.js\"></script>
         <link rel=\"stylesheet\" href=\"/css/components/code.css\" />
         "
 else
