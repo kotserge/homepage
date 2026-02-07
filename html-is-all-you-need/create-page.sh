@@ -231,14 +231,14 @@ fi
 if [[ "$reference_flag" == true ]]; then
     # Convert references to HTML
     main=$(echo "$main" | perl -pe '
-        if (/\[\^(\S+)\]:(.+)<\/p>/m) {
+        if (/\[\\(\d+)\]:(.+)<\/p>/m) {
             my $id = $1;
             my $content = $2;
             # $_ = "<li id=\"reference-$id\" class=\"reference-target\">$content</li>";
             $_ = "<tr id=\"reference-$id\" class=\"reference-target\"><td class=\"reference-target-id\"><a href=\"#reference-$id-backlink\">$id</a></td><td>$content</td></tr>";
         }
 
-        s/\[\^(\S+)\]/<sup><a id="reference-$1-backlink" href="#reference-$1" class="reference">$1<\/a><\/sup>/g;
+        s/\[\\(\d+)\]/<a id="reference-$1-backlink" href="#reference-$1" class="reference">\[$1\]<\/a>/g;
     ')
 
     # Surround references with <table>

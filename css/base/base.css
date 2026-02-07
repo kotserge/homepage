@@ -243,12 +243,16 @@ blockquote {
 
 /* Footnotes & References */
 
-.footnote,
-.reference {
+.footnote {
     font-size: 0.75rem;
     font-weight: 300;
     color: var(--secondary-color);
     /*margin-left: -0.125rem;*/
+}
+
+.reference {
+    font-weight: 300;
+    text-decoration: none;
 }
 
 .footnote-table,
@@ -261,13 +265,11 @@ blockquote {
     }
 }
 
-.footnote-target-id {
+.footnote-target-id,
+.reference-target-id {
     font-weight: 300;
     color: var(--secondary-color);
-}
-
-.reference-target-id {
-    color: var(--secondary-color);
+    text-decoration: none;
 }
 
 /* Tables */
