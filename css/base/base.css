@@ -20,7 +20,7 @@
 :root {
     --primary-color: #f6f6f6;
     --secondary-color: #060606;
-    --accent-color: #20ee88;
+    --accent-color: #ebdbb3;
 
     --primary-color-light: #fafafa;
     --secondary-color-light: #767676;
@@ -247,7 +247,6 @@ blockquote {
     font-size: 0.75rem;
     font-weight: 300;
     color: var(--secondary-color);
-    /*margin-left: -0.125rem;*/
 }
 
 .reference {
@@ -269,7 +268,6 @@ blockquote {
 .reference-target-id {
     font-weight: 300;
     color: var(--secondary-color);
-    text-decoration: none;
 }
 
 /* Tables */
