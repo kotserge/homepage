@@ -2,3 +2,8 @@
 
 ## Ignore reference directory
 reference-page/
+
+## bun / js specifics
+bun.lock
+package.json
+node_modules
