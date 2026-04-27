@@ -22,6 +22,6 @@
 }
 
 .social-links > a:hover > img {
-    filter: invert(63%) sepia(91%) saturate(401%) hue-rotate(95deg)
-        brightness(102%) contrast(93%);
+    filter: brightness(0) saturate(100%) invert(92%) sepia(17%) saturate(528%)
+        hue-rotate(346deg) brightness(97%) contrast(90%);
 }
