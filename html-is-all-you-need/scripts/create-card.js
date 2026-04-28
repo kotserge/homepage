@@ -60,6 +60,7 @@ const md = MarkdownIt({ html: true, linkify: false, typographer: false });
 const template = fs.readFileSync(templatePath, "utf8");
 const output = applyTemplate(template, {
     TITLE: md.renderInline(String(frontmatter.title ?? "")),
+    CRUMB: String(frontmatter.crumb ?? ""),
     DATE: formatDate(frontmatter.date),
     DESCRIPTION: md.renderInline(String(frontmatter.description ?? "")),
     KEYWORDS: String(frontmatter.keywords ?? ""),

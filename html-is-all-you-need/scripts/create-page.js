@@ -57,6 +57,7 @@ Frontmatter (YAML, in the markdown file):
 Template placeholders:
   <!--MAIN-->            Rendered article HTML
   <!--TITLE-->           From frontmatter
+  <!--CRUMB-->           From frontmatter
   <!--DESCRIPTION-->     From frontmatter
   <!--KEYWORDS-->        From frontmatter
   <!--CODE-->            Code includes (-c)
@@ -150,6 +151,7 @@ linkAsides($, "\\", "reference");
 const template = fs.readFileSync(templatePath, "utf8");
 const output = applyTemplate(template, {
     TITLE: String(frontmatter.title ?? ""),
+    CRUMB: String(frontmatter.crumb ?? ""),
     DESCRIPTION: String(frontmatter.description ?? ""),
     KEYWORDS: String(frontmatter.keywords ?? ""),
     MAIN: $.html(),
