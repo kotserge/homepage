@@ -24,7 +24,8 @@ const INCLUDES = {
         `,
     chart: `
         <!-- Chart -->
-        <script defer src="/js/chart.umd.min.js"></script>
+        <script defer src="/js/d3.min.js"></script>
+        <script defer src="/js/plot.min.js"></script>
         <link rel="stylesheet" href="/css/components/chart.css" />
         `,
 };
@@ -226,11 +227,11 @@ function highlightCode(code, lang) {
 
 function expandCharts(text) {
     return text.replace(
-        /<chart\s+id="([^"]+)"\s*\/?>/g,
-        (_, id) =>
+        /<chart\s+id="([^"]+)"\s+type="([^"]+)"\s?(.+)\/?>/g,
+        (_, id, type, additionalProperties) =>
             `<div class="chart-container">\n` +
-            `    <canvas id="chart-${id}"></canvas>\n` +
-            `    <script type="module" src="chart-${id}.js"></script>\n` +
+            `    <${type} id="${id}" ${additionalProperties}></${type}>\n` +
+            `    <script type="module" src="${id}.js"></script>\n` +
             `</div>`,
     );
 }

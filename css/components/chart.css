@@ -1,7 +1,0 @@
-div:is(.chart-container) {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, auto));
-    position: relative;
-    min-height: 256px;
-    margin: 0.5rem auto;
-}
