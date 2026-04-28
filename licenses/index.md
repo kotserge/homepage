@@ -1,3 +1,11 @@
+---
+title:          Licenses
+crumb:          licenses
+date:           28.04.2026
+description:    Licenses of modules and libraries used on kotchourko.dev
+keywords:       licenses
+---
+
 # Licenses
 
 ---

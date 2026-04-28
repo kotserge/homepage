@@ -1,3 +1,11 @@
+---
+title:          Privacy Policy
+crumb:          privacy-policy
+date:           28.04.2026
+description:    Privacy policy page of kotchourko.dev
+keywords:       privacy, policy
+---
+
 # Datenschutzerklärung
 ---
 

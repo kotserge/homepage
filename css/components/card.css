@@ -6,6 +6,10 @@
     margin: 2rem 0;
     cursor: pointer;
 
+    a {
+        text-decoration: none;
+    }
+
     header {
         display: flex;
         justify-content: space-between;

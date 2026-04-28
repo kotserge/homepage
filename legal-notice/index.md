@@ -1,3 +1,11 @@
+---
+title:          Legal Notice
+crumb:          legal-notice
+date:           28.04.2026
+description:    Liegal notice of kotchourko.dev
+keywords:       legal, notice
+---
+
 # Impressum
 ---
 

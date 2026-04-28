@@ -12,7 +12,7 @@
 
     <url>
         <loc>https://kotchourko.dev/about/</loc>
-        <lastmod>2026-01-03</lastmod>
+        <lastmod>2026-04-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -20,19 +20,19 @@
     <!-- Legal -->
     <url>
         <loc>https://kotchourko.dev/privacy-policy</loc>
-        <lastmod>2026-01-03</lastmod>
+        <lastmod>2026-04-28</lastmod>
         <changefreq>monthly</changefreq>
     </url>
 
     <url>
         <loc>https://kotchourko.dev/legal-notice</loc>
-        <lastmod>2026-01-03</lastmod>
+        <lastmod>2026-04-28</lastmod>
         <changefreq>monthly</changefreq>
     </url>
 
     <url>
         <loc>https://kotchourko.dev/licenses</loc>
-        <lastmod>2026-01-03</lastmod>
+        <lastmod>2026-04-28</lastmod>
         <changefreq>monthly</changefreq>
     </url>
 
