@@ -146,7 +146,7 @@ addBlockquoteCitations($);
 addImageCaptions($);
 if (flags.code) wrapCodeBlocks($);
 linkAsides($, "^", "footnote");
-linkAsides($, "\\", "reference");
+linkAsides($, "\\", "reference", { inlineStyle: "bracket" });
 
 // 4. Template substitution.
 const template = fs.readFileSync(templatePath, "utf8");
@@ -341,7 +341,7 @@ function wrapCodeBlocks($) {
 // rows fall under it. Consecutive sibling definitions are merged into a
 // single <table> with multiple rows, so each list renders as one table
 // rather than a stack of one-row tables.
-function linkAsides($, marker, prefix) {
+function linkAsides($, marker, prefix, { inlineStyle = "sup" } = {}) {
     const m = marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const defRe = new RegExp(`^\\[${m}(\\d+)\\]:\\s*([\\s\\S]+)$`);
     const refRe = new RegExp(`\\[${m}(\\d+)\\]`, "g");
@@ -385,14 +385,19 @@ function linkAsides($, marker, prefix) {
     }
 
     // 3. Linkify inline references throughout the doc.
+    const wrap =
+        inlineStyle === "bracket"
+            ? (link) => `[${link}]`
+            : (link) => `<sup>${link}</sup>`;
+
     $("*")
         .contents()
         .each(function () {
             if (this.type !== "text") return;
-            const replaced = this.data.replace(
-                refRe,
-                (_, id) =>
-                    `<sup><a id="${prefix}-${id}-backlink" href="#${prefix}-${id}" class="${prefix}">${id}</a></sup>`,
+            const replaced = this.data.replace(refRe, (_, id) =>
+                wrap(
+                    `<a id="${prefix}-${id}-backlink" href="#${prefix}-${id}" class="${prefix}">${id}</a>`,
+                ),
             );
             if (replaced !== this.data) $(this).replaceWith(replaced);
         });
