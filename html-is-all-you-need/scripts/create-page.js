@@ -154,7 +154,7 @@ const output = applyTemplate(template, {
     TITLE: String(frontmatter.title ?? ""),
     CRUMB: String(frontmatter.crumb ?? ""),
     DESCRIPTION: String(frontmatter.description ?? ""),
-    KEYWORDS: String(frontmatter.keywords ?? ""),
+    KEYWORDS: Array(frontmatter.tags ?? ""),
     MAIN: $.html(),
     CODE: flags.code ? INCLUDES.code : "",
     MATH: flags.math ? INCLUDES.math : "",
