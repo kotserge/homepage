@@ -7,7 +7,7 @@ const plot = Plot.plot({
     width: 600,
     height: 360,
     caption:
-        "Figure 2: A possible (linear) model for predicting penguin body mass from flipper length",
+        "Figure 3: Optimized linear model for predicting penguin body mass from flipper length",
     marks: [
         Plot.axisX({ label: "Flipper length (mm)" }),
         Plot.axisY({ label: "Body mass (g)" }),
