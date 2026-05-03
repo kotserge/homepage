@@ -368,12 +368,20 @@ function linkAsides($, marker, prefix, { inlineStyle = "sup" } = {}) {
 
     // 2. Replace each run with a single multi-row table at the position of
     //    its first paragraph; drop the rest.
+
+    const wrap_table =
+        inlineStyle === "bracket" ? (link) => `[${link}]` : (link) => `${link}`;
+
     for (const { items } of runs) {
         const rows = items
             .map(
                 ({ id, content }) =>
                     `<tr id="${prefix}-${id}" class="${prefix}-target">` +
-                    `<td class="${prefix}-target-id"><a href="#${prefix}-${id}-backlink">${id}</a></td>` +
+                    `<td class="${prefix}-target-id">` +
+                    wrap_table(
+                        `<a href="#${prefix}-${id}-backlink">${id}</a>`,
+                    ) +
+                    `</td>` +
                     `<td>${content}</td>` +
                     `</tr>`,
             )
@@ -385,7 +393,7 @@ function linkAsides($, marker, prefix, { inlineStyle = "sup" } = {}) {
     }
 
     // 3. Linkify inline references throughout the doc.
-    const wrap =
+    const wrap_inline =
         inlineStyle === "bracket"
             ? (link) => `[${link}]`
             : (link) => `<sup>${link}</sup>`;
@@ -395,7 +403,7 @@ function linkAsides($, marker, prefix, { inlineStyle = "sup" } = {}) {
         .each(function () {
             if (this.type !== "text") return;
             const replaced = this.data.replace(refRe, (_, id) =>
-                wrap(
+                wrap_inline(
                     `<a id="${prefix}-${id}-backlink" href="#${prefix}-${id}" class="${prefix}">${id}</a>`,
                 ),
             );
