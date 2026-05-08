@@ -32,7 +32,7 @@ In supervised learning, what we try to mimic is the underlying process that rela
 - $Y$ represents our target space, the key characteristic we want to predict, e.g., the weight of the penguin.
 - $X$ represents our input space, encompassing what we see fit to use, what is possible and easily attainable/measurable, e.g., the flipper length.
 
-The goal of the final model is to accurately predict outputs for **new, unseen data**. Additionally, it might allow us to gain insight into the underlying processes at play, which drive [unsupervised learning](#spectrum-of-machine-learning).
+The goal of the final model is to accurately predict outputs for **new, unseen data**. Additionally, it might allow us to gain insight into the underlying processes at play, which drive [unsupervised learning](#the-spectrum-of-machine-learning).
 
 ## Data
 ---
@@ -53,7 +53,7 @@ Our model became a **parameterized hypothesis** about how our output/label, e.g.
 
 **Parameterization.** The parameterization $\theta$ in our parameter space $\Theta$ then becomes a specific setting for this model $\hat f_\theta$, pinning it to a concrete function in this family. Hence, one can think of $\theta$ as a configurable index and selector over this function family, or as something that can be adjusted so that our function better fits our data (e.g., our slope and intercept for the linear model).
 
-More often than not, one will refer to a model as the parameterized function $\hat{f} _ \ theta$, while the family of functions is referred to as the architecture.
+More often than not, one will refer to a model as the parameterized function $\hat{f}_\ theta$, while the family of functions is referred to as the architecture.
 
 ## Loss
 ---
