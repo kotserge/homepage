@@ -25,3 +25,11 @@
         margin: 0.25rem 0;
     }
 }
+
+.card header > :first-child {
+    transition: opacity 0.5s ease-in-out;
+}
+
+.card:hover header > :first-child {
+    opacity: 0.6;
+}

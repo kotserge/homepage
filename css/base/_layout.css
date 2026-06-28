@@ -49,9 +49,12 @@ nav > ul > li > a {
     color: var(--secondary-color);
 }
 
-nav a:hover,
-nav a:visited {
-    color: var(--secondary);
+nav a {
+    transition: opacity 0.5s ease-in-out;
+}
+
+nav a:hover {
+    opacity: 0.6;
 }
 
 main {
