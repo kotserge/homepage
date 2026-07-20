@@ -53,7 +53,7 @@ Our model became a **parameterized hypothesis** about how our output/label, e.g.
 
 **Parameterization.** The parameterization $\theta$ in our parameter space $\Theta$ then becomes a specific setting for this model $\hat f_\theta$, pinning it to a concrete function in this family. Hence, one can think of $\theta$ as a configurable index and selector over this function family, or as something that can be adjusted so that our function better fits our data (e.g., our slope and intercept for the linear model).
 
-More often than not, one will refer to a model as the parameterized function $\hat{f}_\ theta$, while the family of functions is referred to as the architecture.
+More often than not, one will refer to a model as the parameterized function $\hat{f}_\theta$, while the family of functions is referred to as the architecture.
 
 ## Loss
 ---
