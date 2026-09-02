@@ -7,9 +7,15 @@
 }
 
 /* Wide formulas scroll instead of overflowing, but the bar only appears when
-   one actually does (`scroll` would reserve a permanent track). */
+   one actually does (`scroll` would reserve a permanent track). Setting one
+   overflow axis makes the other compute to `auto` as well, and KaTeX's
+   fractional glyph heights then round into a phantom vertical bar, so the y
+   axis is clamped; the padding keeps tall limits and descenders from being
+   clipped, and the margin gives it back so the spacing stays at 1em. */
 span:is(.katex-display) {
-    overflow-x: auto;
+    overflow: auto hidden;
+    padding: 0.25em 0;
+    margin: 0.75em 0;
 }
 
 p:has(span:is(.katex-display)) {
