@@ -49,6 +49,6 @@ Roßbergstraße 32/1 \
 
 This Legal Notice complies with the German laws under § 5 DDG and § 55 RStV.
 
-## Quelle
+# Quelle
 ---
 [eRecht24](https://www.e-recht24.de/impressum-generator.html), Stand: 04.01.2026

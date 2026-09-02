@@ -33,6 +33,9 @@ const INCLUDES = {
 // Languages Prism preloads on its own — don't try to require them.
 const PRISM_PRELOADED = new Set(["markup", "css", "clike", "javascript"]);
 
+// Zero-padded width of the section counter rendered in front of each <h2>.
+const SECTION_NUMBER_WIDTH = 2;
+
 // ─── CLI ────────────────────────────────────────────────────────────────────
 
 function showHelp() {
@@ -142,6 +145,7 @@ const html = md.render(text);
 const $ = cheerio.load(html, null, false);
 
 addHeadingAnchors($);
+wrapSectionHeads($);
 addBlockquoteCitations($);
 addImageCaptions($);
 if (flags.code) wrapCodeBlocks($);
@@ -254,6 +258,45 @@ function addHeadingAnchors($) {
         const inner = $h.html();
         $h.attr("id", id);
         $h.html(`<a href="#${id}" class="anchor">${inner}</a>`);
+    });
+}
+
+// Turn every top-level heading into a section head so all sections share one
+// look. An <h2> gets a running number; an <h1> gets none and restarts the
+// count, so a page with several parts (e.g. a bilingual legal notice) numbers
+// each part from 01:
+//
+//   <div class="sec-head"><h1>…</h1><hr></div>
+//   <div class="sec-head"><span class="sec-num">01</span><h2>…</h2><hr></div>
+//
+// Only direct children of the article count; a heading nested in a blockquote
+// (e.g. a pasted license text) is left alone so it neither gets a number nor
+// shifts the numbering. The <hr> an author writes as `---` directly under
+// the heading is adopted into the head; when there is none, one is added so
+// the rule is always present.
+function wrapSectionHeads($) {
+    let count = 0;
+    const $headings = $.root().children("h1, h2");
+    $headings.each((_, el) => {
+        const $h = $(el);
+
+        // An <h1> opens a new part: it carries no number and restarts the count.
+        const isPart = $h.is("h1");
+        count = isPart ? 0 : count + 1;
+        const num = String(count).padStart(SECTION_NUMBER_WIDTH, "0");
+        const label = isPart ? "" : `<span class="sec-num">${num}</span>`;
+
+        // Adopt the author's `---` only if nothing but whitespace separates it
+        // from the heading; anything else is content and stays where it is.
+        const $next = $h.next();
+        const hasRule = $next.is("hr") && areAdjacentSiblings(el, $next[0]);
+        const $rule = hasRule ? $next.remove() : $("<hr>");
+
+        // Swap the heading for the wrapper, then move heading and rule inside.
+        const $head = $(`<div class="sec-head">${label}</div>`);
+        $h.replaceWith($head);
+        $head.append($h);
+        $head.append($rule);
     });
 }
 

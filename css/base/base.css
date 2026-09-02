@@ -128,7 +128,7 @@ h1,
 h2,
 h3,
 h4 {
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 h1 {
@@ -162,6 +162,41 @@ hr {
     margin-top: 0.5rem;
     border-style: solid;
     border-color: var(--secondary-color-light);
+}
+
+/* Section Heads */
+
+.sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-top: 2rem;
+
+    h1,
+    h2 {
+        margin-top: 0;
+    }
+
+    /* The rule has no text, so baseline alignment uses its bottom edge: a
+       1px-high box therefore draws the line right on the text baseline. */
+    hr {
+        flex: 1;
+        min-width: 2rem;
+        margin: 0 0 0 0.5rem; /* title→rule stays 1rem incl. the row gap */
+        border: none;
+        border-top: 1px solid var(--secondary-color);
+    }
+}
+
+.sec-num {
+    font-size: 0.875rem;
+    font-weight: 300;
+    font-variant-numeric: tabular-nums;
+    color: var(--secondary-color-light);
+}
+
+.sec-num::after {
+    content: ".";
 }
 
 /* Paragraphs */

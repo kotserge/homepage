@@ -9,7 +9,7 @@ keywords:       privacy, policy
 # Datenschutzerklärung
 ---
 
-## 1. Datenschutz auf einen Blick
+## Datenschutz auf einen Blick
 
 ### Allgemeine Hinweise
 
@@ -37,7 +37,7 @@ Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger
 
 Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit an uns wenden.
 
-## 2. Hosting
+## Hosting
 
 Wir hosten die Inhalte unserer Website bei folgendem Anbieter:
 
@@ -51,7 +51,7 @@ Die Verwendung von IONOS erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. W
 
 Wir haben einen Vertrag über Auftragsverarbeitung (AVV) zur Nutzung des oben genannten Dienstes geschlossen. Hierbei handelt es sich um einen datenschutzrechtlich vorgeschriebenen Vertrag, der gewährleistet, dass dieser die personenbezogenen Daten unserer Websitebesucher nur nach unseren Weisungen und unter Einhaltung der DSGVO verarbeitet. Die AVV kann unter folgendem Link eingesehen werden: https://www.ionos.de/terms-gtc/avv/
 
-## 3. Allgemeine Hinweise und Pflichtinformationen
+## Allgemeine Hinweise und Pflichtinformationen
 
 ### Datenschutz
 
@@ -125,7 +125,7 @@ Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertra
 
 Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden.
 
-## 4. Datenerfassung auf dieser Website
+## Datenerfassung auf dieser Website
 
 ### Anfrage per E-Mail, Telefon oder Telefax
 
@@ -139,11 +139,9 @@ Die von Ihnen an uns per Kontaktanfragen übersandten Daten verbleiben bei uns, 
 # Privacy Policy
 ---
 
-## 0. Preface
-
 This privacy policy is a translation of the German version. In case of discrepancies between the German and English versions, the German version shall prevail.
 
-## 1. Data protection at a glance
+## Data protection at a glance
 
 ### General Information
 
@@ -169,7 +167,7 @@ You have the right at any time to receive information free of charge about the o
 
 For this purpose, as well as for further questions on the subject of data protection, you can contact us at any time.
 
-## 2. Hosting
+## Hosting
 
 We host the content of our website at the following provider:
 
@@ -184,7 +182,7 @@ The use of IONOS is based on Article 6 Paragraph 1 Letter f) GDPR (German Data P
 
 We have concluded a contract on "Auftragsverarbeitung" (AVV) for the use of the above-mentioned service. This is a contract required by data protection law, which ensures that this processes the personal data of our website visitors only according to our instructions and in compliance with the GDPR. This contract can be viewed at the following link: https://www.ionos.de/terms-gtc/avv/
 
-## 3. General notes and mandatory information
+## General notes and mandatory information
 
 ### Data protection
 
@@ -258,7 +256,7 @@ For security reasons and to protect the transmission of confidential content, su
 
 If SSL or TLS encryption is activated, the data you transmit to us cannot be read by third parties.
 
-## 4. Data collection on this website
+## Data collection on this website
 
 ### Request by e-mail, telephone or telefax
 
@@ -268,6 +266,6 @@ The processing of this data is based on Article 6 Paragraph 1 Letter b) GDPR, if
 
 The data you send to us via inquiries will remain with us until you request us to delete it, revoke your consent to store it, or the purpose for storing the data no longer applies (e.g., after we have completed processing your request). Mandatory legal provisions - in particular legal retention periods - remain unaffected.
 
-## Quelle
+# Quelle
 ---
 [eRecht24](https://www.e-recht24.de), Stand: 04.01.2026
