@@ -2,6 +2,8 @@
 title: The Framework of Machine Learning
 crumb: the-framework-of-machine-learning
 date: 2026-05-03
+status: byte
+kind: explainer
 description: Machine Learning feels elusive when first reading about it. The framework, however, is quite intuitive, allowing one to pin down each component and its responsibility.
 tags:
   - machine-learning

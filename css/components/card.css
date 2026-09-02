@@ -14,11 +14,11 @@
         display: flex;
         justify-content: space-between;
         align-items: start;
+        gap: 1rem;
+    }
 
-        :first-child {
-            margin-top: 0;
-            margin-right: 1rem;
-        }
+    h2 {
+        margin-top: 0;
     }
 
     p {
@@ -26,10 +26,23 @@
     }
 }
 
-.card header > :first-child {
+/* Title and its signals; the signals wrap under the title when space is short */
+.card-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 0.5rem;
     transition: opacity 0.5s ease-in-out;
 }
 
-.card:hover header > :first-child {
+.card:hover .card-title {
     opacity: 0.6;
+}
+
+/* Status (bit/byte) and kind (explainer, …): muted so they read as metadata */
+.card-signals {
+    font-size: 0.875rem;
+    font-weight: 300;
+    white-space: nowrap;
+    color: var(--secondary-color-light);
 }

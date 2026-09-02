@@ -7,6 +7,15 @@ const path = require("node:path");
 const matter = require("gray-matter");
 const MarkdownIt = require("markdown-it");
 
+// ─── Config ─────────────────────────────────────────────────────────────────
+
+// Refinement level of a post, so readers can gauge how worked-out it is:
+// a `bit` is rough (thoughts, epistemic notes), a `byte` is refined.
+const STATUSES = new Set(["bit", "byte"]);
+
+// What kind of post it is, so readers know what to expect from it.
+const KINDS = new Set(["explainer", "opinion"]);
+
 // ─── CLI ────────────────────────────────────────────────────────────────────
 
 function showHelp() {
@@ -19,6 +28,8 @@ frontmatter fields into the given template. The markdown body is ignored.
 Frontmatter fields:
   title        → <!--TITLE-->        (rendered as inline markdown)
   date         → <!--DATE-->         (DD.MM.YYYY if YAML-parsed as a date)
+  status       → <!--STATUS-->       (one of: bit, byte)
+  kind         → <!--KIND-->         (one of: explainer, opinion)
   description  → <!--DESCRIPTION-->  (rendered as inline markdown)
   keywords     → <!--KEYWORDS-->     (literal)
 
@@ -62,6 +73,8 @@ const output = applyTemplate(template, {
     TITLE: md.renderInline(String(frontmatter.title ?? "")),
     CRUMB: String(frontmatter.crumb ?? ""),
     DATE: formatDate(frontmatter.date),
+    STATUS: requireOneOf(frontmatter, "status", STATUSES),
+    KIND: requireOneOf(frontmatter, "kind", KINDS),
     DESCRIPTION: md.renderInline(String(frontmatter.description ?? "")),
     KEYWORDS: String(frontmatter.keywords ?? ""),
 });
@@ -81,6 +94,19 @@ function formatDate(value) {
         return `${d}.${m}.${y}`;
     }
     return String(value ?? "");
+}
+
+// Frontmatter fields with a fixed vocabulary must be present and valid; an
+// unknown value would otherwise land on the page as a silent typo.
+function requireOneOf(frontmatter, field, allowed) {
+    const value = String(frontmatter[field] ?? "").trim();
+    if (allowed.has(value)) return value;
+
+    const list = [...allowed].join(", ");
+    console.error(
+        `Error: frontmatter '${field}' must be one of: ${list} (got '${value}')`,
+    );
+    process.exit(1);
 }
 
 function applyTemplate(template, vars) {
