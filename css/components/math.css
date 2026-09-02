@@ -1,7 +1,15 @@
 @import url("./katex.min.css");
 
+/* KaTeX's 1.21em default is tuned to a Times-like body font; Space Grotesk has
+   a large x-height, so a smaller factor keeps formulas level with the prose. */
+.katex {
+    font-size: 1.1em;
+}
+
+/* Wide formulas scroll instead of overflowing, but the bar only appears when
+   one actually does (`scroll` would reserve a permanent track). */
 span:is(.katex-display) {
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 p:has(span:is(.katex-display)) {
