@@ -9,8 +9,15 @@
     font-synthesis: none;
 }
 
+/* Base font size — set on the root so rem units and inheritance follow it,
+   without overriding elements that size themselves (e.g. SVG chart text) */
+
+:root {
+    font-size: 14px;
+}
+
 @media (max-width: 512px) {
-    * {
+    :root {
         font-size: 12px;
     }
 }
