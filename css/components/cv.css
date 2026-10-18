@@ -116,6 +116,14 @@ main {
     margin-top: 0.15rem;
     font-size: 0.875rem;
     color: var(--secondary-color-light);
+
+    a {
+        color: var(--secondary-color-light);
+    }
+
+    a:hover {
+        color: var(--secondary-color);
+    }
 }
 
 /* Print */
