@@ -98,9 +98,13 @@ $\mathcal H$ is our observation model, reading the temperature of our heat rod s
 ## The Tasks
 ---
 
+From this perspective, our knowledge about parts of the problem and the desired form, quality and quantity of our prediction b  
+
 Most tasks, from simulating a flow to inferring a property of the system, are then a question about one side given the other; i.e., predicting observations from a known system, or inferring the system from observations. Meaning, that the tasks **differ only in what is known and what is sought**.
 
-<TODO>
+The map places every problem and method by what it needs to know of the operator $\mathcal N$, the parameters $\lambda$, the forcing $f$, the state data $u$ and the observations $\mathcal H$, and by what it produces. Click a level, a row or a cell to keep only what needs that much or less; each card links to its own page.
+
+<chart id="task-map" type="figure"/>
 
 ## Resources
 ---

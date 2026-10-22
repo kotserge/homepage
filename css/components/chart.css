@@ -3,6 +3,127 @@
     margin: 1rem 0;
 }
 
+/* Figure buttons, as in the nav: no border, text fading on hover; a selected one (is-on) sits on the accent, which stays on hover */
+.chart-button {
+    font: inherit;
+    color: var(--secondary-color);
+    background: transparent;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.15rem 0.6rem;
+    cursor: pointer;
+    transition: color 0.5s ease-in-out;
+}
+
+/* Only the text (and an icon stroked in currentColor) fades, to the nav's 60% */
+.chart-button:hover {
+    color: color-mix(in srgb, var(--secondary-color) 60%, transparent);
+}
+
+.chart-button.is-on {
+    background: var(--accent-color);
+}
+
+.chart-button:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+/* Icon button: square, holding an Iconoir icon */
+.chart-button.is-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    aspect-ratio: 1;
+    padding: 0;
+}
+
+.chart-button.is-icon svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* Height shared by figure dropdowns and sliders, so controls side by side line up */
+:root {
+    --chart-control-h: 1.75rem;
+}
+
+/* Figure dropdowns: no border, a light grey field with an Iconoir `nav-arrow-down` chevron */
+.chart-select {
+    height: var(--chart-control-h);
+    appearance: none;
+    font: inherit;
+    color: var(--secondary-color);
+    /* The chevron's stroke is --secondary-color, written out: a data URI cannot read a CSS variable */
+    background: color-mix(in oklab, var(--secondary-color) 6%, var(--primary-color))
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23060606' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9L12 15L18 9'/%3E%3C/svg%3E")
+        no-repeat right 0.4rem center / 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0 1.75rem 0 0.5rem;
+    cursor: pointer;
+}
+
+.chart-select:focus-visible,
+.chart-slider:focus-visible {
+    outline: 1px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+/*
+ * Figure sliders: the native look without its border, a rounded track filled in the text
+ * colour up to a small round thumb in the same colour.
+ * WebKit has no filled part of its own, so the fill is a gradient up to `--fill`, which
+ * `setSliderFill` (controls.js) keeps at the value's share of the range.
+ */
+.chart-slider {
+    --track: color-mix(in oklab, var(--secondary-color) 15%, var(--primary-color));
+    --fill: 50%;
+    appearance: none;
+    width: 100%;
+    height: var(--chart-control-h);
+    background: transparent;
+    cursor: pointer;
+}
+
+.chart-slider::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 999px;
+    background: linear-gradient(to right, var(--secondary-color) var(--fill), var(--track) var(--fill));
+}
+
+.chart-slider::-moz-range-track {
+    height: 4px;
+    border-radius: 999px;
+    background: var(--track);
+}
+
+.chart-slider::-moz-range-progress {
+    height: 4px;
+    border-radius: 999px;
+    background: var(--secondary-color);
+}
+
+/* The WebKit thumb sits on the track's top edge; the margin centres the 12px thumb on the 4px track */
+.chart-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    margin-top: -4px;
+    border: none;
+    border-radius: 50%;
+    background: var(--secondary-color);
+}
+
+.chart-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border: none;
+    border-radius: 50%;
+    background: var(--secondary-color);
+}
+
 /* PDE playground */
 
 .pde-playground {
@@ -82,26 +203,6 @@
         display: none;
     }
 
-    button {
-        min-width: 1.75rem;
-        height: 1.75rem;
-        border: none;
-        border-radius: 0.25rem;
-        background: none;
-        color: var(--secondary-color);
-        font: inherit;
-        cursor: pointer;
-    }
-
-    button:hover {
-        background: var(--primary-color);
-    }
-
-    button:disabled {
-        color: var(--secondary-color-light);
-        cursor: default;
-    }
-
     output {
         min-width: 1.75rem;
         text-align: center;
@@ -129,29 +230,13 @@
 
 .pde-controls {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem 1rem;
     margin-top: 1rem;
     font-size: 0.875rem;
 
-    input,
-    select,
-    button {
+    input {
         font: inherit;
-        accent-color: var(--secondary-color);
-    }
-
-    select,
-    button {
-        padding: 0.25rem 0.5rem;
-        border: 1px solid var(--secondary-color);
-        border-radius: 0.375rem;
-        background: var(--primary-color-light);
-        color: var(--secondary-color);
-    }
-
-    button {
-        cursor: pointer;
     }
 }
 
@@ -165,13 +250,6 @@
     font-weight: 500;
 }
 
-.pde-actions {
-    display: flex;
-    align-items: end;
-    justify-content: end;
-    gap: 0.5rem;
-}
-
 .pde-legend {
     display: flex;
     align-items: center;
@@ -182,12 +260,6 @@
     flex: 1;
     height: 0.625rem;
     border-radius: 0.25rem;
-}
-
-.pde-readout {
-    align-self: center;
-    font-variant-numeric: tabular-nums;
-    color: var(--secondary-color-light);
 }
 
 /* Observation model */
@@ -220,10 +292,6 @@
     stroke-width: 0.5;
 }
 
-.obs-controls {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .obs-dist {
     grid-column: 1 / -1;
 }
@@ -231,4 +299,270 @@
 .obs-dist-bar {
     fill: var(--secondary-color-light);
     fill-opacity: 0.35;
+}
+
+/* Task map */
+
+.task-map {
+    --task-map-empty: color-mix(in oklab, var(--secondary-color) 6%, var(--primary-color));
+}
+
+/* As wide as the map, centred on the text column; scrolls once it reaches the viewport */
+.task-map-box {
+    --box-w: min(var(--map-w, 100%), 100vw - 2rem);
+    width: var(--box-w);
+    margin-left: calc((100% - var(--box-w)) / 2);
+    overflow-x: auto;
+}
+
+/* SVG text inherits its fill; the classes below override it */
+.task-map-svg {
+    display: block;
+    font-size: 0.8rem;
+    fill: var(--secondary-color);
+}
+
+.task-map-axis {
+    font-size: 0.8rem;
+    font-style: italic;
+    fill: var(--secondary-color-light);
+}
+
+.task-map-head {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    fill: var(--secondary-color-light);
+}
+
+.task-map-comp {
+    font-size: 1rem;
+}
+
+.task-map-rule {
+    stroke: var(--secondary-color-light);
+    stroke-width: 0.5;
+}
+
+.task-map-group {
+    font-weight: 600;
+    fill: var(--secondary-color-light);
+}
+
+.task-map-rowlab,
+.task-map-rowsub {
+    text-anchor: end;
+}
+
+.task-map-rowsub,
+.task-map-level text {
+    font-size: 0.7rem;
+    fill: var(--secondary-color-light);
+}
+
+.task-map-hit {
+    fill: transparent;
+    cursor: pointer;
+}
+
+.task-map-level:hover text,
+.task-map-row:hover .task-map-rowlab {
+    text-decoration: underline;
+}
+
+/* Levels up to the selected one are bold; the selected level and row are highlighted like <mark> */
+.task-map-level.is-on text,
+.task-map-row.is-selected text {
+    fill: var(--secondary-color);
+    font-weight: 600;
+}
+
+.task-map-mark {
+    display: none;
+    fill: var(--accent-color);
+    pointer-events: none;
+}
+
+.task-map-level.is-selected .task-map-mark,
+.task-map-row.is-selected .task-map-mark {
+    display: inline;
+}
+
+/* A cell is a grey base; the accent on top carries the count through its opacity, set inline */
+.task-map-cell {
+    fill: var(--task-map-empty);
+    cursor: pointer;
+}
+
+.task-map-fill {
+    fill: var(--accent-color);
+    pointer-events: none;
+}
+
+.task-map-cell:hover,
+.task-map-cell:focus-visible {
+    outline: none;
+    stroke: var(--secondary-color-light);
+    stroke-width: 1;
+}
+
+.task-map-ranges rect {
+    fill: none;
+    stroke: var(--secondary-color);
+    stroke-width: 1;
+    pointer-events: none;
+}
+
+.task-map-count {
+    font-size: 0.75rem;
+    text-anchor: middle;
+    pointer-events: none;
+    font-variant-numeric: tabular-nums;
+}
+
+.task-map-count.is-zero {
+    opacity: 0.3;
+}
+
+/* Fixed line height, so swapping the hint for chips does not move what follows */
+.task-map-status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    min-height: 1.75rem;
+    margin: 0.75rem 0;
+    font-size: 0.875rem;
+    color: var(--secondary-color-light);
+}
+
+.task-map-status b {
+    color: var(--secondary-color);
+}
+
+/* Pager row above the shown card: the view switch on the left, the arrows on the right */
+.task-map-pager {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin: 0.5rem 0;
+    font-size: 0.875rem;
+}
+
+.task-map-switch {
+    display: flex;
+    gap: 0.5rem;
+    margin-right: auto;
+}
+
+.task-map-chip {
+    font-size: 0.75rem;
+}
+
+.task-map-page {
+    min-width: 3.5rem;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    color: var(--secondary-color-light);
+}
+
+.task-map-empty {
+    padding: 0.75rem 0;
+    color: var(--secondary-color-light);
+    font-style: italic;
+}
+
+/* A card page's content under the map, with its headings scaled down */
+.task-map-card {
+    /*padding: 1.5rem 0;*/
+}
+
+.task-map-card h1 {
+    font-size: 1.2rem;
+}
+
+.task-map-card h2 {
+    font-size: 0.9rem;
+}
+
+/* Card content: shared by the card pages and the cards under the map */
+
+.card-back {
+    font-size: 0.875rem;
+}
+
+.card-profile dl {
+    grid-template-columns: auto 1fr auto 1fr;
+    gap: 0.15rem 0.75rem;
+    margin: 0.5rem 0 1rem;
+    padding-left: 0;
+    font-size: 0.8rem;
+}
+
+/* Base dl pins dt and dd to columns 1 and 2; the profile flows pairs across four */
+.card-profile dt,
+.card-profile dd {
+    grid-column: auto;
+    margin: 0;
+}
+
+.card-profile dt {
+    color: var(--secondary-color-light);
+}
+
+.card-gmf {
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: 0.4rem 1rem;
+    margin: 1rem 0;
+    padding-left: 0;
+}
+
+.card-gmf dd {
+    margin: 0;
+}
+
+/* Small uppercase labels of the card's data, model, optimisation and physics entries */
+.card-gmf dt,
+.card-physics span {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--secondary-color-light);
+}
+
+.card-physics {
+    margin: 1rem 0;
+    padding: 0.5rem 0.9rem;
+    border-left: 2px solid var(--accent-color);
+}
+
+.card-physics span {
+    display: block;
+}
+
+.card-nearby ul,
+.card-cross ul {
+    list-style: none;
+}
+
+.card-how,
+.card-none {
+    font-size: 0.85rem;
+    color: var(--secondary-color-light);
+}
+
+@media (max-width: 512px) {
+    .card-profile dl {
+        grid-template-columns: auto 1fr;
+    }
+
+    .card-gmf {
+        grid-template-columns: 1fr;
+        gap: 0.1rem;
+    }
+
+    .card-gmf dt,
+    .card-gmf dd {
+        grid-column: 1;
+    }
 }

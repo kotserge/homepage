@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Kotchourko - Forward problem</title>
+        <link rel="icon" href="/favicon.png" />
+        <link rel="stylesheet" href="/css/base/base.css" />
+        
+        
+        <!-- Math -->
+        <link rel="stylesheet" href="/css/components/math.css" />
+        
+        
+        <!-- Chart -->
+        <script defer src="/js/d3.min.js"></script>
+        <script defer src="/js/plot.min.js"></script>
+        <link rel="stylesheet" href="/css/components/chart.css" />
+        
+
+        <!-- Meta -->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="The computation of the solution of one fully specified system, where the only unknown is the state itself." />
+        <meta
+            name="keywords"
+            content="Serge Kotchourko, Kotchourko Serge, Kotchourko, Serge, Computer Science, Computer Scientist, scientific-machine-learning,problem-card"
+        />
+        <meta name="author" content="Serge Kotchourko" />
+
+        <!-- Open Graph -->
+        <meta property="og:title" content="Kotchourko - Forward problem" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://kotchourko.dev/sciml-for-physics/problems/forward-problem" />
+        <meta
+            property="og:image"
+            content="https://kotchourko.dev/images/me.webp"
+        />
+        <meta property="og:description" content="The computation of the solution of one fully specified system, where the only unknown is the state itself." />
+        <meta property="og:site_name" content="Kotchourko" />
+    </head>
+    <body>
+        <nav>
+            <a href="/">KOTCHOURKO</a>
+
+            <ul>
+                <li><a href="/about"> About </a></li>
+                <li><a href="/cv"> Vita </a></li>
+                <li><a href="/bits"> Bits </a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <div class="sec-head"><h1 id="forward-problem"><a href="#forward-problem" class="anchor">Forward problem</a></h1><hr></div>
+
+<div class="card-profile"></div>
+<p>The forward problem is the computation of the solution of one fully specified system. Everything that defines the system is known, so the only unknown is the state itself. It is the problem every classical solver was built for, and the one a neural network can be trained on without any data.</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.14736em;">N</span><span class="mopen">[</span><span class="mord mathnormal">u</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">λ</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mspace">&nbsp;</span><span class="mspace">&nbsp;</span><span class="mord text"><span class="mord">in</span></span><span class="mspace">&nbsp;</span><span class="mord">Ω</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:2em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathcal" style="margin-right:0.03041em;">B</span><span class="mopen">[</span><span class="mord mathnormal">u</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">b</span><span class="mspace">&nbsp;</span><span class="mspace">&nbsp;</span><span class="mord text"><span class="mord">on</span></span><span class="mspace">&nbsp;</span><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord">Ω</span><span class="mpunct">,</span><span class="mspace" style="margin-right:2em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">u</span><span class="mopen">(</span><span class="mord">⋅</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">u</span></span></span></span> is the state on the domain <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Ω</span></span></span></span> over <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mclose">]</span></span></span></span>, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.14736em;">N</span></span></span></span> the operator with coefficients <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span></span></span></span>, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> the forcing, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.03041em;">B</span></span></span></span> the boundary operator with data <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span>, and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> the initial state. All of them are given, the operator in explicit form; nothing is observed and nothing is missing. The state is sought for this one instance, not for a family.</p>
+<div class="sec-head"><span class="sec-num">01</span><h2 id="nearby-problems"><a href="#nearby-problems" class="anchor">Nearby problems</a></h2><hr></div>
+
+<div class="card-nearby"></div>
+<div class="sec-head"><span class="sec-num">02</span><h2 id="methods-possible"><a href="#methods-possible" class="anchor">Methods possible</a></h2><hr></div>
+
+<div class="card-cross"></div>
+<div class="sec-head"><span class="sec-num">03</span><h2 id="reading"><a href="#reading" class="anchor">Reading</a></h2><hr></div>
+
+<ul>
+<li><a href="https://arxiv.org/abs/1711.10561">Raissi, Perdikaris, Karniadakis (2019), PINNs, J. Comput. Phys.</a></li>
+<li><a href="https://arxiv.org/abs/1710.00211">E &amp; Yu (2018), Deep Ritz, Commun. Math. Stat.</a></li>
+<li><a href="https://arxiv.org/abs/2402.01868">Rathore et al. (2024), loss landscape of PINNs, ICML</a></li>
+<li><a href="https://arxiv.org/abs/2507.21269">Chatain et al. (2025), numerical vs. neural PDE solvers</a></li>
+</ul>
+<script type="module" src="/sciml-for-physics/card-page.js"></script>
+
+        </main>
+
+        <footer>
+            <a href="/privacy-policy">Privacy Policy</a>
+            <span>·</span>
+            <a href="/legal-notice">Legal Notice</a>
+            <span>·</span>
+            <a href="/licenses">Licenses</a>
+        </footer>
+    </body>
+</html>

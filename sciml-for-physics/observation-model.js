@@ -29,6 +29,7 @@ import {
     paintField,
     solve,
 } from "./heat-rod.js";
+import { setSliderFill } from "./controls.js";
 
 // === Observation knobs ===
 
@@ -179,7 +180,7 @@ const frames = Object.fromEntries(
         return [key, { el, canvas, svg }];
     }),
 );
-const controls = root.append("div").attr("class", "pde-controls obs-controls");
+const controls = root.append("div").attr("class", "pde-controls");
 
 // Off-screen buffer holding one pixel per grid node (t right, x up)
 const buffer = document.createElement("canvas");
@@ -411,12 +412,17 @@ function buildControls() {
     const n = controls.append("label").attr("class", "pde-control");
     n.append("span").attr("class", "pde-control-name").text("Readings per axis");
     n.append("input")
+        .attr("class", "chart-slider")
         .attr("type", "range")
         .attr("min", N_OBS.min)
         .attr("max", N_OBS.max)
         .attr("step", 1)
         .property("value", settings.n)
+        .each(function () {
+            setSliderFill(this);
+        })
         .on("input", function () {
+            setSliderFill(this);
             settings.n = +this.value;
             n.select("output").text(`${settings.n} × ${settings.n}`);
             requestRender();
@@ -426,7 +432,7 @@ function buildControls() {
     // Noise family
     const family = controls.append("label").attr("class", "pde-control");
     family.append("span").attr("class", "pde-control-name").text("Noise ε");
-    const select = family.append("select").on("change", function () {
+    const select = family.append("select").attr("class", "chart-select").on("change", function () {
         settings.noise = this.value;
         requestRender();
     });

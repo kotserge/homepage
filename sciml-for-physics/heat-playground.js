@@ -35,6 +35,8 @@ import {
     solve,
     stripDefault,
 } from "./heat-rod.js";
+import { setSliderFill } from "./controls.js";
+import { ICON } from "./icons.js";
 
 // === Layout (px) ===
 
@@ -70,7 +72,6 @@ const SIDES = [
     { key: "x0", name: "x = 0" },
 ];
 
-const fmt = d3.format(".2f");
 
 // === Geometry ===
 
@@ -121,7 +122,6 @@ let state = defaultState();
 let geo = null;
 let builtWidth = 0; // container width the figure was last built for
 let solution = solve(state);
-let hover = null; // { i, j } of the grid node under the pointer
 let pressed = null; // { source, x0, y0, moved } while the field is pressed; source is null on empty space
 let selected = null; // source the toolbar edits
 let wheelDelta = 0; // wheel deltaY accumulated towards the next strength step
@@ -143,7 +143,6 @@ function render() {
     drawStrips();
     drawSources();
     drawToolbar();
-    drawReadout();
 }
 
 /** Strip values and point mapping for strip `key`: IC runs along x, boundaries along t. */
@@ -218,17 +217,6 @@ function drawToolbar() {
     toolbar
         .style("left", `${Math.max(0, Math.min(geo.width - w, cx - w / 2))}px`)
         .style("top", `${above >= 0 ? above : cy + TOOLBAR_OFFSET}px`);
-}
-
-/** Shows (t, x, u) under the pointer, with dashes while the pointer is outside the field. */
-function drawReadout() {
-    const out = controls.select(".pde-readout");
-    if (!hover) {
-        out.text("t – · x – · u –");
-        return;
-    }
-    const { i, j } = hover;
-    out.text(`t ${fmt(j * DT_COLUMN)} · x ${fmt(i * DX)} · u ${fmt(solution[j * NX + i])}`);
 }
 
 // === Interaction ===
@@ -362,16 +350,6 @@ function keyCommand(event) {
             return;
     }
     event.preventDefault();
-}
-
-/** Tracks the grid node under the pointer for the readout. */
-function trackHover(event) {
-    const [px, py] = d3.pointer(event, svg.node());
-    hover = {
-        i: gridIndex(geo.x.invert(py), DX, NX),
-        j: gridIndex(geo.t.invert(px), DT_COLUMN, NT),
-    };
-    drawReadout();
 }
 
 // === Static figure ===
@@ -541,11 +519,6 @@ function build() {
         .attr("y", field.y)
         .attr("width", field.w)
         .attr("height", field.h)
-        .on("pointermove", trackHover)
-        .on("pointerleave", () => {
-            hover = null;
-            drawReadout();
-        })
         .on("wheel", wheelStrength, { passive: false })
         .call(fieldDrag());
 
@@ -557,9 +530,11 @@ function build() {
 
 const lambdaScale = d3.scaleLog([LAMBDA_MIN, LAMBDA_MAX], [0, 1]);
 
-/** Writes `state` back into the form controls (after a reset). */
+/** Writes `state` into the form controls. */
 function syncControls() {
-    controls.select(".pde-lambda").property("value", lambdaScale(state.lambda));
+    controls.select(".pde-lambda").property("value", lambdaScale(state.lambda)).each(function () {
+        setSliderFill(this);
+    });
     controls.select(".pde-lambda-out").text(state.lambda.toPrecision(2));
     for (const { key } of SIDES) {
         controls.select(`.pde-bc-${key}`).property("value", state.bc[key].type);
@@ -568,46 +543,30 @@ function syncControls() {
 
 /** Appends the selection toolbar's buttons: weaken, strength readout, strengthen, remove. */
 function buildToolbar() {
-    const button = (cls, label, text, action) =>
+    const button = (cls, label, icon, action) =>
         toolbar.append("button")
             .attr("type", "button")
-            .attr("class", cls)
+            .attr("class", `chart-button is-icon ${cls}`)
             .attr("aria-label", label)
             .attr("title", label)
-            .text(text)
+            .html(icon)
             .on("click", action);
 
-    button("pde-weaken", "Weaken source", "−", () => adjustSelected(-1));
+    button("pde-weaken", "Weaken source", ICON.MINUS, () => adjustSelected(-1));
     toolbar.append("output").attr("class", "pde-strength");
-    button("pde-strengthen", "Strengthen source", "+", () => adjustSelected(1));
-    button("pde-remove", "Remove source", "×", removeSelected);
+    button("pde-strengthen", "Strengthen source", ICON.PLUS, () => adjustSelected(1));
+    button("pde-remove", "Remove source", ICON.CLOSE, removeSelected);
 }
 
-/** Appends the coefficient slider, boundary selects, readout, colour legend and reset button. */
+/** Appends the boundary selects (first row), then the coefficient slider and colour legend. */
 function buildControls() {
-
-    // Diffusivity on a log scale
-    const lambda = controls.append("label").attr("class", "pde-control");
-    lambda.append("span").attr("class", "pde-control-name").text("Diffusivity α");
-    lambda.append("input")
-        .attr("class", "pde-lambda")
-        .attr("type", "range")
-        .attr("min", 0)
-        .attr("max", 1)
-        .attr("step", 0.001)
-        .on("input", function () {
-            state.lambda = lambdaScale.invert(+this.value);
-            controls.select(".pde-lambda-out").text(state.lambda.toPrecision(2));
-            requestRender();
-        });
-    lambda.append("output").attr("class", "pde-lambda-out");
 
     // Boundary type per side; switching resets that strip to the type's neutral value
     for (const { key, name } of SIDES) {
         const side = controls.append("label").attr("class", "pde-control");
         side.append("span").attr("class", "pde-control-name").text(`BC at ${name}`);
         side.append("select")
-            .attr("class", `pde-bc-${key}`)
+            .attr("class", `chart-select pde-bc-${key}`)
             .on("change", function () {
                 state.bc[key].type = this.value;
                 state.bc[key].values.fill(stripDefault(this.value));
@@ -620,26 +579,30 @@ function buildControls() {
             .text((d) => d.label);
     }
 
-    // Pointer readout and colour legend
-    controls.append("output").attr("class", "pde-readout");
+    // Diffusivity on a log scale
+    const lambda = controls.append("label").attr("class", "pde-control");
+    lambda.append("span").attr("class", "pde-control-name").text("Diffusivity α");
+    lambda.append("input")
+        .attr("class", "chart-slider pde-lambda")
+        .attr("type", "range")
+        .attr("min", 0)
+        .attr("max", 1)
+        .attr("step", 0.001)
+        .on("input", function () {
+            setSliderFill(this);
+            state.lambda = lambdaScale.invert(+this.value);
+            controls.select(".pde-lambda-out").text(state.lambda.toPrecision(2));
+            requestRender();
+        });
+    lambda.append("output").attr("class", "pde-lambda-out");
+
+    // Colour legend
     const legend = controls.append("div").attr("class", "pde-legend");
     legend.append("span").text("u 0");
     legend.append("span")
         .attr("class", "pde-legend-bar")
         .style("background", `linear-gradient(to right, ${d3.quantize(heatColor, 11).map((c) => c.formatRgb()).join(", ")})`);
     legend.append("span").text("1");
-
-    // Reset button
-    const actions = controls.append("div").attr("class", "pde-actions");
-    actions.append("button")
-        .attr("type", "button")
-        .text("Reset")
-        .on("click", () => {
-            state = defaultState();
-            selected = null;
-            syncControls();
-            requestRender();
-        });
 
     syncControls();
 }
