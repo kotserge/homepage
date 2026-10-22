@@ -136,7 +136,7 @@ const md = MarkdownIt({
     linkify: false,
     typographer: false,
     highlight: flags.code ? highlightCode : undefined,
-});
+}).use(markdownItMark);
 // We use `[^N]` / `[\N]` for our own footnote/reference syntax. Disable
 // the stock reference-link rule so `[^1]: foo` isn't consumed as a link
 // definition before our DOM pass gets to see it.
