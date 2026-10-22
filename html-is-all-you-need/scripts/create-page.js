@@ -5,11 +5,14 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { parseArgs } = require("node:util");
 
-const matter = require("gray-matter");
-const MarkdownIt = require("markdown-it");
-const cheerio = require("cheerio");
-const Prism = require("prismjs");
-const katex = require("katex");
+const PRISM = "prismjs@1.30.0";
+
+const matter = require("gray-matter@4.0.3");
+const MarkdownIt = require("markdown-it@15.0.3");
+const markdownItMark = require("markdown-it-mark@4.0.0");
+const cheerio = require("cheerio@1.2.0");
+const Prism = require(PRISM);
+const katex = require("katex@0.16.27");
 
 // ─── Config ─────────────────────────────────────────────────────────────────
 
@@ -197,7 +200,7 @@ function renderMath(text) {
 function loadPrismLanguage(lang) {
     if (PRISM_PRELOADED.has(lang)) return;
     try {
-        require(`prismjs/components/prism-${lang}.js`);
+        require(`${PRISM}/components/prism-${lang}.js`);
         PRISM_PRELOADED.add(lang);
     } catch {
         /* unknown language; fall through to escape-only */
