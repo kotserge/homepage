@@ -5,39 +5,21 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { parseArgs } = require("node:util");
 
-const PRISM = "prismjs@1.30.0";
-
 const matter = require("gray-matter@4.0.3");
 const MarkdownIt = require("markdown-it@15.0.3");
 const markdownItMark = require("markdown-it-mark@4.0.0");
 const cheerio = require("cheerio@1.2.0");
-const Prism = require(PRISM);
-const katex = require("katex@0.16.27");
 
 // ─── Config ─────────────────────────────────────────────────────────────────
 
-const INCLUDES = {
-    code: `
-        <!-- Syntax highlighting -->
-        <link rel="stylesheet" href="/css/components/code.css" />
-        `,
-    math: `
-        <!-- Math -->
-        <link rel="stylesheet" href="/css/components/math.css" />
-        `,
-    chart: `
-        <!-- Chart -->
-        <script defer src="/js/d3.min.js"></script>
-        <script defer src="/js/plot.min.js"></script>
-        <link rel="stylesheet" href="/css/components/chart.css" />
-        `,
-};
-
-// Languages Prism preloads on its own — don't try to require them.
-const PRISM_PRELOADED = new Set(["markup", "css", "clike", "javascript"]);
-
 // Zero-padded width of the section counter rendered in front of each <h2>.
 const SECTION_NUMBER_WIDTH = 2;
+
+// Hooks a page module may export; any other key is an error.
+const MODULE_HOOKS = new Set(["template", "text", "markdown", "dom"]);
+
+// A template placeholder: `<!--NAME-->`. Unfilled ones render empty.
+const PLACEHOLDER = /<!--[A-Z_]+-->/g;
 
 // ─── CLI ────────────────────────────────────────────────────────────────────
 
@@ -49,16 +31,25 @@ Read Markdown with YAML frontmatter from STDIN, render it to HTML, and
 substitute the result into the given template.
 
 Options:
-  -c, --code     Process code fences with Prism and include code CSS
-  -g, --chart    Process <chart id="..."/> tags and include chart assets
-  -m, --math     Process LaTeX math with KaTeX and include math CSS
-  -h, --help     Show this help
+  -m, --module <file>  Load a page module (repeatable; applied in the order given)
+  -h, --help           Show this help
+
+Page modules (CommonJS or ES, exporting an object with any of these hooks):
+  template   { NAME: html }        fills <!--NAME--> in the template
+  text       (markdown, page) → markdown, before rendering
+  markdown   (md, page)            configures the markdown-it instance
+  dom        ($, page)             transforms the cheerio DOM, after the built-in passes
+  where page = { frontmatter }. A hook that throws stops the build.
+
+General modules live in js/page-modules/: code.js (Prism), math.js (KaTeX),
+chart.js (<chart id="..."/> tags).
 
 Frontmatter (YAML, in the markdown file):
   ---
   title:       Page title (replaces <!--TITLE-->)
+  crumb:       Site path of the page (replaces <!--CRUMB-->)
   description: Meta description (replaces <!--DESCRIPTION-->)
-  keywords:    Meta keywords (replaces <!--KEYWORDS-->)
+  tags:        Meta keywords (replaces <!--KEYWORDS-->)
   ---
 
 Template placeholders:
@@ -67,12 +58,11 @@ Template placeholders:
   <!--CRUMB-->           From frontmatter
   <!--DESCRIPTION-->     From frontmatter
   <!--KEYWORDS-->        From frontmatter
-  <!--CODE-->            Code includes (-c)
-  <!--MATH-->            Math includes (-m)
-  <!--CHART-->           Chart includes (-g)
+  <!--NAME-->            From a module's template hook; empty without one
 
 Example:
-  cat content.md | bun run ${cmd} -c -m template.html > out.html
+  cat content.md | bun run ${cmd} -m js/page-modules/math.js -m js/page-modules/chart.js \\
+    templates/page.html > out.html
 `);
 }
 
@@ -80,9 +70,7 @@ let parsed;
 try {
     parsed = parseArgs({
         options: {
-            code: { type: "boolean", short: "c", default: false },
-            math: { type: "boolean", short: "m", default: false },
-            chart: { type: "boolean", short: "g", default: false },
+            module: { type: "string", short: "m", multiple: true, default: [] },
             help: { type: "boolean", short: "h", default: false },
         },
         allowPositionals: true,
@@ -117,45 +105,46 @@ if (process.stdin.isTTY) {
     process.exit(1);
 }
 
+const modules = flags.module.map(loadModule);
+
 // ─── Pipeline ───────────────────────────────────────────────────────────────
 
 const stdin = fs.readFileSync(0, "utf8");
 const { data: frontmatter, content: markdown } = matter(stdin);
+const page = { frontmatter };
 
-// 1. Pre-process the raw text:
-//    - Math first, so `$a_b$` doesn't get mangled by inline italics.
-//    - Charts second, so we don't have to wrestle parse5 over the
-//      self-closing `<chart id="..."/>` form (HTML5 has no such thing).
-let text = markdown;
-if (flags.math) text = renderMath(text);
-if (flags.chart) text = expandCharts(text);
+// 1. Pre-process the raw text through the modules' `text` hooks.
+const text = modules.reduce(
+    (acc, mod) => (mod.text ? runHook(mod, "text", acc, page) : acc),
+    markdown,
+);
 
 // 2. Markdown → HTML.
 const md = MarkdownIt({
     html: true,
     linkify: false,
     typographer: false,
-    highlight: flags.code ? highlightCode : undefined,
 }).use(markdownItMark);
 // We use `[^N]` / `[\N]` for our own footnote/reference syntax. Disable
 // the stock reference-link rule so `[^1]: foo` isn't consumed as a link
 // definition before our DOM pass gets to see it.
 md.disable(["reference"]);
+for (const mod of modules) if (mod.markdown) runHook(mod, "markdown", md, page);
 
 const html = md.render(text);
 
-// 3. DOM transforms (the bits that used to be perl/sed regex hacks).
+// 3. DOM transforms: the built-in passes, then the modules' `dom` hooks.
 const $ = cheerio.load(html, null, false);
 
 addHeadingAnchors($);
 wrapSectionHeads($);
 addBlockquoteCitations($);
 addImageCaptions($);
-if (flags.code) wrapCodeBlocks($);
 linkAsides($, "^", "footnote");
 linkAsides($, "\\", "reference", { inlineStyle: "bracket" });
+for (const mod of modules) if (mod.dom) runHook(mod, "dom", $, page);
 
-// 4. Template substitution.
+// 4. Template substitution: frontmatter, then the modules' placeholders.
 const template = fs.readFileSync(templatePath, "utf8");
 const output = applyTemplate(template, {
     TITLE: String(frontmatter.title ?? ""),
@@ -163,84 +152,41 @@ const output = applyTemplate(template, {
     DESCRIPTION: String(frontmatter.description ?? ""),
     KEYWORDS: Array(frontmatter.tags ?? ""),
     MAIN: $.html(),
-    CODE: flags.code ? INCLUDES.code : "",
-    MATH: flags.math ? INCLUDES.math : "",
-    CHART: flags.chart ? INCLUDES.chart : "",
-});
+    ...Object.assign({}, ...modules.map((mod) => mod.template ?? {})),
+}).replace(PLACEHOLDER, "");
 
 process.stdout.write(output);
 
-// ─── Math (KaTeX) ───────────────────────────────────────────────────────────
+// ─── Modules ────────────────────────────────────────────────────────────────
 
-function renderMath(text) {
-    const display = /\$\$(?:\r?\n)?([\s\S]*?)(?:\r?\n)?\$\$/g;
-    const inline = /(?<!\$)\$(?!\$)([\s\S]*?)(?<!\$)\$(?!\$)/g;
+/** Page module at `file`, relative to the working directory; exits unless it exists and exports only known hooks. */
+function loadModule(file) {
+    if (!fs.existsSync(file)) {
+        console.error(`Error: module '${file}' not found`);
+        process.exit(1);
+    }
+    const loaded = require(path.resolve(file));
+    const mod = loaded.default ?? loaded;
 
-    const render = (latex, displayMode) => {
-        try {
-            return katex.renderToString(latex.trim(), {
-                displayMode,
-                throwOnError: false,
-                output: "html",
-            });
-        } catch (e) {
-            const where = displayMode ? "display" : "inline";
-            console.error(`KaTeX error (${where}):`, e.message);
-            return null;
-        }
-    };
-
-    return text
-        .replace(display, (m, l) => render(l, true) ?? m)
-        .replace(inline, (m, l) => render(l, false) ?? m);
+    const unknown = Object.keys(mod).filter((key) => !MODULE_HOOKS.has(key));
+    if (unknown.length > 0) {
+        const list = [...MODULE_HOOKS].join(", ");
+        console.error(
+            `Error: module '${file}' exports unsupported hooks: ${unknown.join(", ")} (expected: ${list})`,
+        );
+        process.exit(1);
+    }
+    return { ...mod, file };
 }
 
-// ─── Code (Prism) ───────────────────────────────────────────────────────────
-
-function loadPrismLanguage(lang) {
-    if (PRISM_PRELOADED.has(lang)) return;
+/** Result of `mod[hook](...args)`; exits naming the module when the hook throws. */
+function runHook(mod, hook, ...args) {
     try {
-        require(`${PRISM}/components/prism-${lang}.js`);
-        PRISM_PRELOADED.add(lang);
-    } catch {
-        /* unknown language; fall through to escape-only */
+        return mod[hook](...args);
+    } catch (err) {
+        console.error(`Error: module '${mod.file}' (${hook}): ${err.message}`);
+        process.exit(1);
     }
-}
-
-function escapeHtml(s) {
-    return s
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
-// markdown-it `highlight` callback. Returning a complete `<pre><code>...</code></pre>`
-// makes markdown-it emit it verbatim instead of wrapping again.
-function highlightCode(code, lang) {
-    if (!lang) return `<pre><code>${escapeHtml(code)}</code></pre>`;
-
-    loadPrismLanguage(lang);
-    if (!Prism.languages[lang]) {
-        return `<pre><code>${escapeHtml(code)}</code></pre>`;
-    }
-
-    const highlighted = Prism.highlight(code, Prism.languages[lang], lang);
-    return `<pre class="language-${lang}"><code class="language-${lang}">${highlighted}</code></pre>`;
-}
-
-// ─── Charts ─────────────────────────────────────────────────────────────────
-
-function expandCharts(text) {
-    return text.replace(
-        /<chart\s+id="([^"]+)"\s+type="([^"]+)"\s?(.+)\/?>/g,
-        (_, id, type, additionalProperties) =>
-            `<div class="chart-container">\n` +
-            `    <${type} id="${id}" ${additionalProperties}></${type}>\n` +
-            `    <script type="module" src="${id}.js"></script>\n` +
-            `</div>`,
-    );
 }
 
 // ─── DOM transforms ─────────────────────────────────────────────────────────
@@ -356,26 +302,6 @@ function addImageCaptions($) {
             $img.wrap("<figure></figure>");
             $img.after(figcaption);
         }
-    });
-}
-
-function wrapCodeBlocks($) {
-    $('pre[class^="language-"]').each((_, el) => {
-        const $pre = $(el);
-        const lang =
-            ($pre.attr("class") ?? "").match(/language-(\S+)/)?.[1] ?? "";
-        const $wrapper = $(
-            `<div class="code-block-wrapper">` +
-                `<div class="code-block-header">` +
-                `<span class="code-block-header-lang">${lang}</span>` +
-                `<div class="code-block-header-controls">` +
-                `<span></span><span></span><span></span>` +
-                `</div>` +
-                `</div>` +
-                `</div>`,
-        );
-        $pre.replaceWith($wrapper);
-        $wrapper.append($pre);
     });
 }
 
