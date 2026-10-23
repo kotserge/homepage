@@ -10,7 +10,7 @@
  * its component, a row keeps its task and group; an empty query keeps every card
  * of the view. Below the map, arrows page through the kept cards one at a time,
  * each shown in full as the `<main>` of its own page, next to the switch between
- * problems and methods. A related-card link inside a card moves the query to that
+ * problems and methods. A link inside a card to another card moves the query to that
  * card instead of leaving the page.
  *
  * The map is as wide as its columns need; wider than the text column it extends to
@@ -18,11 +18,12 @@
  *
  * Adapted from the "SciML Problem and Method Map" artifact.
  *
- * Expects the global `d3` (v7) and a mount element `#task-map`.
+ * Expects the global `d3` (v7), a mount element `#task-map`, and the cards as inline
+ * JSON `#task-map-cards`, embedded at build by `cards.js`.
  */
 
 import { ICON } from "./icons.js";
-import { COMP, TARGETS, TYPE, VIEWS, fillRelations, groupOf, loadCards, targetLabel, viewOf } from "./sciml-map.js";
+import { CARDS_ID, COMP, TARGETS, TYPE, VIEWS, groupOf, targetLabel, viewOf } from "./sciml-map.js";
 
 const ROOT_ID = "task-map";
 const EMPTY_NOTE = "No card matches.";
@@ -469,48 +470,27 @@ function paintStatus(state, bar, count, onChange) {
         });
 }
 
-/**
- * The `<main>` of a card page, ready to embed: scripts dropped, the title linking to
- * the page, and the section anchors and ids removed so they cannot clash with this page's.
- * Throws when the page answers with a non-OK status.
- */
-async function fetchCardBody(card) {
-    const response = await fetch(card.url);
-    if (!response.ok) throw new Error(`task-map: ${card.url} answered ${response.status}`);
-    const main = new DOMParser().parseFromString(await response.text(), "text/html").querySelector("main");
-
-    main.querySelectorAll("script").forEach((el) => el.remove());
-    main.querySelectorAll("h2 a.anchor").forEach((a) => a.replaceWith(...a.childNodes));
-    main.querySelectorAll("[id]").forEach((el) => el.removeAttribute("id"));
-    const title = main.querySelector("h1 a");
-    if (title) title.setAttribute("href", card.url);
-    return main.innerHTML;
-}
-
-/** Show the one card at `url` in full, or the empty note when `url` is null; each card's element is built once. */
-function paintCard(list, url, cards, bodies) {
-    const current = url ? [cards.find((c) => c.url === url)] : [];
+/** Show the one card at `crumb` in full, or the empty note when `crumb` is null; each card's element is built once. */
+function paintCard(list, crumb, cards) {
+    const current = crumb ? [cards.find((c) => c.crumb === crumb)] : [];
     list.selectAll("article")
-        .data(current, (d) => d.url)
+        .data(current, (d) => d.crumb)
         .join((enter) =>
             enter
                 .append("article")
                 .attr("class", "task-map-card")
-                .each(function (d) {
-                    this.innerHTML = bodies.get(d.url);
-                    fillRelations(this, d, cards);
-                }),
+                .html((d) => d.body),
         );
     list.selectAll("p.task-map-empty")
-        .data(url ? [] : [EMPTY_NOTE])
+        .data(crumb ? [] : [EMPTY_NOTE])
         .join("p")
         .attr("class", "task-map-empty")
         .text((d) => d);
 }
 
 /** Pager: position of the shown card among `shown`, and the arrows, disabled at either end. */
-function paintPager(pager, shown, url) {
-    const k = shown.findIndex((c) => c.url === url);
+function paintPager(pager, shown, crumb) {
+    const k = shown.findIndex((c) => c.crumb === crumb);
     pager.select(".task-map-page").text(shown.length ? `${k + 1} / ${shown.length}` : "0 / 0");
     pager.select(".task-map-prev").property("disabled", k <= 0);
     pager.select(".task-map-next").property("disabled", k < 0 || k >= shown.length - 1);
@@ -518,9 +498,8 @@ function paintPager(pager, shown, url) {
 
 // === Mount ===
 
-const root = d3.select(`#${ROOT_ID}`).classed("task-map", true);
-const cards = await loadCards();
-const bodies = new Map(await Promise.all(cards.map(async (c) => [c.url, await fetchCardBody(c)])));
+const root = d3.select(`#${ROOT_ID}`);
+const cards = JSON.parse(document.getElementById(CARDS_ID).textContent);
 
 // The query object is shared with the matrix handlers, so it is only ever mutated, never replaced
 const state = { view: null, items: [], query: emptyQuery(), current: null };
@@ -549,19 +528,19 @@ let matrix;
 let shown = [];
 function repaint() {
     shown = state.items.filter((p) => passes(state.query, p));
-    if (!shown.some((c) => c.url === state.current)) state.current = shown[0]?.url ?? null;
+    if (!shown.some((c) => c.crumb === state.current)) state.current = shown[0]?.crumb ?? null;
 
     paintMatrix(state, matrix);
     paintStatus(state, statusBar, shown.length, repaint);
     paintPager(pager, shown, state.current);
-    paintCard(list, state.current, cards, bodies);
+    paintCard(list, state.current, cards);
 }
 
 /** Show the card `step` places away from the current one among the shown cards, if there is one. */
 function page(step) {
-    const next = shown[shown.findIndex((c) => c.url === state.current) + step];
+    const next = shown[shown.findIndex((c) => c.crumb === state.current) + step];
     if (!next) return;
-    state.current = next.url;
+    state.current = next.crumb;
     repaint();
 }
 
@@ -577,13 +556,16 @@ function setView(type) {
     repaint();
 }
 
-/** Show the card at `url` in its view, with the query set to its placement, and scroll to it; throws for a url of no card. */
-function goTo(url) {
-    const card = cards.find((c) => c.url === url);
-    if (!card) throw new Error(`task-map: no card at ${url}`);
+/** Crumb of the site path `pathname`: `/a/b/` → `a/b`. */
+const crumbOf = (pathname) => pathname.replace(/^\/|\/$/g, "");
+
+/** Show the card at `crumb` in its view, with the query set to its placement, and scroll to it; throws for a crumb of no card. */
+function goTo(crumb) {
+    const card = cards.find((c) => c.crumb === crumb);
+    if (!card) throw new Error(`task-map: no card at ${crumb}`);
     setView(card.type);
     Object.assign(state.query, queryOf(card));
-    state.current = url;
+    state.current = crumb;
     repaint();
     pager.node().scrollIntoView({ behavior: "smooth", block: "start" });
 }
@@ -600,12 +582,14 @@ switcher
 pager.select(".task-map-prev").on("click", () => page(-1));
 pager.select(".task-map-next").on("click", () => page(1));
 
-// Related-card links inside a card move the map instead of leaving the page
+// Links in a card's body to another card move the map instead of leaving the page; the title still opens the card's page
 list.on("click", (e) => {
-    const link = e.target.closest("a[data-card]");
-    if (!link) return;
+    const link = e.target.closest("a[href]");
+    if (!link || link.closest("h1")) return;
+    const target = cards.find((c) => c.crumb === crumbOf(new URL(link.href).pathname));
+    if (!target) return;
     e.preventDefault();
-    goTo(link.dataset.card);
+    goTo(target.crumb);
 });
 
 setView(TYPE.PROBLEM);
