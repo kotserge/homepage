@@ -1,3 +1,9 @@
+/* Shared by the figures: the height of one control (button, dropdown, slider) and the light grey of a field */
+:root {
+    --chart-control-h: 1.75rem;
+    --chart-field: color-mix(in oklab, var(--secondary-color) 6%, var(--primary-color));
+}
+
 .chart-container {
     min-width: 0;
     margin: 1rem 0;
@@ -34,7 +40,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 1.75rem;
+    width: var(--chart-control-h);
     aspect-ratio: 1;
     padding: 0;
 }
@@ -44,11 +50,6 @@
     height: 1.25rem;
 }
 
-/* Height shared by figure dropdowns and sliders, so controls side by side line up */
-:root {
-    --chart-control-h: 1.75rem;
-}
-
 /* Figure dropdowns: no border, a light grey field with an Iconoir `nav-arrow-down` chevron */
 .chart-select {
     height: var(--chart-control-h);
@@ -56,7 +57,7 @@
     font: inherit;
     color: var(--secondary-color);
     /* The chevron's stroke is --secondary-color, written out: a data URI cannot read a CSS variable */
-    background: color-mix(in oklab, var(--secondary-color) 6%, var(--primary-color))
+    background: var(--chart-field)
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23060606' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9L12 15L18 9'/%3E%3C/svg%3E")
         no-repeat right 0.4rem center / 1rem;
     border: none;
@@ -204,7 +205,7 @@
     }
 
     output {
-        min-width: 1.75rem;
+        min-width: var(--chart-control-h);
         text-align: center;
         font-variant-numeric: tabular-nums;
     }
@@ -303,10 +304,6 @@
 
 /* Task map */
 
-.task-map {
-    --task-map-empty: color-mix(in oklab, var(--secondary-color) 6%, var(--primary-color));
-}
-
 /* As wide as the map, centred on the text column; scrolls once it reaches the viewport */
 .task-map-box {
     --box-w: min(var(--map-w, 100%), 100vw - 2rem);
@@ -390,7 +387,7 @@
 
 /* A cell is a grey base; the accent on top carries the count through its opacity, set inline */
 .task-map-cell {
-    fill: var(--task-map-empty);
+    fill: var(--chart-field);
     cursor: pointer;
 }
 
@@ -430,7 +427,7 @@
     flex-wrap: wrap;
     gap: 0.5rem;
     align-items: center;
-    min-height: 1.75rem;
+    min-height: var(--chart-control-h);
     margin: 0.75rem 0;
     font-size: 0.875rem;
     color: var(--secondary-color-light);
@@ -487,14 +484,10 @@
 
 /* Card content: shared by the card pages and the cards under the map */
 
-.card-back {
-    font-size: 0.875rem;
-}
-
 .card-profile dl {
     grid-template-columns: auto 1fr auto 1fr;
     gap: 0.15rem 0.75rem;
-    margin: 0.5rem 0 1rem;
+    margin: 1rem 0 1rem;
     padding-left: 0;
     font-size: 0.8rem;
 }
@@ -538,17 +531,6 @@
 
 .card-physics span {
     display: block;
-}
-
-.card-nearby ul,
-.card-cross ul {
-    list-style: none;
-}
-
-.card-how,
-.card-none {
-    font-size: 0.85rem;
-    color: var(--secondary-color-light);
 }
 
 @media (max-width: 512px) {
