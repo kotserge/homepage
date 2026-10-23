@@ -35,8 +35,8 @@ import {
     solve,
     stripDefault,
 } from "./heat-rod.js";
-import { setSliderFill } from "./controls.js";
-import { ICON } from "./icons.js";
+import { controlField, dropdown, iconButton, setSliderValue, slider } from "/js/controls.js";
+import { ICON } from "/js/icons.js";
 
 // === Layout (px) ===
 
@@ -64,8 +64,8 @@ const TICKS = 5;
 
 const ROOT_ID = "heat-playground";
 const BC_OPTIONS = [
-    { type: BC.DIRICHLET, label: "Dirichlet (value u = b)", short: "value" },
-    { type: BC.NEUMANN, label: "Neumann (flux ∂ₙu = b)", short: "flux" },
+    { value: BC.DIRICHLET, label: "Dirichlet (value u = b)", short: "value" },
+    { value: BC.NEUMANN, label: "Neumann (flux ∂ₙu = b)", short: "flux" },
 ];
 const SIDES = [
     { key: "x1", name: "x = 1" },
@@ -108,7 +108,7 @@ const stage = root.append("div").attr("class", "pde-stage");
 const canvas = stage.append("canvas").attr("class", "pde-canvas");
 const svg = stage.append("svg").attr("class", "pde-svg");
 const toolbar = stage.append("div").attr("class", "pde-toolbar").property("hidden", true);
-const controls = root.append("div").attr("class", "pde-controls");
+const controls = root.append("div").attr("class", "chart-controls");
 // root.append("figcaption").text(
 //     "Figure 1: Heat diffusion ∂ₜu − λ∂ₓₓu = f on x ∈ (0, 1), with drawable initial and boundary conditions and placeable sources",
 // );
@@ -177,7 +177,7 @@ function drawStrips() {
     }
 
     for (const { key } of SIDES) {
-        const short = BC_OPTIONS.find((o) => o.type === state.bc[key].type).short;
+        const short = BC_OPTIONS.find((o) => o.value === state.bc[key].type).short;
         svg.select(`.pde-side-${key} .pde-side-type`).text(short);
     }
 }
@@ -532,9 +532,7 @@ const lambdaScale = d3.scaleLog([LAMBDA_MIN, LAMBDA_MAX], [0, 1]);
 
 /** Writes `state` into the form controls. */
 function syncControls() {
-    controls.select(".pde-lambda").property("value", lambdaScale(state.lambda)).each(function () {
-        setSliderFill(this);
-    });
+    setSliderValue(controls.select(".pde-lambda"), lambdaScale(state.lambda));
     controls.select(".pde-lambda-out").text(state.lambda.toPrecision(2));
     for (const { key } of SIDES) {
         controls.select(`.pde-bc-${key}`).property("value", state.bc[key].type);
@@ -543,14 +541,7 @@ function syncControls() {
 
 /** Appends the selection toolbar's buttons: weaken, strength readout, strengthen, remove. */
 function buildToolbar() {
-    const button = (cls, label, icon, action) =>
-        toolbar.append("button")
-            .attr("type", "button")
-            .attr("class", `chart-button is-icon ${cls}`)
-            .attr("aria-label", label)
-            .attr("title", label)
-            .html(icon)
-            .on("click", action);
+    const button = (cls, label, icon, onClick) => iconButton(toolbar, { label, icon, onClick }).classed(cls, true);
 
     button("pde-weaken", "Weaken source", ICON.MINUS, () => adjustSelected(-1));
     toolbar.append("output").attr("class", "pde-strength");
@@ -563,37 +554,28 @@ function buildControls() {
 
     // Boundary type per side; switching resets that strip to the type's neutral value
     for (const { key, name } of SIDES) {
-        const side = controls.append("label").attr("class", "pde-control");
-        side.append("span").attr("class", "pde-control-name").text(`BC at ${name}`);
-        side.append("select")
-            .attr("class", `chart-select pde-bc-${key}`)
-            .on("change", function () {
-                state.bc[key].type = this.value;
-                state.bc[key].values.fill(stripDefault(this.value));
+        const side = controlField(controls, `BC at ${name}`);
+        dropdown(side, BC_OPTIONS, {
+            onChange: (type) => {
+                state.bc[key].type = type;
+                state.bc[key].values.fill(stripDefault(type));
                 requestRender();
-            })
-            .selectAll("option")
-            .data(BC_OPTIONS)
-            .join("option")
-            .attr("value", (d) => d.type)
-            .text((d) => d.label);
+            },
+        }).classed(`pde-bc-${key}`, true);
     }
 
     // Diffusivity on a log scale
-    const lambda = controls.append("label").attr("class", "pde-control");
-    lambda.append("span").attr("class", "pde-control-name").text("Diffusivity α");
-    lambda.append("input")
-        .attr("class", "chart-slider pde-lambda")
-        .attr("type", "range")
-        .attr("min", 0)
-        .attr("max", 1)
-        .attr("step", 0.001)
-        .on("input", function () {
-            setSliderFill(this);
-            state.lambda = lambdaScale.invert(+this.value);
+    const lambda = controlField(controls, "Diffusivity α");
+    slider(lambda, {
+        min: 0,
+        max: 1,
+        step: 0.001,
+        onInput: (value) => {
+            state.lambda = lambdaScale.invert(value);
             controls.select(".pde-lambda-out").text(state.lambda.toPrecision(2));
             requestRender();
-        });
+        },
+    }).classed("pde-lambda", true);
     lambda.append("output").attr("class", "pde-lambda-out");
 
     // Colour legend

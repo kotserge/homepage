@@ -34,7 +34,7 @@
 
 @font-face {
     font-family: "Space Grotesk";
-    src: url("../../assets/fonts/space-grotesk/SpaceGrotesk-VariableFont_wght.ttf")
+    src: url("../assets/fonts/space-grotesk/SpaceGrotesk-VariableFont_wght.ttf")
         format("truetype");
 
     font-style: normal;
@@ -267,7 +267,6 @@ dl {
         grid-column: 2;
     }
 
-    /* Note under the term's name */
     dd small {
         display: block;
         margin-top: 0.125rem;

@@ -12,7 +12,7 @@ const katex = require("katex@0.16.27");
 
 const INCLUDE = `
         <!-- Math -->
-        <link rel="stylesheet" href="/css/components/math.css" />
+        <link rel="stylesheet" href="/css/math.css" />
         `;
 
 // ─── Module ─────────────────────────────────────────────────────────────────

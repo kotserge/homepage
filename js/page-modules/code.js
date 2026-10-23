@@ -15,7 +15,7 @@ const Prism = require(PRISM);
 
 const INCLUDE = `
         <!-- Syntax highlighting -->
-        <link rel="stylesheet" href="/css/components/code.css" />
+        <link rel="stylesheet" href="/css/code.css" />
         `;
 
 // Languages Prism preloads on its own — don't try to require them.

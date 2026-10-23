@@ -22,7 +22,8 @@
  * JSON `#task-map-cards`, embedded at build by `cards.js`.
  */
 
-import { ICON } from "./icons.js";
+import { iconButton } from "/js/controls.js";
+import { ICON } from "/js/icons.js";
 import { CARDS_ID, COMP, TARGETS, TYPE, VIEWS, groupOf, targetLabel, viewOf } from "./sciml-map.js";
 
 const ROOT_ID = "task-map";
@@ -510,19 +511,9 @@ const pager = root.append("div").attr("class", "task-map-pager");
 const switcher = pager.append("div").attr("class", "task-map-switch");
 const list = root.append("div").attr("class", "task-map-list");
 
-pager
-    .append("button")
-    .attr("type", "button")
-    .attr("class", "chart-button is-icon task-map-prev")
-    .attr("aria-label", "Previous card")
-    .html(ICON.PREV);
+iconButton(pager, { label: "Previous card", icon: ICON.PREV, onClick: () => page(-1) }).classed("task-map-prev", true);
 pager.append("span").attr("class", "task-map-page");
-pager
-    .append("button")
-    .attr("type", "button")
-    .attr("class", "chart-button is-icon task-map-next")
-    .attr("aria-label", "Next card")
-    .html(ICON.NEXT);
+iconButton(pager, { label: "Next card", icon: ICON.NEXT, onClick: () => page(1) }).classed("task-map-next", true);
 
 let matrix;
 let shown = [];
@@ -579,8 +570,6 @@ switcher
     .text((type) => VIEWS[type].label)
     .on("click", (_, type) => setView(type));
 
-pager.select(".task-map-prev").on("click", () => page(-1));
-pager.select(".task-map-next").on("click", () => page(1));
 
 // Links in a card's body to another card move the map instead of leaving the page; the title still opens the card's page
 list.on("click", (e) => {

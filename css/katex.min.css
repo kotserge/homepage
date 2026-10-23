@@ -4,9 +4,9 @@
     font-style: normal;
     font-weight: 400;
     src:
-        url(../../assets/fonts/katex/KaTeX_AMS-Regular.woff2) format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_AMS-Regular.woff) format("woff"),
-        url(../../assets/fonts/katex/KaTeX_AMS-Regular.ttf) format("truetype");
+        url(../assets/fonts/katex/KaTeX_AMS-Regular.woff2) format("woff2"),
+        url(../assets/fonts/katex/KaTeX_AMS-Regular.woff) format("woff"),
+        url(../assets/fonts/katex/KaTeX_AMS-Regular.ttf) format("truetype");
 }
 @font-face {
     font-display: block;
@@ -14,10 +14,10 @@
     font-style: normal;
     font-weight: 700;
     src:
-        url(../../assets/fonts/katex/KaTeX_Caligraphic-Bold.woff2)
+        url(../assets/fonts/katex/KaTeX_Caligraphic-Bold.woff2)
             format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_Caligraphic-Bold.woff) format("woff"),
-        url(../../assets/fonts/katex/KaTeX_Caligraphic-Bold.ttf)
+        url(../assets/fonts/katex/KaTeX_Caligraphic-Bold.woff) format("woff"),
+        url(../assets/fonts/katex/KaTeX_Caligraphic-Bold.ttf)
             format("truetype");
 }
 @font-face {
@@ -26,11 +26,11 @@
     font-style: normal;
     font-weight: 400;
     src:
-        url(../../assets/fonts/katex/KaTeX_Caligraphic-Regular.woff2)
+        url(../assets/fonts/katex/KaTeX_Caligraphic-Regular.woff2)
             format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_Caligraphic-Regular.woff)
+        url(../assets/fonts/katex/KaTeX_Caligraphic-Regular.woff)
             format("woff"),
-        url(../../assets/fonts/katex/KaTeX_Caligraphic-Regular.ttf)
+        url(../assets/fonts/katex/KaTeX_Caligraphic-Regular.ttf)
             format("truetype");
 }
 @font-face {
@@ -39,9 +39,9 @@
     font-style: normal;
     font-weight: 700;
     src:
-        url(../../assets/fonts/katex/KaTeX_Fraktur-Bold.woff2) format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_Fraktur-Bold.woff) format("woff"),
-        url(../../assets/fonts/katex/KaTeX_Fraktur-Bold.ttf) format("truetype");
+        url(../assets/fonts/katex/KaTeX_Fraktur-Bold.woff2) format("woff2"),
+        url(../assets/fonts/katex/KaTeX_Fraktur-Bold.woff) format("woff"),
+        url(../assets/fonts/katex/KaTeX_Fraktur-Bold.ttf) format("truetype");
 }
 @font-face {
     font-display: block;
@@ -49,10 +49,10 @@
     font-style: normal;
     font-weight: 400;
     src:
-        url(../../assets/fonts/katex/KaTeX_Fraktur-Regular.woff2)
+        url(../assets/fonts/katex/KaTeX_Fraktur-Regular.woff2)
             format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_Fraktur-Regular.woff) format("woff"),
-        url(../../assets/fonts/katex/KaTeX_Fraktur-Regular.ttf)
+        url(../assets/fonts/katex/KaTeX_Fraktur-Regular.woff) format("woff"),
+        url(../assets/fonts/katex/KaTeX_Fraktur-Regular.ttf)
             format("truetype");
 }
 @font-face {
@@ -61,9 +61,9 @@
     font-style: normal;
     font-weight: 700;
     src:
-        url(../../assets/fonts/katex/KaTeX_Main-Bold.woff2) format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_Main-Bold.woff) format("woff"),
-        url(../../assets/fonts/katex/KaTeX_Main-Bold.ttf) format("truetype");
+        url(../assets/fonts/katex/KaTeX_Main-Bold.woff2) format("woff2"),
+        url(../assets/fonts/katex/KaTeX_Main-Bold.woff) format("woff"),
+        url(../assets/fonts/katex/KaTeX_Main-Bold.ttf) format("truetype");
 }
 @font-face {
     font-display: block;
@@ -71,10 +71,10 @@
     font-style: italic;
     font-weight: 700;
     src:
-        url(../../assets/fonts/katex/KaTeX_Main-BoldItalic.woff2)
+        url(../assets/fonts/katex/KaTeX_Main-BoldItalic.woff2)
             format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_Main-BoldItalic.woff) format("woff"),
-        url(../../assets/fonts/katex/KaTeX_Main-BoldItalic.ttf)
+        url(../assets/fonts/katex/KaTeX_Main-BoldItalic.woff) format("woff"),
+        url(../assets/fonts/katex/KaTeX_Main-BoldItalic.ttf)
             format("truetype");
 }
 @font-face {
@@ -83,9 +83,9 @@
     font-style: italic;
     font-weight: 400;
     src:
-        url(../../assets/fonts/katex/KaTeX_Main-Italic.woff2) format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_Main-Italic.woff) format("woff"),
-        url(../../assets/fonts/katex/KaTeX_Main-Italic.ttf) format("truetype");
+        url(../assets/fonts/katex/KaTeX_Main-Italic.woff2) format("woff2"),
+        url(../assets/fonts/katex/KaTeX_Main-Italic.woff) format("woff"),
+        url(../assets/fonts/katex/KaTeX_Main-Italic.ttf) format("truetype");
 }
 @font-face {
     font-display: block;
@@ -93,9 +93,9 @@
     font-style: normal;
     font-weight: 400;
     src:
-        url(../../assets/fonts/katex/KaTeX_Main-Regular.woff2) format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_Main-Regular.woff) format("woff"),
-        url(../../assets/fonts/katex/KaTeX_Main-Regular.ttf) format("truetype");
+        url(../assets/fonts/katex/KaTeX_Main-Regular.woff2) format("woff2"),
+        url(../assets/fonts/katex/KaTeX_Main-Regular.woff) format("woff"),
+        url(../assets/fonts/katex/KaTeX_Main-Regular.ttf) format("truetype");
 }
 @font-face {
     font-display: block;
@@ -103,10 +103,10 @@
     font-style: italic;
     font-weight: 700;
     src:
-        url(../../assets/fonts/katex/KaTeX_Math-BoldItalic.woff2)
+        url(../assets/fonts/katex/KaTeX_Math-BoldItalic.woff2)
             format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_Math-BoldItalic.woff) format("woff"),
-        url(../../assets/fonts/katex/KaTeX_Math-BoldItalic.ttf)
+        url(../assets/fonts/katex/KaTeX_Math-BoldItalic.woff) format("woff"),
+        url(../assets/fonts/katex/KaTeX_Math-BoldItalic.ttf)
             format("truetype");
 }
 @font-face {
@@ -115,9 +115,9 @@
     font-style: italic;
     font-weight: 400;
     src:
-        url(../../assets/fonts/katex/KaTeX_Math-Italic.woff2) format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_Math-Italic.woff) format("woff"),
-        url(../../assets/fonts/katex/KaTeX_Math-Italic.ttf) format("truetype");
+        url(../assets/fonts/katex/KaTeX_Math-Italic.woff2) format("woff2"),
+        url(../assets/fonts/katex/KaTeX_Math-Italic.woff) format("woff"),
+        url(../assets/fonts/katex/KaTeX_Math-Italic.ttf) format("truetype");
 }
 @font-face {
     font-display: block;
@@ -125,9 +125,9 @@
     font-style: normal;
     font-weight: 700;
     src:
-        url(../../assets/fonts/katex/KaTeX_SansSerif-Bold.woff2) format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_SansSerif-Bold.woff) format("woff"),
-        url(../../assets/fonts/katex/KaTeX_SansSerif-Bold.ttf)
+        url(../assets/fonts/katex/KaTeX_SansSerif-Bold.woff2) format("woff2"),
+        url(../assets/fonts/katex/KaTeX_SansSerif-Bold.woff) format("woff"),
+        url(../assets/fonts/katex/KaTeX_SansSerif-Bold.ttf)
             format("truetype");
 }
 @font-face {
@@ -136,10 +136,10 @@
     font-style: italic;
     font-weight: 400;
     src:
-        url(../../assets/fonts/katex/KaTeX_SansSerif-Italic.woff2)
+        url(../assets/fonts/katex/KaTeX_SansSerif-Italic.woff2)
             format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_SansSerif-Italic.woff) format("woff"),
-        url(../../assets/fonts/katex/KaTeX_SansSerif-Italic.ttf)
+        url(../assets/fonts/katex/KaTeX_SansSerif-Italic.woff) format("woff"),
+        url(../assets/fonts/katex/KaTeX_SansSerif-Italic.ttf)
             format("truetype");
 }
 @font-face {
@@ -148,11 +148,11 @@
     font-style: normal;
     font-weight: 400;
     src:
-        url(../../assets/fonts/katex/KaTeX_SansSerif-Regular.woff2)
+        url(../assets/fonts/katex/KaTeX_SansSerif-Regular.woff2)
             format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_SansSerif-Regular.woff)
+        url(../assets/fonts/katex/KaTeX_SansSerif-Regular.woff)
             format("woff"),
-        url(../../assets/fonts/katex/KaTeX_SansSerif-Regular.ttf)
+        url(../assets/fonts/katex/KaTeX_SansSerif-Regular.ttf)
             format("truetype");
 }
 @font-face {
@@ -161,9 +161,9 @@
     font-style: normal;
     font-weight: 400;
     src:
-        url(../../assets/fonts/katex/KaTeX_Script-Regular.woff2) format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_Script-Regular.woff) format("woff"),
-        url(../../assets/fonts/katex/KaTeX_Script-Regular.ttf)
+        url(../assets/fonts/katex/KaTeX_Script-Regular.woff2) format("woff2"),
+        url(../assets/fonts/katex/KaTeX_Script-Regular.woff) format("woff"),
+        url(../assets/fonts/katex/KaTeX_Script-Regular.ttf)
             format("truetype");
 }
 @font-face {
@@ -172,9 +172,9 @@
     font-style: normal;
     font-weight: 400;
     src:
-        url(../../assets/fonts/katex/KaTeX_Size1-Regular.woff2) format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_Size1-Regular.woff) format("woff"),
-        url(../../assets/fonts/katex/KaTeX_Size1-Regular.ttf) format("truetype");
+        url(../assets/fonts/katex/KaTeX_Size1-Regular.woff2) format("woff2"),
+        url(../assets/fonts/katex/KaTeX_Size1-Regular.woff) format("woff"),
+        url(../assets/fonts/katex/KaTeX_Size1-Regular.ttf) format("truetype");
 }
 @font-face {
     font-display: block;
@@ -182,9 +182,9 @@
     font-style: normal;
     font-weight: 400;
     src:
-        url(../../assets/fonts/katex/KaTeX_Size2-Regular.woff2) format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_Size2-Regular.woff) format("woff"),
-        url(../../assets/fonts/katex/KaTeX_Size2-Regular.ttf) format("truetype");
+        url(../assets/fonts/katex/KaTeX_Size2-Regular.woff2) format("woff2"),
+        url(../assets/fonts/katex/KaTeX_Size2-Regular.woff) format("woff"),
+        url(../assets/fonts/katex/KaTeX_Size2-Regular.ttf) format("truetype");
 }
 @font-face {
     font-display: block;
@@ -192,9 +192,9 @@
     font-style: normal;
     font-weight: 400;
     src:
-        url(../../assets/fonts/katex/KaTeX_Size3-Regular.woff2) format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_Size3-Regular.woff) format("woff"),
-        url(../../assets/fonts/katex/KaTeX_Size3-Regular.ttf) format("truetype");
+        url(../assets/fonts/katex/KaTeX_Size3-Regular.woff2) format("woff2"),
+        url(../assets/fonts/katex/KaTeX_Size3-Regular.woff) format("woff"),
+        url(../assets/fonts/katex/KaTeX_Size3-Regular.ttf) format("truetype");
 }
 @font-face {
     font-display: block;
@@ -202,9 +202,9 @@
     font-style: normal;
     font-weight: 400;
     src:
-        url(../../assets/fonts/katex/KaTeX_Size4-Regular.woff2) format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_Size4-Regular.woff) format("woff"),
-        url(../../assets/fonts/katex/KaTeX_Size4-Regular.ttf) format("truetype");
+        url(../assets/fonts/katex/KaTeX_Size4-Regular.woff2) format("woff2"),
+        url(../assets/fonts/katex/KaTeX_Size4-Regular.woff) format("woff"),
+        url(../assets/fonts/katex/KaTeX_Size4-Regular.ttf) format("truetype");
 }
 @font-face {
     font-display: block;
@@ -212,11 +212,11 @@
     font-style: normal;
     font-weight: 400;
     src:
-        url(../../assets/fonts/katex/KaTeX_Typewriter-Regular.woff2)
+        url(../assets/fonts/katex/KaTeX_Typewriter-Regular.woff2)
             format("woff2"),
-        url(../../assets/fonts/katex/KaTeX_Typewriter-Regular.woff)
+        url(../assets/fonts/katex/KaTeX_Typewriter-Regular.woff)
             format("woff"),
-        url(../../assets/fonts/katex/KaTeX_Typewriter-Regular.ttf)
+        url(../assets/fonts/katex/KaTeX_Typewriter-Regular.ttf)
             format("truetype");
 }
 .katex {

@@ -26,7 +26,6 @@
     }
 }
 
-/* Title and its signals; the signals wrap under the title when space is short */
 .card-title {
     display: flex;
     flex-wrap: wrap;
@@ -39,7 +38,6 @@
     opacity: 0.6;
 }
 
-/* Status (bit/byte) and kind (explainer, …): muted so they read as metadata */
 .card-signals {
     font-size: 0.875rem;
     font-weight: 300;

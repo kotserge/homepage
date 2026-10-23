@@ -35,14 +35,16 @@ Options:
   -h, --help           Show this help
 
 Page modules (CommonJS or ES, exporting an object with any of these hooks):
-  template   { NAME: html }        fills <!--NAME--> in the template
+  template   { NAME: html }        fills <!--NAME--> in the template,
+             or (page) → { NAME: html }
   text       (markdown, page) → markdown, before rendering
   markdown   (md, page)            configures the markdown-it instance
   dom        ($, page)             transforms the cheerio DOM, after the built-in passes
   where page = { frontmatter }. A hook that throws stops the build.
 
 General modules live in js/page-modules/: code.js (Prism), math.js (KaTeX),
-chart.js (<chart id="..."/> tags).
+chart.js (<chart id="..."/> tags), style.js (the style.css files of the page's
+directory and its parents).
 
 Frontmatter (YAML, in the markdown file):
   ---
@@ -152,7 +154,7 @@ const output = applyTemplate(template, {
     DESCRIPTION: String(frontmatter.description ?? ""),
     KEYWORDS: Array(frontmatter.tags ?? ""),
     MAIN: $.html(),
-    ...Object.assign({}, ...modules.map((mod) => mod.template ?? {})),
+    ...Object.assign({}, ...modules.map((mod) => templateOf(mod, page))),
 }).replace(PLACEHOLDER, "");
 
 process.stdout.write(output);
@@ -177,6 +179,12 @@ function loadModule(file) {
         process.exit(1);
     }
     return { ...mod, file };
+}
+
+/** Placeholders `mod` fills for `page`: its `template` object, or what its `template` function returns. */
+function templateOf(mod, page) {
+    if (typeof mod.template === "function") return runHook(mod, "template", page);
+    return mod.template ?? {};
 }
 
 /** Result of `mod[hook](...args)`; exits naming the module when the hook throws. */

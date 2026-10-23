@@ -1,9 +1,9 @@
 /**
- * Icons of the figures on this page, as inline SVG strings stroked in `currentColor`, so
+ * Icons of the figures, as inline SVG strings stroked in `currentColor`, so
  * an icon follows the text colour of the button it sits in (hover, disabled).
  *
- * Paths from Iconoir (MIT), https://github.com/iconoir-icons/iconoir: `nav-arrow-left`,
- * `nav-arrow-right`, `minus`, `plus` and `xmark`.
+ * Paths from Iconoir (MIT), https://github.com/iconoir-icons/iconoir:
+ * `nav-arrow-left`, `nav-arrow-right`, `minus`, `plus` and `xmark`.
  */
 
 /** A 24 × 24 Iconoir icon drawing `path` with the set's stroke. */

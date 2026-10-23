@@ -12,7 +12,7 @@ const INCLUDE = `
         <!-- Chart -->
         <script defer src="/js/d3.min.js"></script>
         <script defer src="/js/plot.min.js"></script>
-        <link rel="stylesheet" href="/css/components/chart.css" />
+        <link rel="stylesheet" href="/css/chart.css" />
         `;
 
 // ─── Module ─────────────────────────────────────────────────────────────────

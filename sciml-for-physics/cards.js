@@ -12,7 +12,7 @@
  *
  * Example:
  *   bun run js/create-page.js -m js/page-modules/math.js -m js/page-modules/chart.js \
- *     -m sciml-for-physics/cards.js templates/page.html \
+ *     -m js/page-modules/style.js -m sciml-for-physics/cards.js templates/page.html \
  *     < sciml-for-physics/index.md > sciml-for-physics/index.html
  */
 

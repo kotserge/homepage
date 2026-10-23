@@ -29,7 +29,7 @@ import {
     paintField,
     solve,
 } from "./heat-rod.js";
-import { setSliderFill } from "./controls.js";
+import { controlField, dropdown, slider } from "/js/controls.js";
 
 // === Observation knobs ===
 
@@ -68,9 +68,9 @@ const FRAMES = [
 ];
 const NOISE = Object.freeze({ GAUSSIAN: "gaussian", LAPLACE: "laplace", UNIFORM: "uniform" });
 const NOISE_OPTIONS = [
-    { type: NOISE.GAUSSIAN, label: "Gaussian" },
-    { type: NOISE.LAPLACE, label: "Laplace" },
-    { type: NOISE.UNIFORM, label: "Uniform" },
+    { value: NOISE.GAUSSIAN, label: "Gaussian" },
+    { value: NOISE.LAPLACE, label: "Laplace" },
+    { value: NOISE.UNIFORM, label: "Uniform" },
 ];
 
 const fmtSigma = d3.format(".3f");
@@ -180,7 +180,7 @@ const frames = Object.fromEntries(
         return [key, { el, canvas, svg }];
     }),
 );
-const controls = root.append("div").attr("class", "pde-controls");
+const controls = root.append("div").attr("class", "chart-controls");
 
 // Off-screen buffer holding one pixel per grid node (t right, x up)
 const buffer = document.createElement("canvas");
@@ -409,44 +409,34 @@ function build() {
 function buildControls() {
 
     // Readings per axis
-    const n = controls.append("label").attr("class", "pde-control");
-    n.append("span").attr("class", "pde-control-name").text("Readings per axis");
-    n.append("input")
-        .attr("class", "chart-slider")
-        .attr("type", "range")
-        .attr("min", N_OBS.min)
-        .attr("max", N_OBS.max)
-        .attr("step", 1)
-        .property("value", settings.n)
-        .each(function () {
-            setSliderFill(this);
-        })
-        .on("input", function () {
-            setSliderFill(this);
-            settings.n = +this.value;
+    const n = controlField(controls, "Readings per axis");
+    slider(n, {
+        min: N_OBS.min,
+        max: N_OBS.max,
+        step: 1,
+        value: settings.n,
+        onInput: (value) => {
+            settings.n = value;
             n.select("output").text(`${settings.n} × ${settings.n}`);
             requestRender();
-        });
+        },
+    });
     n.append("output").text(`${settings.n} × ${settings.n}`);
 
     // Noise family
-    const family = controls.append("label").attr("class", "pde-control");
-    family.append("span").attr("class", "pde-control-name").text("Noise ε");
-    const select = family.append("select").attr("class", "chart-select").on("change", function () {
-        settings.noise = this.value;
-        requestRender();
+    const family = controlField(controls, "Noise ε");
+    dropdown(family, NOISE_OPTIONS, {
+        value: settings.noise,
+        onChange: (noise) => {
+            settings.noise = noise;
+            requestRender();
+        },
     });
-    select.selectAll("option")
-        .data(NOISE_OPTIONS)
-        .join("option")
-        .attr("value", (d) => d.type)
-        .text((d) => d.label);
-    select.property("value", settings.noise);
 
     // Distribution panel: drag to set σ, click to resample
-    const panel = controls.append("div").attr("class", "pde-control obs-dist");
+    const panel = controls.append("div").attr("class", "chart-control obs-dist");
     const head = panel.append("div").attr("class", "obs-title");
-    head.append("output").attr("class", "obs-sigma-out pde-control-name");
+    head.append("output").attr("class", "obs-sigma-out chart-control-name");
     head.append("span").attr("class", "obs-note").text("drag to set σ · click to resample");
     dist = { svg: panel.append("svg").attr("class", "pde-svg"), e: null, y: null };
 }

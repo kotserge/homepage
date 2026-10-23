@@ -7,7 +7,7 @@
  * Throws when the card is off the scales or the page holds the slot other than once.
  *
  * Example:
- *   bun run js/create-page.js -m js/page-modules/math.js -m js/page-modules/chart.js \
+ *   bun run js/create-page.js -m js/page-modules/math.js -m js/page-modules/style.js \
  *     -m sciml-for-physics/profile.js templates/page.html \
  *     < sciml-for-physics/problems/forward-problem/index.md \
  *     > sciml-for-physics/problems/forward-problem/index.html

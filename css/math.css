@@ -1,0 +1,15 @@
+@import url("./katex.min.css");
+
+.katex {
+    font-size: 1.1em;
+}
+
+span:is(.katex-display) {
+    overflow: auto hidden;
+    padding: 0.25em 0;
+    margin: 0.75em 0;
+}
+
+p:has(span:is(.katex-display)) {
+    display: grid;
+}
