@@ -103,18 +103,6 @@
     fill: var(--secondary-color-light);
 }
 
-.pde-legend {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.pde-legend-bar {
-    flex: 1;
-    height: 0.625rem;
-    border-radius: 0.25rem;
-}
-
 /* Observation model */
 
 .obs-frames {
@@ -177,9 +165,24 @@
 
 .task-map-head {
     font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
     fill: var(--secondary-color-light);
+}
+
+/* Map and card labels are lowercase in code and frontmatter and shown with each word capitalized; sublabels and axis titles keep their case */
+.task-map-head,
+.task-map-group,
+.task-map-rowlab,
+.task-map-level text,
+.task-map-chip,
+.card-profile dt,
+.card-profile dd {
+    text-transform: capitalize;
+}
+
+/* Math symbols keep their case: λ, f and u would otherwise become Λ, F and U */
+.task-map-chip .is-symbol,
+.card-profile dt.is-symbol {
+    text-transform: none;
 }
 
 .task-map-comp {

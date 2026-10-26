@@ -9,7 +9,7 @@
  * Expects the global `d3` (v7).
  */
 
-// === Discretisation ===
+// === Discretization ===
 
 export const NX = 65; // spatial nodes on x ∈ [0, 1]
 export const NT = 161; // stored time columns on t ∈ [0, T_END]

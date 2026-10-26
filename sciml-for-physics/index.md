@@ -11,9 +11,16 @@ tags:
   - basics
 ---
 
-# Scientific Machine Learning for Continuum Physics
+# Scientific Machine Learning for Physics
 ---
 General-purpose machine learning (ML) models make only generic assumptions about their data (e.g., smoothness, locality, ...). Scientific machine learning (SciML) uses the very same methods but trades some of this generality by introducing domain knowledge. In physics, such domain knowledge can be highly specific, including a system's symmetries or its governing equations. It can enter the process at different places, for example in the architecture [\0] or as residuals in the training signal [\1] [\2] [\3].
+
+<!--
+A rewording could be something along the lines of:
+- what ML and SciML makes different 
+- in that introduce the concept of two systems
+- next the system
+-->
 
 <!--
 Currently, this is only introductionary and does not really have anything to do with the actual body.
@@ -56,6 +63,8 @@ $$
   <dt>$u_0$</dt>
   <dd>initial condition<small>the state at $t=0$; together with the boundary conditions it makes the solution unique (for well-posed problems)</small></dd>
 </dl>
+
+The operator, its coefficients, the forcing, the domain and the boundary conditions define the *system*; together with one initial condition $u_0$, it becomes an *instance* with a single solution.
 
 A simple example is the heat diffusion in a rod, whose temperature $u(x,t)$ evolves as
 
@@ -106,7 +115,7 @@ The map places every problem and method by what it needs to know of the operator
 
 <chart id="task-map" type="figure"/>
 
-## Resources
+## References
 ---
 [\0]: Cohen, T., & Welling, M. (2016). Group equivariant convolutional networks. _ICML_, PMLR 48, 2990–2999. [https://arxiv.org/abs/1602.07576](https://arxiv.org/abs/1602.07576)
 

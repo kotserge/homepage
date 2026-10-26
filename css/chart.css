@@ -1,5 +1,6 @@
 :root {
     --chart-control-h: 1.75rem;
+    --chart-output-w: 7ch; /* width of a slider's value; set per control for longer values */
     --chart-field: color-mix(in oklab, var(--secondary-color) 6%, var(--primary-color));
 }
 
@@ -133,4 +134,37 @@
 
 .chart-control-name {
     font-weight: 500;
+}
+
+/* A colour legend field: min label, colour bar, max label, on one row as tall as a control */
+.chart-legend {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: var(--chart-control-h);
+    font-variant-numeric: tabular-nums;
+}
+
+.chart-legend-bar {
+    flex: 1;
+    height: 0.625rem;
+    border-radius: 0.25rem;
+}
+
+/* A slider field: name on top, then the slider with its value to the right in a fixed-width box */
+.chart-control:has(> .chart-slider) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--chart-output-w);
+    align-items: center;
+    column-gap: 0.5rem;
+
+    > .chart-control-name {
+        grid-column: 1 / -1;
+    }
+
+    > output {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+    }
 }

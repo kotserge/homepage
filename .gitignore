@@ -7,3 +7,6 @@ reference-page/
 bun.lock
 package.json
 node_modules
+
+## Other
+tmp

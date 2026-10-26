@@ -3,7 +3,7 @@
  * each component of the system and what they produce. Columns are the levels of five
  * components (operator 𝒩, parameters λ, forcing f, state u, observation ℋ),
  * ordered from needing nothing to needing everything; rows are the produced
- * quantities, grouped by training corpus (problems) or by where the physics enters
+ * quantities, grouped by scope (problems) or by learning component
  * (methods). A cell counts the cards placed exactly there.
  *
  * Clicking builds a query: a level keeps the cards that need that much or less of
@@ -452,7 +452,7 @@ function paintStatus(state, bar, count, onChange) {
     // One chip per constraint, then the reset once there is any
     const chips = [];
     if (q.target) chips.push({ kind: CHIP.ROW, text: `${targetLabel(q.target)}, ${q.group} ×` });
-    for (const c of COMP) if (q[c.key]) chips.push({ kind: CHIP.LEVEL, key: c.key, text: `${c.sym} ≤ ${q[c.key]} ×` });
+    for (const c of COMP) if (q[c.key]) chips.push({ kind: CHIP.LEVEL, key: c.key, sym: c.sym, text: ` ≤ ${q[c.key]} ×` });
     if (chips.length) chips.push({ kind: CHIP.CLEAR, text: "clear" });
 
     // Count, the hint when nothing is selected, and the chips; a chip click removes its constraint
@@ -464,7 +464,11 @@ function paintStatus(state, bar, count, onChange) {
         .join("button")
         .attr("type", "button")
         .attr("class", "chart-button task-map-chip")
-        .text((d) => d.text)
+        .each(function (d) {
+            const chip = d3.select(this);
+            if (d.sym) chip.append("span").attr("class", "is-symbol").text(d.sym);
+            chip.append("span").text(d.text);
+        })
         .on("click", (_, d) => {
             removeChip(q, d);
             onChange();

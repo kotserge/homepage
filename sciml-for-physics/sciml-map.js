@@ -54,70 +54,75 @@ COMP.forEach((c) => {
 });
 
 export const TARGETS = [
-    { key: "u_ahead", label: "Forward prediction", sub: "u on (0, T]" },
+    { key: "u_ahead", label: "forward prediction", sub: "u on (0, T]" },
     {
         key: "u_now",
-        label: "State estimation",
+        label: "state estimation",
         sub: "u at t, from observations",
     },
     {
         key: "u_stat",
-        label: "Stationary state",
+        label: "stationary state",
         sub: "eigenstate, self-similar profile",
     },
     {
         key: "u_stats",
-        label: "Long-time statistics",
+        label: "long-time statistics",
         sub: "invariant measure, equilibrium",
     },
-    { key: "lambda", label: "Parameter estimation", sub: "λ" },
-    { key: "f", label: "Source identification", sub: "f" },
+    { key: "lambda", label: "parameter estimation", sub: "λ" },
+    { key: "f", label: "source identification", sub: "f" },
     {
         key: "N",
-        label: "Model discovery",
+        label: "model discovery",
         sub: "𝒩, its form or a missing term",
     },
-    { key: "choose", label: "Control & design", sub: "control, geometry" },
+    { key: "choose", label: "control & design", sub: "control, geometry" },
     {
         key: "sensors",
-        label: "Experimental design",
+        label: "experimental design",
         sub: "where and what to measure",
     },
     {
         key: "proc",
-        label: "Solver learning",
+        label: "solver learning",
         sub: "solver, preconditioner, code",
     },
 ];
 
-const CORPUS = [
-    "no training data",
+// Scope: what one result covers, from one solution to many operators; an instance is a system with one u_0 (or one set of observations)
+const SCOPE = [
+    "one instance",
     "one system",
     "one family",
     "many families",
 ];
-const PHYS = ["as the model", "in the loss", "in the model", "in the data"];
+// Components of a learning setup (see the-framework-of-machine-learning); benchmarks are data, metrics are evaluation
+const COMPS = ["data", "model", "loss", "optimization", "evaluation"];
 
 // Card types: the values of a card's `type` frontmatter field
 export const TYPE = Object.freeze({ PROBLEM: "problem", METHOD: "method" });
 
-// Per card type: its view on the map, the frontmatter field naming its group, and the last row of its profile as [label, field]
+// Per card type: its view on the map, the frontmatter field naming its group, and the last rows of its profile as [label, field] pairs
 export const VIEWS = {
     [TYPE.PROBLEM]: {
         label: "Problems",
         noun: "problems",
-        groups: CORPUS,
-        groupField: "corpus",
-        groupHead: "trained on",
-        profileLast: ["answer", "answer"],
+        groups: SCOPE,
+        groupField: "scope",
+        groupHead: "scope",
+        profileLast: [["answer", "answer"]],
     },
     [TYPE.METHOD]: {
         label: "Methods",
         noun: "methods",
-        groups: PHYS,
-        groupField: "physics",
-        groupHead: "physics enters",
-        profileLast: ["physics", "physics"],
+        groups: COMPS,
+        groupField: "component",
+        groupHead: "component",
+        profileLast: [
+            ["component", "component"],
+            ["physics", "physics"],
+        ],
     },
 };
 
@@ -175,19 +180,19 @@ const escapeHtml = (s) =>
         (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch],
     );
 
-/** Profile of `card` as `<dt>/<dd>` pairs: level per component, tasks, corpus, and its type's last row. */
+/** Profile of `card` as `<dt>/<dd>` pairs: level per component, tasks, scope, and its type's last rows. */
 export function profileHtml(card) {
-    const [lastLabel, lastField] = viewOf(card.type).profileLast;
+    // Component rows are labelled by their symbol, marked `is-symbol` so CSS leaves its case alone
+    const symbolRows = COMP.map(
+        (c) => `<dt class="is-symbol">${escapeHtml(c.sym)}</dt><dd>${escapeHtml(card.needs[c.key])}</dd>`,
+    );
     const rows = [
-        ...COMP.map((c) => [c.sym, card.needs[c.key]]),
         ["task", card.tasks.map(targetLabel).join(", ")],
-        ["trained on", card.corpus],
-        [lastLabel, card[lastField]],
+        ["scope", card.scope],
+        ...viewOf(card.type).profileLast.map(([label, field]) => [label, card[field]]),
     ];
-    return rows
-        .map(
-            ([k, v]) =>
-                `<dt>${escapeHtml(k)}</dt><dd>${escapeHtml(v ?? "")}</dd>`,
-        )
-        .join("");
+    return [
+        ...symbolRows,
+        ...rows.map(([k, v]) => `<dt>${escapeHtml(k)}</dt><dd>${escapeHtml(v ?? "")}</dd>`),
+    ].join("");
 }

@@ -529,11 +529,12 @@ function build() {
 // === Controls ===
 
 const lambdaScale = d3.scaleLog([LAMBDA_MIN, LAMBDA_MAX], [0, 1]);
+const fmtLambda = d3.format(".4f"); // α with four decimals: 0.0010 to 0.1000
 
 /** Writes `state` into the form controls. */
 function syncControls() {
     setSliderValue(controls.select(".pde-lambda"), lambdaScale(state.lambda));
-    controls.select(".pde-lambda-out").text(state.lambda.toPrecision(2));
+    controls.select(".pde-lambda-out").text(fmtLambda(state.lambda));
     for (const { key } of SIDES) {
         controls.select(`.pde-bc-${key}`).property("value", state.bc[key].type);
     }
@@ -572,17 +573,17 @@ function buildControls() {
         step: 0.001,
         onInput: (value) => {
             state.lambda = lambdaScale.invert(value);
-            controls.select(".pde-lambda-out").text(state.lambda.toPrecision(2));
+            controls.select(".pde-lambda-out").text(fmtLambda(state.lambda));
             requestRender();
         },
     }).classed("pde-lambda", true);
     lambda.append("output").attr("class", "pde-lambda-out");
 
     // Colour legend
-    const legend = controls.append("div").attr("class", "pde-legend");
-    legend.append("span").text("u 0");
+    const legend = controlField(controls, "Temperature u").append("div").attr("class", "chart-legend");
+    legend.append("span").text("0");
     legend.append("span")
-        .attr("class", "pde-legend-bar")
+        .attr("class", "chart-legend-bar")
         .style("background", `linear-gradient(to right, ${d3.quantize(heatColor, 11).map((c) => c.formatRgb()).join(", ")})`);
     legend.append("span").text("1");
 
