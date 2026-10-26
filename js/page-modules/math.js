@@ -1,11 +1,5 @@
 "use strict";
 
-/**
- * Page module for `create-page.js`: renders `$…$` (inline) and `$$…$$` (display)
- * LaTeX with KaTeX before markdown, and fills `<!--MATH-->` with the math stylesheet.
- * A formula KaTeX cannot parse is logged and left as written.
- */
-
 const katex = require("katex@0.16.27");
 
 // ─── Config ─────────────────────────────────────────────────────────────────

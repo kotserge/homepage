@@ -1,27 +1,15 @@
 "use strict";
 
-/**
- * Page module for `create-page.js`: highlights fenced code with Prism, wraps each
- * highlighted block in a header showing its language, and fills `<!--CODE-->` with
- * the code stylesheet. A fence without a language, or with one Prism doesn't know,
- * is only escaped and gets no header.
- */
-
 const PRISM = "prismjs@1.30.0";
 
 const Prism = require(PRISM);
-
-// ─── Config ─────────────────────────────────────────────────────────────────
 
 const INCLUDE = `
         <!-- Syntax highlighting -->
         <link rel="stylesheet" href="/css/code.css" />
         `;
 
-// Languages Prism preloads on its own — don't try to require them.
 const PRISM_PRELOADED = new Set(["markup", "css", "clike", "javascript"]);
-
-// ─── Module ─────────────────────────────────────────────────────────────────
 
 module.exports = {
     template: { CODE: INCLUDE },
@@ -29,15 +17,13 @@ module.exports = {
     dom: wrapCodeBlocks,
 };
 
-// ─── Highlighting ───────────────────────────────────────────────────────────
-
 function loadPrismLanguage(lang) {
     if (PRISM_PRELOADED.has(lang)) return;
     try {
         require(`${PRISM}/components/prism-${lang}.js`);
         PRISM_PRELOADED.add(lang);
     } catch {
-        /* unknown language; fall through to escape-only */
+        /* unknown language */
     }
 }
 
@@ -63,8 +49,6 @@ function highlightCode(code, lang) {
     const highlighted = Prism.highlight(code, Prism.languages[lang], lang);
     return `<pre class="language-${lang}"><code class="language-${lang}">${highlighted}</code></pre>`;
 }
-
-// ─── DOM ────────────────────────────────────────────────────────────────────
 
 function wrapCodeBlocks($) {
     $('pre[class^="language-"]').each((_, el) => {

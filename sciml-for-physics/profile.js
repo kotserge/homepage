@@ -1,29 +1,10 @@
 "use strict";
 
-/**
- * Page module for `js/create-page.js`: fills the one `.card-profile` element of a
- * SciML problem or method card with the card's profile as a `<dl>`, drawn from its
- * frontmatter on the scales of `sciml-map.js`.
- * Throws when the card is off the scales or the page holds the slot other than once.
- *
- * Example:
- *   bun run js/create-page.js -m js/page-modules/math.js -m js/page-modules/style.js \
- *     -m sciml-for-physics/profile.js templates/page.html \
- *     < sciml-for-physics/problems/forward-problem/index.md \
- *     > sciml-for-physics/problems/forward-problem/index.html
- */
-
 const { checkCard, profileHtml } = require("./sciml-map.js");
-
-// ─── Config ─────────────────────────────────────────────────────────────────
 
 const SLOT = ".card-profile";
 
-// ─── Module ─────────────────────────────────────────────────────────────────
-
 module.exports = { dom: fillProfile };
-
-// ─── Helpers ────────────────────────────────────────────────────────────────
 
 function fillProfile($, { frontmatter: card }) {
     const $slot = $(SLOT);

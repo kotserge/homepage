@@ -10,15 +10,8 @@ const MarkdownIt = require("markdown-it@15.0.3");
 const markdownItMark = require("markdown-it-mark@4.0.0");
 const cheerio = require("cheerio@1.2.0");
 
-// ─── Config ─────────────────────────────────────────────────────────────────
-
-// Zero-padded width of the section counter rendered in front of each <h2>.
 const SECTION_NUMBER_WIDTH = 2;
-
-// Hooks a page module may export; any other key is an error.
 const MODULE_HOOKS = new Set(["template", "text", "markdown", "dom"]);
-
-// A template placeholder: `<!--NAME-->`. Unfilled ones render empty.
 const PLACEHOLDER = /<!--[A-Z_]+-->/g;
 
 // ─── CLI ────────────────────────────────────────────────────────────────────
@@ -161,7 +154,6 @@ process.stdout.write(output);
 
 // ─── Modules ────────────────────────────────────────────────────────────────
 
-/** Page module at `file`, relative to the working directory; exits unless it exists and exports only known hooks. */
 function loadModule(file) {
     if (!fs.existsSync(file)) {
         console.error(`Error: module '${file}' not found`);
@@ -181,13 +173,11 @@ function loadModule(file) {
     return { ...mod, file };
 }
 
-/** Placeholders `mod` fills for `page`: its `template` object, or what its `template` function returns. */
 function templateOf(mod, page) {
     if (typeof mod.template === "function") return runHook(mod, "template", page);
     return mod.template ?? {};
 }
 
-/** Result of `mod[hook](...args)`; exits naming the module when the hook throws. */
 function runHook(mod, hook, ...args) {
     try {
         return mod[hook](...args);
@@ -218,19 +208,6 @@ function addHeadingAnchors($) {
     });
 }
 
-// Turn every top-level heading into a section head so all sections share one
-// look. An <h2> gets a running number; an <h1> gets none and restarts the
-// count, so a page with several parts (e.g. a bilingual legal notice) numbers
-// each part from 01:
-//
-//   <div class="sec-head"><h1>…</h1><hr></div>
-//   <div class="sec-head"><span class="sec-num">01</span><h2>…</h2><hr></div>
-//
-// Only direct children of the article count; a heading nested in a blockquote
-// (e.g. a pasted license text) is left alone so it neither gets a number nor
-// shifts the numbering. The <hr> an author writes as `---` directly under
-// the heading is adopted into the head; when there is none, one is added so
-// the rule is always present.
 function wrapSectionHeads($) {
     let count = 0;
     const $headings = $.root().children("h1, h2");
@@ -269,14 +246,6 @@ function addBlockquoteCitations($) {
     });
 }
 
-// Add lazy-loading attrs to every <img>. When an image carries a `title`
-// attribute, wrap it in a <figure> with a <figcaption>. A `ref` attribute
-// (only present if the user wrote raw HTML) wraps the caption text in an <a>.
-//
-// Markdown-it puts `![alt](src "title")` inside a <p>. Wrapping the <img>
-// alone would produce <p><figure>...</figure></p>, which is invalid (figure
-// is block-level). So when the <img> is the sole non-whitespace content of
-// a <p>, the whole <p> is replaced by the <figure>.
 function addImageCaptions($) {
     $("img").each((_, el) => {
         const $img = $(el);
@@ -313,14 +282,6 @@ function addImageCaptions($) {
     });
 }
 
-// Footnotes:  `[^1]` (inline) and `[^1]: ...` (definition, alone in a paragraph).
-// References: same shape with `\` instead of `^`.
-//
-// Definitions are replaced in place — keeping them where the author wrote
-// them lets you put a "References" / "Footnotes" heading above and have the
-// rows fall under it. Consecutive sibling definitions are merged into a
-// single <table> with multiple rows, so each list renders as one table
-// rather than a stack of one-row tables.
 function linkAsides($, marker, prefix, { inlineStyle = "sup" } = {}) {
     const m = marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const defRe = new RegExp(`^\\[${m}(\\d+)\\]:\\s*([\\s\\S]+)$`);
@@ -391,8 +352,6 @@ function linkAsides($, marker, prefix, { inlineStyle = "sup" } = {}) {
         });
 }
 
-// Two element nodes are adjacent siblings if they share a parent and have
-// only whitespace text nodes (or nothing) between them.
 function areAdjacentSiblings(a, b) {
     if (a.parent !== b.parent) return false;
     let n = a.next;
@@ -402,8 +361,6 @@ function areAdjacentSiblings(a, b) {
     }
     return n === b;
 }
-
-// ─── Template ───────────────────────────────────────────────────────────────
 
 function applyTemplate(template, vars) {
     return Object.entries(vars).reduce(
