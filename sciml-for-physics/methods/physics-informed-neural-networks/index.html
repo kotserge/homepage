@@ -1,40 +1,39 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Kotchourko - Physics-informed neural networks</title>
+        <title>Kotchourko - Physics-Informed Neural Networks</title>
         <link rel="icon" href="/favicon.png" />
-        <link rel="stylesheet" href="/css/base/base.css" />
+        <link rel="stylesheet" href="/css/base.css" />
         
         
         <!-- Math -->
-        <link rel="stylesheet" href="/css/components/math.css" />
+        <link rel="stylesheet" href="/css/math.css" />
         
         
-        <!-- Chart -->
-        <script defer src="/js/d3.min.js"></script>
-        <script defer src="/js/plot.min.js"></script>
-        <link rel="stylesheet" href="/css/components/chart.css" />
+        
+        <!-- Style -->
+        <link rel="stylesheet" href="/sciml-for-physics/style.css" />
         
 
         <!-- Meta -->
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="A network of the coordinates trained on the residual of the equations, with the equations, boundary data and initial state as the whole supervision." />
+        <meta name="description" content="A supervisory signal for models based on the physics residuals." />
         <meta
             name="keywords"
-            content="Serge Kotchourko, Kotchourko Serge, Kotchourko, Serge, Computer Science, Computer Scientist, scientific-machine-learning,method-card"
+            content="Serge Kotchourko, Kotchourko Serge, Kotchourko, Serge, Computer Science, Computer Scientist, scientific-machine-learning,methodology"
         />
         <meta name="author" content="Serge Kotchourko" />
 
         <!-- Open Graph -->
-        <meta property="og:title" content="Kotchourko - Physics-informed neural networks" />
+        <meta property="og:title" content="Kotchourko - Physics-Informed Neural Networks" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://kotchourko.dev/sciml-for-physics/methods/physics-informed-neural-networks" />
         <meta
             property="og:image"
             content="https://kotchourko.dev/images/me.webp"
         />
-        <meta property="og:description" content="A network of the coordinates trained on the residual of the equations, with the equations, boundary data and initial state as the whole supervision." />
+        <meta property="og:description" content="A supervisory signal for models based on the physics residuals." />
         <meta property="og:site_name" content="Kotchourko" />
     </head>
     <body>
@@ -49,10 +48,10 @@
         </nav>
 
         <main>
-            <div class="sec-head"><h1 id="physics-informed-neural-networks"><a href="#physics-informed-neural-networks" class="anchor">Physics-informed neural networks</a></h1><hr></div>
+            <div class="sec-head"><h1 id="physics-informed-neural-networks"><a href="#physics-informed-neural-networks" class="anchor">Physics-Informed Neural Networks</a></h1><hr></div>
 
-<div class="card-profile"></div>
-<p>A PINN represents the solution by a network of the coordinates and trains it on the residual of the equations, evaluated by automatic differentiation at sampled points. No solved data are needed; the equations, the boundary data and the initial state are the whole supervision. With a few observations and the coefficients left free, the same loss solves an inverse problem.</p>
+<div class="card-profile"><dl><dt class="is-symbol">𝒩</dt><dd>explicit</dd><dt class="is-symbol">λ</dt><dd>fixed</dd><dt class="is-symbol">f</dt><dd>fixed</dd><dt class="is-symbol">u</dt><dd>a snapshot</dd><dt class="is-symbol">ℋ</dt><dd>full field</dd><dt>task</dt><dd>forward prediction</dd><dt>scope</dt><dd>one instance</dd><dt>component</dt><dd>loss</dd><dt>physics</dt><dd>in the loss</dd></dl></div>
+<p>Physics-Informed'ness in training models acts as a supervisory signal for these models, based on the physics residuals of the predicted solution with respect to the underlying equation, boundary data, and initial state:</p>
 <p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.6021em;vertical-align:-0.7521em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6679em;"><span style="top:-2.3479em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">min</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7521em;"><span></span></span></span></span></span><span class="mspace">&nbsp;</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.85em;"><span style="top:-2.85em;"><span class="pstrut" style="height:3.2em;"></span><span style="width:0.556em;height:1.200em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.556em" height="1.200em" viewBox="0 0 556 1200"><path d="M145 15 v585 v0 v585 c2.667,10,9.667,15,21,15
 c10,0,16.667,-5,20,-15 v-585 v0 v-585 c-2.667,-10,-9.667,-15,-21,-15
 c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v0 v585 h43z
@@ -83,28 +82,21 @@ c10,0,16.667,-5,20,-15 v-585 v0 v-585 c-2.667,-10,-9.667,-15,-21,-15
 c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v0 v585 h43z
 M367 15 v585 v0 v585 c2.667,10,9.667,15,21,15
 c10,0,16.667,-5,20,-15 v-585 v0 v-585 c-2.667,-10,-9.667,-15,-21,-15
-c-10,0,-16.667,5,-20,15z M410 15 H367 v585 v0 v585 h43z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35em;"><span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.054em;"><span style="top:-3.3029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
-<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is the network, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span></span></span></span> its weights, the norms are Monte Carlo sums over collocation points in the interior, on the boundary and at <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>, and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0528em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0528em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> weight the terms. The method requires the operator explicitly, with its coefficients and forcing, and the initial state. Its difficulty is the conditioning of the residual, not a lack of data.</p>
-<dl class="card-gmf">
-  <dt>Data</dt><dd>Collocation points, resampled; no solutions.</dd>
-  <dt>Model</dt><dd>An MLP on <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span> with smooth activations; hard constraints can build in boundary conditions.</dd>
-  <dt>Optimization</dt><dd>Adam then L-BFGS; second-order or curvature-aware methods for stiff problems.</dd>
-</dl>
-<p class="card-physics"><span>Where the physics enters</span> The loss, as the residual; the model, when constraints are built in.</p>
+c-10,0,-16.667,5,-20,15z M410 15 H367 v585 v0 v585 h43z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35em;"><span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.054em;"><span style="top:-3.3029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mpunct">,</span></span></span></span></span></p>
+<p>on the domain <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Ω</span></span></span></span> over <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mclose">]</span></span></span></span>, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.14736em;">N</span></span></span></span> the operator with coefficients <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span></span></span></span>, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> the forcing, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.03041em;">B</span></span></span></span> the boundary operator with data <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span>, and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> the initial state. While <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is the network learning the solution, the key point is that the definition of physics-informed'ness is independent of the choice of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">u</span></span></span></span>, but it enforces the governing dynamics on the model choice through the loss definition.</p>
 <div class="sec-head"><span class="sec-num">01</span><h2 id="nearby-methods"><a href="#nearby-methods" class="anchor">Nearby methods</a></h2><hr></div>
 
-<div class="card-nearby"></div>
+<p><strong><a href="/sciml-for-physics/methods/classical-discretization-methods/">Classical Discretization Methods</a>.</strong> In Physics-Informed Neural Networks, the learned solver’s correctness is enforced via the governing equations, whereas in a classical view, the solver enforces the physical constraints.</p>
+<p><strong><a href="/sciml-for-physics/methods/physics-informed-operator-learning/">Physics-Informed Operator Learning</a>.</strong> Because physics-informedness is a supervisory signal, it can be extended to enforce correctness over a family of coefficients and forcings rather than a single fixed instance, allowing the training of so-called Neural Operators.</p>
 <div class="sec-head"><span class="sec-num">02</span><h2 id="problems-addressed"><a href="#problems-addressed" class="anchor">Problems addressed</a></h2><hr></div>
 
-<div class="card-cross"></div>
+<p><strong><a href="/sciml-for-physics/problems/forward-problem/">Forward problem</a>.</strong> The Physics-Informed signal in combination with a neural network for point prediction is historically the classical approach on solving the forward problem by neural networds. It gives everything the method needs.</p>
+<p><strong><a href="/sciml-for-physics/problems/inverse-problem/">Inverse Problem</a></strong></p>
 <div class="sec-head"><span class="sec-num">03</span><h2 id="reading"><a href="#reading" class="anchor">Reading</a></h2><hr></div>
 
-<ul>
-<li><a href="https://arxiv.org/abs/1711.10561">Raissi, Perdikaris, Karniadakis (2019), PINNs, J. Comput. Phys.</a></li>
-<li><a href="https://arxiv.org/abs/2109.01050">Krishnapriyan et al. (2021), characterizing possible failure modes of PINNs, NeurIPS</a></li>
-<li><a href="https://arxiv.org/abs/2402.01868">Rathore et al. (2024), challenges in training PINNs: a loss landscape perspective, ICML</a></li>
-</ul>
-<script type="module" src="/sciml-for-physics/card-page.js"></script>
+<table class="reference-table"><tbody><tr id="reference-0" class="reference-target"><td class="reference-target-id">[<a href="#reference-0-backlink">0</a>]</td><td>Raissi, M., Perdikaris, P., &amp; Karniadakis, G. E. (2019). Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations. <em>Journal of Computational Physics</em>, 378, 686–707. <a href="https://doi.org/10.1016/j.jcp.2018.10.045">https://doi.org/10.1016/j.jcp.2018.10.045</a></td></tr><tr id="reference-1" class="reference-target"><td class="reference-target-id">[<a href="#reference-1-backlink">1</a>]</td><td>Krishnapriyan, A. S., Gholami, A., Zhe, S., Kirby, R. M., &amp; Mahoney, M. W. (2021). Characterizing possible failure modes in physics-informed neural networks. <em>NeurIPS</em>. <a href="https://arxiv.org/abs/2109.01050">https://arxiv.org/abs/2109.01050</a></td></tr><tr id="reference-2" class="reference-target"><td class="reference-target-id">[<a href="#reference-2-backlink">2</a>]</td><td>Rathore, P., Lei, W., Frangella, Z., Lu, L., &amp; Udell, M. (2024). Challenges in training PINNs: A loss landscape perspective. <em>ICML</em>. <a href="https://arxiv.org/abs/2402.01868">https://arxiv.org/abs/2402.01868</a></td></tr></tbody></table>
+
+
 
         </main>
 

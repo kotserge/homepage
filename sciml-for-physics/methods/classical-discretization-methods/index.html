@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Kotchourko - Classical Discretization Methods</title>
+        <link rel="icon" href="/favicon.png" />
+        <link rel="stylesheet" href="/css/base.css" />
+        
+        
+        <!-- Math -->
+        <link rel="stylesheet" href="/css/math.css" />
+        
+        
+        
+        <!-- Style -->
+        <link rel="stylesheet" href="/sciml-for-physics/style.css" />
+        
+
+        <!-- Meta -->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Classical Discretization Methods, which replace the continuous problem by a finite-dimensional system and solve it with a solver rather than learning anything from data." />
+        <meta
+            name="keywords"
+            content="Serge Kotchourko, Kotchourko Serge, Kotchourko, Serge, Computer Science, Computer Scientist, scientific-machine-learning,method-card"
+        />
+        <meta name="author" content="Serge Kotchourko" />
+
+        <!-- Open Graph -->
+        <meta property="og:title" content="Kotchourko - Classical Discretization Methods" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://kotchourko.dev/sciml-for-physics/methods/classical-discretization-methods" />
+        <meta
+            property="og:image"
+            content="https://kotchourko.dev/images/me.webp"
+        />
+        <meta property="og:description" content="Classical Discretization Methods, which replace the continuous problem by a finite-dimensional system and solve it with a solver rather than learning anything from data." />
+        <meta property="og:site_name" content="Kotchourko" />
+    </head>
+    <body>
+        <nav>
+            <a href="/">KOTCHOURKO</a>
+
+            <ul>
+                <li><a href="/about"> About </a></li>
+                <li><a href="/cv"> Vita </a></li>
+                <li><a href="/bits"> Bits </a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <div class="sec-head"><h1 id="classical-discretization-methods"><a href="#classical-discretization-methods" class="anchor">Classical Discretization Methods</a></h1><hr></div>
+
+<div class="card-profile"><dl><dt class="is-symbol">𝒩</dt><dd>explicit</dd><dt class="is-symbol">λ</dt><dd>fixed</dd><dt class="is-symbol">f</dt><dd>fixed</dd><dt class="is-symbol">u</dt><dd>a snapshot</dd><dt class="is-symbol">ℋ</dt><dd>full field</dd><dt>task</dt><dd>forward prediction</dd><dt>scope</dt><dd>one instance</dd><dt>component</dt><dd>model</dd><dt>physics</dt><dd>as the model</dd></dl></div>
+<p>Classical methods, e.g., Finite Difference, Finite Element, Finite Volume or Spectral Methods, discretize the continuous problem into a finite-dimensional system</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.14736em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1474em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">λ</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>where <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.14736em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1474em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> represent the opetor and forcing function after discretization and  <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is the corresponding discrete solution (grid values, cell averages or basis coefficients) for the given system under its coefficients <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span></span></span></span>.</p>
+<div class="sec-head"><span class="sec-num">01</span><h2 id="nearby-methods"><a href="#nearby-methods" class="anchor">Nearby methods</a></h2><hr></div>
+
+<p><strong><a href="/sciml-for-physics/methods/physics-informed-neural-networks/">Physics-Informed Neural Networks</a>.</strong> Similar to the classical approach, the physics-informed method requires full knowledge about the physics. However, in contrast to the classical approach, where the equations are the model, here, they serve to inform the trained model of its accuracy.</p>
+<div class="sec-head"><span class="sec-num">02</span><h2 id="problems-addressed"><a href="#problems-addressed" class="anchor">Problems addressed</a></h2><hr></div>
+
+<p><strong><a href="/sciml-for-physics/problems/forward-problem/">Forward Problem</a>.</strong> The forward problem is the classical use-case for the classical discretization methodologies.</p>
+<div class="sec-head"><span class="sec-num">03</span><h2 id="reading"><a href="#reading" class="anchor">Reading</a></h2><hr></div>
+
+<table class="reference-table"><tbody><tr id="reference-0" class="reference-target"><td class="reference-target-id">[<a href="#reference-0-backlink">0</a>]</td><td>Brenner, S. C., &amp; Scott, L. R. (2008). <em>The Mathematical Theory of Finite Element Methods</em> (3rd ed.). Springer.</td></tr><tr id="reference-1" class="reference-target"><td class="reference-target-id">[<a href="#reference-1-backlink">1</a>]</td><td>LeVeque, R. J. (2002). <em>Finite Volume Methods for Hyperbolic Problems</em>. Cambridge University Press.</td></tr></tbody></table>
+
+
+        </main>
+
+        <footer>
+            <a href="/privacy-policy">Privacy Policy</a>
+            <span>·</span>
+            <a href="/legal-notice">Legal Notice</a>
+            <span>·</span>
+            <a href="/licenses">Licenses</a>
+        </footer>
+    </body>
+</html>
