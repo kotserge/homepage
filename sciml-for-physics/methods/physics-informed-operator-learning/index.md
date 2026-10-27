@@ -1,54 +1,47 @@
 ---
-title: Physics-informed operator learning
+title: Physics-informed Operator Learning
 crumb: sciml-for-physics/methods/physics-informed-operator-learning
 date: 2026-10-22
 type: method
-description: PI-DeepONet and PINO, which train an operator network on the residual over a family of inputs rather than on one instance.
+description: The generalization of physics-informed loss signal generalized towards many systems of the operator. 
 needs:
   N: explicit
-  lam: per instance
+  lambda: per instance
   f: per instance
   u: a snapshot
   H: full field
 tasks: [u_ahead]
-corpus: one family
-physics: physics in the loss
+scope: one family
+component: loss
+physics: in the loss
 tags:
   - scientific-machine-learning
   - method-card
 ---
 
-# Physics-informed operator learning
+# Physics-Informed Operator Learning
 ---
 <div class="card-profile"></div>
 
-PI-DeepONet and PINO train an operator network on the residual over a family of inputs rather than on one instance. The equations hold for every input drawn from the family, so sampling inputs and enforcing the residual on each trains the solution map without any solved data; in PINO a few solutions can be mixed in.
+Similar in how physics-aware loss can be used as a supervisory signal for training models for specific instances (e.g., [Physics-Informed Neural Networks](/sciml-for-physics/methods/physics-informed-neural-networks/)), one can generalize over the coefficients $\lambda$, forcing $f$ and boundary conditions $\mathcal B$ to allow physics-informed'ness to enter the [operator](sciml-for-physics/methods/neural-operators) $\mathcal G_\theta$ during training: 
 
 $$
 \min_\theta\ \mathbb E_{a\sim\mu}\Big[\big\|\mathcal N[\mathcal G_\theta(a);a]-f_a\big\|^2+\beta\,\big\|\mathcal B[\mathcal G_\theta(a)]-b_a\big\|^2\Big]
 $$
 
-$\mathcal G_\theta$ is the operator network, $a\sim\mu$ an input of the family (the varying coefficients, forcing or boundary data), and $f_a$, $b_a$ the forcing and boundary data of that input. The method requires the operator explicitly and the input distribution; derivatives of $\mathcal G_\theta(a)$ come from automatic differentiation or, in PINO, from Fourier differentiation on the grid.
-
-<dl class="card-gmf">
-  <dt>Data</dt><dd>Sampled inputs $a_i\sim\mu$; no solutions, or a few.</dd>
-  <dt>Model</dt><dd>DeepONet or FNO; the residual is evaluated on the output.</dd>
-  <dt>Optimization</dt><dd>Adam on the expected residual; instance-wise fine-tuning at test time in PINO.</dd>
-</dl>
-
-<p class="card-physics"><span>Where the physics enters</span> The loss, as the residual over the family.</p>
+where $a\sim\mu$ is an input of the family (the varying coefficients, forcing or boundary data) over the set of instances.
 
 ## Nearby methods
 ---
-<div class="card-nearby"></div>
+
+**[Physics-informed neural networks](/sciml-for-physics/methods/physics-informed-neural-networks/).** Physics-Residuals for training neural-networks for specific instances (i.e., fixed coefficients, forcing, boundary conditions) is then just a special case of this framework. 
 
 ## Problems addressed
 ---
-<div class="card-cross"></div>
+No problem on the map yet.
 
 ## Reading
 ---
-- [Wang, Wang, Perdikaris (2021), physics-informed DeepONets, Sci. Adv.](https://arxiv.org/abs/2103.10974)
-- [Li et al. (2024), physics-informed neural operator, ACM/IMS J. Data Sci.](https://arxiv.org/abs/2111.03794)
+[\0]: Wang, S., Wang, H., & Perdikaris, P. (2021). Learning the solution operator of parametric partial differential equations with physics-informed DeepONets. _Science Advances_. [https://arxiv.org/abs/2103.10974](https://arxiv.org/abs/2103.10974)
 
-<script type="module" src="/sciml-for-physics/card-page.js"></script>
+[\1]: Li, Z., Zheng, H., Kovachki, N., Jin, D., Chen, H., Liu, B., Azizzadenesheli, K., & Anandkumar, A. (2024). Physics-informed neural operator for learning partial differential equations. _ACM/IMS Journal of Data Science_, 1(3), 1–27. [https://doi.org/10.1145/3648506](https://doi.org/10.1145/3648506)
