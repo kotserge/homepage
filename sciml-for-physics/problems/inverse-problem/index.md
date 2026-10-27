@@ -45,7 +45,7 @@ with $p(\lambda)$ being the prior, $p(y \mid \lambda)$ the likelihood of the obs
 ## Nearby problems
 ---
 
-**[Forward Problem](/sciml-for-physics/problems/forward-problem/).** The inverse to the Inverse Problem. Assuming all information is given, learn the solution $u_lambda$.
+**[Forward Problem](/sciml-for-physics/problems/forward-problem/).** The inverse to the Inverse Problem. Assuming all information is given, learn the solution $u_\lambda$.
 
 ## Methods possible
 ---

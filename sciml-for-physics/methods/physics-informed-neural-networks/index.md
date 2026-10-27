@@ -26,7 +26,7 @@ tags:
 Physics-Informed'ness in training models acts as a supervisory signal for these models, based on the physics residuals of the predicted solution with respect to the underlying equation, boundary data, and initial state:
 
 $$
-\min_\theta\ \big\|\mathcal N[u_\theta;\lambda]-f\big\|^2_{\Omega\times(0,T]}+\beta_b\,\big\|\mathcal B[u_\theta]-b\big\|^2_{\partial\Omega}+\beta_0\,\big\|u_\theta(\cdot,0)-u_0\big\|^2,
+\min_\theta\ \big\|\mathcal N[u_\theta;\lambda]-f\big\|^2_{\Omega\times(0,T]}+\beta_b \big\|\mathcal B[u_\theta]-b\big\|^2_{\partial\Omega}+\beta_0 \big\|u_\theta(\cdot,0)-u_0\big\|^2,
 $$
 
 on the domain $\Omega$ over $(0,T]$, $\mathcal N$ the operator with coefficients $\lambda$, $f$ the forcing, $\mathcal B$ the boundary operator with data $b$, and $u_0$ the initial state. While $u_\theta$ is the network learning the solution, the key point is that the definition of physics-informed'ness is independent of the choice of $u$, but it enforces the governing dynamics on the model choice through the loss definition.

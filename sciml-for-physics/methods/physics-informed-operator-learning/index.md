@@ -26,7 +26,7 @@ tags:
 Similar in how physics-aware loss can be used as a supervisory signal for training models for specific instances (e.g., [Physics-Informed Neural Networks](/sciml-for-physics/methods/physics-informed-neural-networks/)), one can generalize over the coefficients $\lambda$, forcing $f$ and boundary conditions $\mathcal B$ to allow physics-informed'ness to enter the [operator](sciml-for-physics/methods/neural-operators) $\mathcal G_\theta$ during training: 
 
 $$
-\min_\theta\ \mathbb E_{a\sim\mu}\Big[\big\|\mathcal N[\mathcal G_\theta(a);a]-f_a\big\|^2+\beta\,\big\|\mathcal B[\mathcal G_\theta(a)]-b_a\big\|^2\Big]
+\min_\theta\ \mathbb E_{a\sim\mu}\Big[\big\|\mathcal N[\mathcal G_\theta(a);a]-f_a\big\|^2+\beta \big\|\mathcal B[\mathcal G_\theta(a)]-b_a\big\|^2\Big]
 $$
 
 where $a\sim\mu$ is an input of the family (the varying coefficients, forcing or boundary data) over the set of instances.
