@@ -59,7 +59,7 @@ $$
   <dt>$\Omega$, $(0,T]$</dt>
   <dd>domain and time horizon<small>$\Omega\subset\mathbb R^d$ is the region in which the system acts, including its geometry (irregular shapes, holes, moving parts); its boundary $\partial\Omega$ is where the system interacts with its surroundings</small></dd>
   <dt>$\mathcal B$, $b$</dt>
-  <dd>boundary operator and constraint<small>$\mathcal B$ sets the type of condition: Dirichlet $\mathcal B[u]=u$ (value), Neumann $\mathcal B[u]=\partial_n u$ (flux) or Robin $\mathcal B[u]=\alpha u+\beta\,\partial_n u$ (a mix); $b$ holds the values imposed, e.g., a wall held at $20\,^\circ\mathrm C$ or zero flux through an insulated wall</small></dd>
+  <dd>boundary operator and constraint<small>$\mathcal B$ sets the type of condition: Dirichlet $\mathcal B[u]=u$ (value), Neumann $\mathcal B[u]=\partial_n u$ (flux) or Robin $\mathcal B[u]=\alpha u+\beta \partial_n u$ (a mix); $b$ holds the values imposed, e.g., a wall held at $20 ^\circ\mathrm C$ or zero flux through an insulated wall</small></dd>
   <dt>$u_0$</dt>
   <dd>initial condition<small>the state at $t=0$; together with the boundary conditions it makes the solution unique (for well-posed problems)</small></dd>
 </dl>
@@ -70,7 +70,7 @@ A simple example is the heat diffusion in a rod, whose temperature $u(x,t)$ evol
 
 $$
 \begin{aligned}
-\partial_t u-\alpha\,\partial_{xx}u &= f   && \text{in } (0,1)\times(0,1],\\
+\partial_t u-\alpha \partial_{xx}u &= f   && \text{in } (0,1)\times(0,1],\\
 \mathcal B[u]                        &= b   && \text{at } x\in\{0,1\},\\
 u(\cdot,0)                           &= u_0 && \text{in } (0,1),
 \end{aligned}
