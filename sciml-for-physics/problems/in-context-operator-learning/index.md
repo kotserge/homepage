@@ -22,7 +22,7 @@ tags:
 ---
 <div class="card-profile"></div>
 
-In-context operator learning aims, similar as in [foundational emulators](/sciml-for-physics/problems/foundation-emulators), to ==generalize across many system's dynamics==, allowing for predictions of the behavior of a new operator the model has not seen, ==from just a few demonstration of it==. However, in contrast to foundational emulators, given these demonstrations of the new operator, such model predicts this without the need for re-calibration. More formally, one seeks
+In-context operator learning aims, similar as in [foundational emulators](/sciml-for-physics/problems/foundation-emulators), to ==generalize across many system's dynamics==, allowing for predictions of the behavior of a new operator the model has not seen, ==from just a few demonstration of it==. However, in contrast to foundational emulators, given these demonstrations of the new operator, such model predicts this without the need for re-calibration. More formally, we seeks
 
 $$
 \mathcal G^\star=\arg\min_{\mathcal G}\ \mathbb E\,\big\|\mathcal G(a\mid C)-u(a)\big\|^2,\qquad C=\lbrace(a_j,u_j)\rbrace_{j=1}^{k},
