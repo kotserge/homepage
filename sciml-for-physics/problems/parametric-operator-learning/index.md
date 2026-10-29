@@ -3,7 +3,7 @@ title: 'Parametric Operator Learning'
 crumb: sciml-for-physics/problems/parametric-operator-learning
 date: 2026-10-26
 type: problem
-description: In parametric operator learning one searches for a solution map for a fixed, yet unknown operator.
+description: In parametric operator learning we search for a solution map for a fixed, yet unknown operator.
 needs:
   N: not needed
   lambda: per instance
@@ -22,13 +22,13 @@ tags:
 ---
 <div class="card-profile"></div>
 
-In parametric operator learning, one approximates the solution operator of a differential equation by learning the ==map from the data that parametrize the problem== (coefficient fields, source terms, initial/boundary conditions, …) ==to the corresponding solution==. More formally, let $\mathcal A$ and $\mathcal U$ be function spaces of inputs and solutions, and $\mu$ a probability measure on pairs $(a,u)\in\mathcal A\times\mathcal U$. One seeks
+In parametric operator learning, we approximate the solution operator of a differential equation by learning the ==map from the data that parametrize the problem== (coefficient fields, source terms, initial/boundary conditions, …) ==to the corresponding solution==. More formally, let $\mathcal A$ and $\mathcal U$ be function spaces of inputs and solutions, and $\mu$ a probability measure on pairs $(a,u)\in\mathcal A\times\mathcal U$. We seek
 
 $$
 \theta^\star = \arg\min_{\theta}\ \mathbb E_{(a,u)\sim\mu}\ \big\lVert \mathcal G_\theta(a) - u \big\rVert_{\mathcal U}^2 ,
 $$
 
-where $\lbrace \mathcal G_\theta:\mathcal A\to\mathcal U \rbrace_{\theta}$ is a parametrized family of operators, typically a neural operator such as a [DeepONet](/sciml-for-physics/deeponet) or a [Fourier Neural Operator](/sciml-for-physics/fourier-layer). The main benefit is that once $\mathcal G_{\theta^\star}$ is found, the solution for a new input $a$ is a single forward pass, orders of magnitude cheaper than solving the [forward problem](/sciml-for-physics/problems/forward-problem) anew.
+where $\lbrace \mathcal G_\theta:\mathcal A\to\mathcal U \rbrace_{\theta}$ is a parametrized family of operators, typically a neural operator such as a DeepONet or a Fourier Neural Operator. The main benefit is that once $\mathcal G_{\theta^\star}$ is found, the solution for a new input $a$ is a single forward pass, orders of magnitude cheaper than solving the [forward problem](/sciml-for-physics/problems/forward-problem) anew.
 
 ## Nearby problems
 ---
