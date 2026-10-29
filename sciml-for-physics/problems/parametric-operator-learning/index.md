@@ -25,15 +25,17 @@ tags:
 In parametric operator learning, one approximates the solution operator of a differential equation by learning the ==map from the data that parametrize the problem== (coefficient fields, source terms, initial/boundary conditions, …) ==to the corresponding solution==. More formally, let $\mathcal A$ and $\mathcal U$ be function spaces of inputs and solutions, and $\mu$ a probability measure on pairs $(a,u)\in\mathcal A\times\mathcal U$. One seeks
 
 $$
-\theta^\star = \arg\min_{\theta\in\Theta}\ \mathbb E_{(a,u)\sim\mu}\ \big\lVert \mathcal G_\theta(a) - u \big\rVert_{\mathcal U}^2 ,
+\theta^\star = \arg\min_{\theta}\ \mathbb E_{(a,u)\sim\mu}\ \big\lVert \mathcal G_\theta(a) - u \big\rVert_{\mathcal U}^2 ,
 $$
 
-where $\lbrace \mathcal G_\theta:\mathcal A\to\mathcal U \rbrace_{\theta\in\Theta}$ is a parametrized family of operators, typically a neural operator such as a [DeepONet](/sciml-for-physics/deeponet) or a [Fourier Neural Operator](/sciml-for-physics/fourier-layer). The main benefit is that once $\mathcal G_{\theta^\star}$ is found, the solution for a new input $a$ is a single forward pass, orders of magnitude cheaper than solving the [forward problem](/sciml-for-physics/problems/forward-problem) anew.
+where $\lbrace \mathcal G_\theta:\mathcal A\to\mathcal U \rbrace_{\theta}$ is a parametrized family of operators, typically a neural operator such as a [DeepONet](/sciml-for-physics/deeponet) or a [Fourier Neural Operator](/sciml-for-physics/fourier-layer). The main benefit is that once $\mathcal G_{\theta^\star}$ is found, the solution for a new input $a$ is a single forward pass, orders of magnitude cheaper than solving the [forward problem](/sciml-for-physics/problems/forward-problem) anew.
 
 ## Nearby problems
 ---
 
 **[Reduced-order modeling](/sciml-for-physics/problems/reduced-order-modeling).** Approximates the same parameter-to-solution map, but factors it through a low-dimensional latent state $z$, i.e., $a\mapsto z\mapsto u=D(z)$, and evolves $z$ in time with a reduced model, whereas operator learning maps the input directly to the solution.
+
+**[Parametric Emulation](/sciml-for-physics/problems/parametric-emulation/).** Takes the current state together with the parameters as input, but advances it by one step that is rolled out over a horizon, rather than mapping to the solution in one shot.
 
 ## Methods possible
 ---
