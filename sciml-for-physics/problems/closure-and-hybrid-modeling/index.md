@@ -22,7 +22,7 @@ tags:
 ---
 <div class="card-profile"></div>
 
-Many problems contain fine-scale dynamics that would require meshes beyond what is commonly computationally affordable. Therefore, one evolves a filtered field $\bar u$ rather than the full $u_t = \mathcal N(u)$. Filtering both sides gives $\overline{\partial_t u} = \overline{\mathcal N(u)}$, and if the filter does not depend on time, $\overline{\partial_t u} = \partial_t \bar u$, so $\partial_t \bar u = \overline{\mathcal N(u)}$. This equation is exact but not closed, since it requires the fine field $u$, while a coarse solver only stores $\bar u$ and can compute only $\mathcal N(\bar u)$. One can, however, rewrite
+In control & hybrid modeling, one ==searches for surrogates that recover the effect of small-scale dynamics== that coarse solvers miss. Such fine-scale dynamics are quite common, yet resolving them directly by the solver would require meshes far beyond what is computationally feasible. Hence, one relies on coarse solvers, which evolve a filtered field $\bar u$ rather than the full $\partial_t u = \mathcal N(u)$. Filtering both sides gives $\overline{\partial_t u} = \overline{\mathcal N(u)}$, which is exact but not closed, since it requires the fine field $u$, while a coarse solver only stores $\bar u$ and can compute only $\mathcal N(\bar u)$. One can, however, rewrite
 
 $$\overline{\mathcal N(u)} = \mathcal N(\bar u) + \left(\overline{\mathcal N(u)} - \mathcal N(\bar u)\right) = \mathcal N(\bar u) + \tau$$
 
