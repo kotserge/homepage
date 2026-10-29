@@ -25,10 +25,10 @@ tags:
 The inverse problem is (most commonly) associated with the ==recovery of the coefficients of a known equation== from indirect, noisy observations of its solution. Hence, the aim is to find $\lambda$ such that the solution $u_\lambda$ explains the observations. Under an observational model:
 
 $$
-y = \mathcal H(u) + \epsilon \quad \text{with} \quad \epsilon \sim \mathcal N(0, \Gamma),
+y = \mathcal H(u) + \epsilon \quad \text{with} \quad \epsilon \sim \mathrm{N}(0, \Gamma),
 $$
 
-where $\mathcal N$ is a Gaussian noise source with covariance $\Gamma$. Then we aim to find
+where $\mathrm N(0,\Gamma)$ is a Gaussian noise source with covariance $\Gamma$. Then we aim to find
 
 $$
 \lambda^\star=\arg_\lambda\ \min \|y-\mathcal H(u_\lambda)\|^2_{\Gamma^{-1}}+R(\lambda)
