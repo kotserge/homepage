@@ -22,7 +22,7 @@ tags:
 ---
 <div class="card-profile"></div>
 
-Foundation emulators seek to ==generalize across many systems and their dynamics== (i.e., over  $\mathcal N$, $\lambda$, $f$, …) to allow for ==predictions in unobserved systems== and in new families of systems. Given a short window of states of a new target system, such emulators infer its dynamics (implicitly $\mathcal N$, $\lambda$, $f$, …) and predict the subsequent states, in either zero-shot (i.e., direct application) settings or by further adapting it to the new problem space (e.g., via fine-tuning). More formally, one seeks
+Foundation emulators seek to ==generalize across many systems and their dynamics== (i.e., over  $\mathcal N$, $\lambda$, $f$, …) to allow for ==predictions in unobserved systems== and in new families of systems. Given a short window of states of a new target system, such emulators infer its dynamics (implicitly $\mathcal N$, $\lambda$, $f$, …) and predict the subsequent states, in either zero-shot (i.e., direct application) settings or by further adapting it to the new problem space (e.g., via fine-tuning). More formally, we seek
 
 $$\Phi^\star=\arg\min_\Phi\ \mathbb E_{s\sim w}\,\mathbb E_{u\sim\mu_s}\,\mathbb E_{t}\,\big\|\Phi(u_{t-k:t})-u_{t+1:t+m}\big\|^2 ,$$
 
@@ -31,7 +31,7 @@ where $\Phi$ is the emulator, $s$ a family drawn from the pretraining mixture wi
 ## Nearby problems
 ---
 
-**[In-Context Operator Learning](/sciml-for-physics/problems/in-context-operator-learning/).** Instead of conditioning on the leading window, In-Contex-Operator-Learning conditions on demonstrations of the new operator, i.e., multiple examples of the system.
+**[In-Context Operator Learning](/sciml-for-physics/problems/in-context-operator-learning/).** Instead of conditioning on the leading window, in-context operator learning conditions on demonstrations of the new operator, i.e., multiple examples of the system.
 
 **[Parametric Emulation](/sciml-for-physics/problems/parametric-emulation/).** The special case, where an emulator is searched for exactly one family.
 
