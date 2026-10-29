@@ -37,7 +37,7 @@ $u$ is the state on the domain $\Omega$ over $(0,T]$, $\mathcal N$ the operator 
 ## Nearby problems
 ---
 
-**[Inverse Problem](/sciml-for-physics/problems/forward-problem/).** The inverse problem trades the knowledge of the coefficient for some knowledge about the trajectory of this instance and ask what coefficients of the system produced this.
+**[Inverse Problem](/sciml-for-physics/problems/inverse-problem/).** The inverse problem trades the knowledge of the coefficient for some knowledge about the trajectory of this instance and ask what coefficients of the system produced this.
 
 ## Methods possible
 ---
