@@ -22,9 +22,9 @@ tags:
 ---
 <div class="card-profile"></div>
 
-In reduced-order modeling, one ==replaces a large discretized system by a low-dimensional latent representation== in which the solution can be simulated cheaply. It thereby approximates the same parameter-to-solution map as [operator learning](/sciml-for-physics/problems/parametric-operator-learning), but through a compressed state rather than directly.
+In reduced-order modeling, we ==replace a large discretized system by a low-dimensional latent representation== in which the solution can be simulated cheaply. It thereby approximates the same parameter-to-solution map as [operator learning](/sciml-for-physics/problems/parametric-operator-learning), but through a compressed state rather than directly.
 
-More formally, let $u(t;\lambda)\in\mathbb R^{N_h}$ be the full discretized state for parameters $\lambda$, drawn from a measure $\mu$ on the parameter range $\Lambda\subset\mathbb R^p$ of interest. One seeks a decoder $D:\mathbb R^r\to\mathbb R^{N_h}$, an encoder $E:\mathbb R^{N_h}\to\mathbb R^r$ and reduced dynamics $g$ such that
+More formally, let $u(t;\lambda)\in\mathbb R^{N_h}$ be the full discretized state for parameters $\lambda$, drawn from a measure $\mu$ on the parameter range $\Lambda\subset\mathbb R^p$ of interest. We seek a decoder $D:\mathbb R^r\to\mathbb R^{N_h}$, an encoder $E:\mathbb R^{N_h}\to\mathbb R^r$ and reduced dynamics $g$ such that
 
 $$
 \min_{D,E,g}\ \mathbb E_{\lambda\sim\mu}\int_0^T \big\lVert u(t;\lambda)-D\big(z(t;\lambda)\big) \big\rVert^2 \, dt
@@ -49,6 +49,4 @@ No methods on the map yet.
 
 [\1]: Peherstorfer, B., & Willcox, K. (2016). Data-driven operator inference for nonintrusive projection-based model reduction. _Computer Methods in Applied Mechanics and Engineering_, 306, 196–215. [https://doi.org/10.1016/j.cma.2016.03.025](https://doi.org/10.1016/j.cma.2016.03.025)
 
-[\2]: Lusch, B., Kutz, J. N., & Brunton, S. L. (2018). Deep learning for universal linear embeddings of nonlinear dynamics. _Nature Communications_, 9, 4950. [https://doi.org/10.1038/s41467-018-07210-0](https://doi.org/10.1038/s41467-018-07210-0)
-
-[\3]: Lee, K., & Carlberg, K. T. (2020). Model reduction of dynamical systems on nonlinear manifolds using deep convolutional autoencoders. _Journal of Computational Physics_, 404, 108973. [https://doi.org/10.1016/j.jcp.2019.108973](https://doi.org/10.1016/j.jcp.2019.108973)
+[\2]: Lee, K., & Carlberg, K. T. (2020). Model reduction of dynamical systems on nonlinear manifolds using deep convolutional autoencoders. _Journal of Computational Physics_, 404, 108973. [https://doi.org/10.1016/j.jcp.2019.108973](https://doi.org/10.1016/j.jcp.2019.108973)
