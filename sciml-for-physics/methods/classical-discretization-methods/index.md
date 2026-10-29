@@ -29,7 +29,7 @@ $$
 \mathcal N_h[u_h;\lambda]=f_h
 $$
 
-where $\mathcal N_h$ and $f_h$ represent the opetor and forcing function after discretization and  $u_h$ is the corresponding discrete solution (grid values, cell averages or basis coefficients) for the given system under its coefficients $\lambda$.
+where $\mathcal N_h$ and $f_h$ represent the operator and forcing function after discretization and  $u_h$ is the corresponding discrete solution (grid values, cell averages or basis coefficients) for the given system under its coefficients $\lambda$.
 
 ## Nearby methods
 ---
