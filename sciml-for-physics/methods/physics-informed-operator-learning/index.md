@@ -1,9 +1,9 @@
 ---
-title: Physics-informed Operator Learning
+title: Physics-Informed Operator Learning
 crumb: sciml-for-physics/methods/physics-informed-operator-learning
 date: 2026-10-22
 type: method
-description: The generalization of physics-informed loss signal generalized towards many systems of the operator. 
+description: The generalization of the physics-informed loss signal towards many instances of a system.
 needs:
   N: explicit
   lambda: per instance
@@ -23,18 +23,18 @@ tags:
 ---
 <div class="card-profile"></div>
 
-Similar in how physics-aware loss can be used as a supervisory signal for training models for specific instances (e.g., [Physics-Informed Neural Networks](/sciml-for-physics/methods/physics-informed-neural-networks/)), one can generalize over the coefficients $\lambda$, forcing $f$ and boundary conditions $\mathcal B$ to allow physics-informed'ness to enter the [operator](sciml-for-physics/methods/neural-operators) $\mathcal G_\theta$ during training: 
+Similar to how a physics-aware loss can be used as a supervisory signal for training models for specific instances (e.g., [Physics-Informed Neural Networks](/sciml-for-physics/methods/physics-informed-neural-networks/)), we can generalize over the coefficients $\lambda$, forcing $f$, boundary data $b$ and initial state $u_0$, so that physics-informed'ness enters the training of an operator $\mathcal G_\theta$:
 
 $$
-\min_\theta\ \mathbb E_{a\sim\mu}\Big[\big\|\mathcal N[\mathcal G_\theta(a);a]-f_a\big\|^2+\beta \big\|\mathcal B[\mathcal G_\theta(a)]-b_a\big\|^2\Big]
+\min_\theta\ \mathbb E_{a\sim\mu}\Big[\big\|\mathcal N[\mathcal G_\theta(a);\lambda_a]-f_a\big\|^2+\beta_b \big\|\mathcal B[\mathcal G_\theta(a)]-b_a\big\|^2+\beta_0 \big\|\mathcal G_\theta(a)(\cdot,0)-u_{0,a}\big\|^2\Big]
 $$
 
-where $a\sim\mu$ is an input of the family (the varying coefficients, forcing or boundary data) over the set of instances.
+where $a=(\lambda_a,f_a,b_a,u_{0,a})\sim\mu$ is an input of the family, i.e., the varying coefficients, forcing, boundary data and initial state drawn from a measure $\mu$ over the set of instances, and $\beta_b$, $\beta_0$ weight the boundary and initial terms as in the PINN loss.
 
 ## Nearby methods
 ---
 
-**[Physics-informed neural networks](/sciml-for-physics/methods/physics-informed-neural-networks/).** Physics-Residuals for training neural-networks for specific instances (i.e., fixed coefficients, forcing, boundary conditions) is then just a special case of this framework. 
+**[Physics-Informed Neural Networks](/sciml-for-physics/methods/physics-informed-neural-networks/).** Physics-Residuals for training neural-networks for specific instances (i.e., fixed coefficients, forcing, boundary conditions) is then just a special case of this framework. 
 
 ## Problems addressed
 ---
