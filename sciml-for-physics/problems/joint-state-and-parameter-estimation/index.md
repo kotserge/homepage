@@ -22,7 +22,7 @@ tags:
 ---
 <div class="card-profile"></div>
 
-Joint state and parameter estimation is the generalization of [Data Assimilation](/sciml-for-physics/problems/data-assimilation/) with additional unknown coefficients, i.e., the ==initial state as well as the coefficients== of a known model ==are inferred== from sparse, noisy observations over a window of the state. Hence, one seeks the following posterior of the state 
+Joint state and parameter estimation is the generalization of [Data Assimilation](/sciml-for-physics/problems/data-assimilation/) with additional unknown coefficients, i.e., the ==initial state as well as the coefficients== of a known model ==are inferred== from sparse, noisy observations over a window of the state. Hence, we seeks the following posterior of the state 
 
 $$
 p(u_0,\lambda\mid y_{1:K})\ \propto\ p(u_0)\,p(\lambda)\prod_{k=1}^{K}p\big(y_k\mid u_k\big),\qquad u_k=\mathcal M_k(u_0;\lambda),
@@ -50,5 +50,3 @@ No methods on the map yet.
 [\0]: Evensen, G. (2009). The ensemble Kalman filter for combined state and parameter estimation. _IEEE Control Systems_, 29(3), 83–104. [https://doi.org/10.1109/MCS.2009.932223](https://doi.org/10.1109/MCS.2009.932223)
 
 [\1]: Bocquet, M., & Sakov, P. (2013). Joint state and parameter estimation with an iterative ensemble Kalman smoother. _Nonlinear Processes in Geophysics_, 20, 803–818. [https://doi.org/10.5194/npg-20-803-2013](https://doi.org/10.5194/npg-20-803-2013)
-
-[\2]: Bocquet, M., Brajard, J., Carrassi, A., & Bertino, L. (2020). Bayesian inference of chaotic dynamics by merging data assimilation, machine learning and expectation-maximization. _Foundations of Data Science_, 2(1), 55–80. [https://arxiv.org/abs/2001.06270](https://arxiv.org/abs/2001.06270)
