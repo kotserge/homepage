@@ -22,13 +22,13 @@ tags:
 ---
 <div class="card-profile"></div>
 
-Dynamics from partial observations encompasses the ==joint learning of a system's dynamics and state== when it is only partially, and possibly noisily, observed. In this sense, nothing about the operator, its coefficients, or the forcing is known; they are absorbed into a learned one-step model $\Phi_\theta$, which, together with the trajectory, must be consistent with the observations. Hence, one seeks
+Dynamics from partial observations encompasses the ==joint learning of a system's dynamics and state== when it is only partially, and possibly noisily, observed. In this sense, nothing about the operator, its coefficients, or the forcing is known; they are absorbed into $\Phi_\theta$, a learned approximation of the one-step map $\mathcal M$, which, together with the trajectory, must be consistent with the observations. Hence, we seek
 
 $$
 \big(\theta^\star,u_{0:K}^\star\big)=\arg\min_{\theta,\ u_{0:K}}\ \sum_{k=1}^{K}\big\|y_k-\mathcal H(u_k)\big\|^2_{\Gamma^{-1}}+\sum_{k=0}^{K-1}\big\|u_{k+1}-\Phi_\theta(u_k)\big\|^2_{Q^{-1}},
 $$
 
-with $\Phi_\theta$ as the one-step model, $u_{0:K}$ the trajectory, $y_k$ the observations under the observation model $\mathcal H$ with some noise covariance $\Gamma$, i.e., $\epsilon_k\sim\mathcal N(0,\Gamma)$, and $Q$ as the model-error covariance, i.e., $u_{k+1}=\Phi_\theta(u_k)+\eta_k,\qquad \eta_k\sim\mathcal N(0,Q)$. Therefore, the first term ties the trajectory to the data, and the second ties it to the model. 
+with $\Phi_\theta$ as the one-step model, $u_{0:K}$ the trajectory, $y_k$ the observations under the observation model $\mathcal H$ with some noise covariance $\Gamma$, i.e., $\varepsilon_k\sim\mathsf N(0,\Gamma)$, and $Q$ as the model-error covariance, i.e., $u_{k+1}=\Phi_\theta(u_k)+\eta_k,\qquad \eta_k\sim\mathsf N(0,Q)$. Therefore, the first term ties the trajectory to the data, and the second ties it to the model. 
 
 ## Nearby problems
 ---
