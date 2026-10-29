@@ -25,10 +25,10 @@ tags:
 Joint state and parameter estimation is the generalization of [Data Assimilation](/sciml-for-physics/problems/data-assimilation/) with additional unknown coefficients, i.e., the ==initial state as well as the coefficients== of a known model ==are inferred== from sparse, noisy observations over a window of the state. Hence, we seeks the following posterior of the state 
 
 $$
-p(u_0,\lambda\mid y_{1:K})\ \propto\ p(u_0)\,p(\lambda)\prod_{k=1}^{K}p\big(y_k\mid u_k\big),\qquad u_k=\mathcal M_k(u_0;\lambda),
+p(u_0,\lambda\mid y_{1:T})\ \propto\ p(u_0)\,p(\lambda)\prod_{t=1}^{T}p\big(y_t\mid u_t\big),\qquad u_t=\mathcal M_t(u_0;\lambda),
 $$
 
-with priors $p(u_0)$ and $p(\lambda)$, $\mathcal M_k(\,\cdot\,;\lambda)$ the model that carries the state forward to time $k$ under the joint estimated coefficients $\lambda$, and $y_k$ of an observation model. The pair $(u_0,\lambda)$ determines the whole trajectory, so every observation in the window constrains both. However, $\lambda$ and $u_0$ might compensate each other in the fit, under which the observations may constrain only a combination of them. This is what makes the joint problem harder than either in vacuum.
+with priors $p(u_0)$ and $p(\lambda)$, $\mathcal M_t(\,\cdot\,;\lambda)$ the model that carries the state forward to time $t$ under the joint estimated coefficients $\lambda$, and $y_t$ of an observation model. The pair $(u_0,\lambda)$ determines the whole trajectory, so every observation in the window constrains both. However, $\lambda$ and $u_0$ might compensate each other in the fit, under which the observations may constrain only a combination of them. This is what makes the joint problem harder than either in vacuum.
 
 ## Nearby problems
 ---

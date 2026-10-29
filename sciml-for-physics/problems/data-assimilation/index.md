@@ -24,13 +24,13 @@ tags:
 
 <div class="card-profile"></div>
 
-Data assimilation ==estimates a system's state at the start of a window from sparse, noisy observations==, using a known model of its dynamics. Under an observational model $y_k=\mathcal H(u_k)+\varepsilon_k$ with $\varepsilon_k\sim\mathsf N(0,\Gamma)$, we seek the posterior
+Data assimilation ==estimates a system's state at the start of a window from sparse, noisy observations==, using a known model of its dynamics. Under an observational model $y_t=\mathcal H(u_t)+\varepsilon_t$ with $\varepsilon_t\sim\mathsf N(0,\Gamma)$, we seek the posterior
 
 $$
-p(u_{0}\mid y_{1:K})\ \propto\ p(u_0)\prod_{k=1}^{K}p\big(y_k\mid u_k\big),\qquad u_k=\mathcal M_k(u_0),
+p(u_{0}\mid y_{1:T})\ \propto\ p(u_0)\prod_{t=1}^{T}p\big(y_t\mid u_t\big),\qquad u_t=\mathcal M_t(u_0),
 $$
 
-with prior $p(u_0)$, $\mathcal M_k$ the model that carries the state forward to time $k$, and $y_k$ the observations under $\mathcal H$. The targeted unknown is the state $u_0$ at the start of an assimilation window, and we estimate it from the observations in that window and a prior, so the trajectory it generates is consistent with both. Since the trajectory follows from this initial state, observations in the window constrain it, allowing us to determine the full field from these sparse observations.
+with prior $p(u_0)$, $\mathcal M_t$ the model that carries the state forward to time $t$, and $y_t$ the observations under $\mathcal H$. The targeted unknown is the state $u_0$ at the start of an assimilation window, and we estimate it from the observations in that window and a prior, so the trajectory it generates is consistent with both. Since the trajectory follows from this initial state, observations in the window constrain it, allowing us to determine the full field from these sparse observations.
 
 ## Nearby problems
 ---
