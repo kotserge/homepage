@@ -22,17 +22,17 @@ tags:
 ---
 <div class="card-profile"></div>
 
-In control & hybrid modeling, one ==searches for surrogates that recover the effect of small-scale dynamics== that coarse solvers miss. Such fine-scale dynamics are quite common, yet resolving them directly by the solver would require meshes far beyond what is computationally feasible. Hence, one relies on coarse solvers, which evolve a filtered field $\bar u$ rather than the full $\partial_t u = \mathcal N(u)$. Filtering both sides gives $\overline{\partial_t u} = \overline{\mathcal N(u)}$, which is exact but not closed, since it requires the fine field $u$, while a coarse solver only stores $\bar u$ and can compute only $\mathcal N(\bar u)$. One can, however, rewrite
+In closure & hybrid modeling, we ==search for surrogates that recover the effect of small-scale dynamics== that coarse solvers miss. Such fine-scale dynamics are quite common, yet resolving them directly by the solver would require meshes far beyond what is computationally feasible. Hence, we rely on coarse solvers, which evolve a filtered field $\bar u$ rather than the full field $u$ of $\mathcal N[u;\lambda]=f$. Filtering both sides gives $\overline{\mathcal N[u;\lambda]}=\bar f$, which is exact but not closed, since it requires the fine field $u$, while a coarse solver only stores $\bar u$ and can compute only $\mathcal N[\bar u;\lambda]$. We can, however, rewrite
 
-$$\overline{\mathcal N(u)} = \mathcal N(\bar u) + \left(\overline{\mathcal N(u)} - \mathcal N(\bar u)\right) = \mathcal N(\bar u) + \tau$$
+$$\overline{\mathcal N[u;\lambda]} = \mathcal N[\bar u;\lambda] + \left(\overline{\mathcal N[u;\lambda]} - \mathcal N[\bar u;\lambda]\right) = \mathcal N[\bar u;\lambda] + \tau$$
 
-so that $\tau = \overline{\mathcal N(u)} - \mathcal N(\bar u)$ is the commutation error between the filter and the nonlinear $\mathcal N$ — it is what must be added to the coarse side to make it exact. Dropping $\tau$ leaves an equation that is cheap to step but wrong. Instead, one learns $\tau$ from filtered high-resolution data so that the coarse solver tracks the resolved dynamics of new flows.
+so that $\tau = \overline{\mathcal N[u;\lambda]} - \mathcal N[\bar u;\lambda]$ is the commutation error between the filter and the nonlinear $\mathcal N$ — it is what must be added to the coarse side to make it exact. Dropping $\tau$ leaves an equation that is cheap to step but wrong. Instead, we learn $\tau$ from filtered high-resolution data so that the coarse solver tracks the resolved dynamics of new flows.
 
 $$
-\mathcal C^\star=\arg\min_{\mathcal C}\ \mathbb E \big\|\bar u_{t+1}-\bar{\mathcal M}\big(\bar u_t;\, \mathcal N(\bar u_t)+\mathcal C(\bar u_t)\big)\big\|^2,\qquad \mathcal C\approx\tau
+\mathcal C^\star=\arg\min_{\mathcal C}\ \mathbb E \big\|\bar u_{t+1}-\bar{\mathcal M}_{\mathcal C}(\bar u_t)\big\|^2,\qquad \mathcal C\approx\tau
 $$
 
-$\bar u$ is the resolved state, $\bar{\mathcal M}$ the coarse time-stepper, $\mathcal C$ the learned model of $\tau$, and the expectation runs over filtered high-resolution trajectories. $\mathcal C$ is judged in the loop rather than on $\tau$ alone.
+$\bar u$ is the resolved state, $\bar{\mathcal M}_{\mathcal C}$ the coarse one-step map of the closed equation $\mathcal N[\bar u;\lambda]+\mathcal C(\bar u)=\bar f$, $\mathcal C$ the learned model of $\tau$, and the expectation runs over filtered high-resolution trajectories. $\mathcal C$ is judged in the loop rather than on $\tau$ alone.
 
 ## Nearby problems
 ---
