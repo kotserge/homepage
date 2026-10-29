@@ -28,12 +28,12 @@ $$
 \Phi^\star=\arg\min_{\Phi} \;\mathbb E_{u_{t:t+m}}\sum_{j=1}^{m}\big\|\Phi^{j}(u_t)-u_{t+j}\big\|^2 ,
 $$
 
-where $\Phi$ is a one-step map, $\Phi^{j}=\Phi\circ\cdots\circ\Phi$ its $j$-fold composition (a rollout over $j$ steps), and the expectation runs over trajectory segments $u_{t:t+m}$ of a single system with $\lambda$, $f$ and $b$ fixed. Importantly, the rollout over the horizon $m$ is part of the objective, since most applications require stability over many steps (compare to [classical discretization methods](/sciml-for-physics/methods/classical-discretization-methods/)). For chaotic systems in particular, a pointwise error over long horizons rewards blurring towards the mean, so the statistics of the rollout (e.g., invariant measure, spectra) become the target instead.
+where $\Phi$ is a learned one-step map approximating $\mathcal M$, $\Phi^{j}=\Phi\circ\cdots\circ\Phi$ its $j$-fold composition (a rollout over $j$ steps), and the expectation runs over trajectory segments $u_{t:t+m}$ of a single system with $\lambda$, $f$ and $b$ fixed. Importantly, the rollout over the horizon $m$ is part of the objective, since most applications require stability over many steps (compare to [classical discretization methods](/sciml-for-physics/methods/classical-discretization-methods/)). For chaotic systems in particular, a pointwise error over long horizons rewards blurring towards the mean, so the statistics of the rollout (e.g., invariant measure, spectra) become the target instead.
 
 ## Nearby problems
 ---
 
-**[Forward Problem](/sciml-for-physics/problems/forward-problem/).** In contrast to learning an emulator from data, one has full knowledge and learns the solution to the fixed instance of a problem.
+**[Forward Problem](/sciml-for-physics/problems/forward-problem/).** In contrast to learning an emulator from data, we have full knowledge and learn the solution to the fixed instance of a problem.
 
 **[Parametric Emulation](/sciml-for-physics/problems/parametric-emulation/).** The generalization of this problem towards a family of systems, where the coefficients of the operator varies across trajectories.
 
