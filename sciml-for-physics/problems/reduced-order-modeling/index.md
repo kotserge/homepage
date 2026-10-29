@@ -31,7 +31,7 @@ $$
 \quad\text{s.t.}\quad \dot z=g(z;\lambda),\quad z(0)=E\big(u(0;\lambda)\big),
 $$
 
-with $z\in\mathbb R^{r}$ and $r\ll N_h$. The initial state is encoded once, $z$ is integrated entirely in the latent space, and the full state is decoded only when needed. Classically, $D(z)=Vz$ and $E(u)=V^\top u$ with an orthonormal basis $V\in\mathbb R^{N_h\times r}$ obtained by POD from snapshots, and $g$ follows by projecting the full operators, $g(z;\lambda)=V^\top f(Vz;\lambda)$. Alternatively, machine-learning techniques such as autoencoders can learn a nonlinear low-dimensional representation, with $g$ fitted to the projected snapshots.
+with $z\in\mathbb R^{r}$ and $r\ll N_h$. The initial state is encoded once, $z$ is integrated entirely in the latent space, and the full state is decoded only when needed. Classically, $D(z)=Vz$ and $E(u)=V^\top u$ with an orthonormal basis $V\in\mathbb R^{N_h\times r}$ obtained by POD from snapshots, and $g$ follows by projecting the full-order dynamics $\dot u=F(u;\lambda)$, i.e., $g(z;\lambda)=V^\top F(Vz;\lambda)$. Alternatively, machine-learning techniques such as autoencoders can learn a nonlinear low-dimensional representation, with $g$ fitted to the projected snapshots.
 
 ## Nearby problems
 ---
