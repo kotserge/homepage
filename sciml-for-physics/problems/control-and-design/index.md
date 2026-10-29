@@ -22,7 +22,7 @@ tags:
 ---
 <div class="card-profile"></div>
 
-In control and design, one ==chooses the inputs of a known system== (e.g., distributed control, boundary data, coefficients, or the domain shape) ==such that its response is as “good” as possible==, meaning it minimizes a cost $J$ that encodes the corresponding goal. This goal might represent an airfoil design with less drag or a field that keeps a plasma confined. Classically, this requires experts predicting a sufficient candidate and expensive trials (e.g., simulations or experiments). More formally, one seeks
+In control and design, we ==choose the inputs of a known system== (e.g., distributed control, boundary data, coefficients, or the domain shape) ==such that its response is as “good” as possible==, meaning it minimizes a cost $J$ that encodes the corresponding goal. This goal might represent an airfoil design with less drag or a field that keeps a plasma confined. Classically, this requires experts predicting a sufficient candidate and expensive trials (e.g., simulations or experiments). More formally, we seek
 
 $$
 c^\star=\arg\min_{c\in\mathcal C}\ J(u,c)\qquad\text{s.t.}\qquad \mathcal N[u;\lambda]=f(c),\quad \mathcal B[u]=b(c),\quad u(\cdot,0)=u_0,
@@ -33,14 +33,14 @@ where $c$ is the input, $J$ the objective, $\mathcal C$ the admissible set, and 
 ## Nearby problems
 ---
 
-**[Inverse Problem](/sciml-for-physics/problems/inverse-problem/).** While the Inverse Problem seeks a parameter $\lambda$ which explains the state, there is no true $c$ to recover, only one to fit $J$ better. The question is therefore not identifiability, but constraints and robustness under uncertainty.
+**[Inverse Problem](/sciml-for-physics/problems/inverse-problem/).** While the Inverse Problem seeks a parameter $\lambda$ which explains the observations, there is no true $c$ to recover, only one to fit $J$ better. The question is therefore not identifiability, but constraints and robustness under uncertainty.
 
 **[Policy Learning](/sciml-for-physics/problems/policy-learning/).** The same task in closed loop, with $\mathcal N$ reduced to a black-box environment and the full state replaced by sensor readings; a reward replaces the adjoint.
 
 ## Methods possible
 ---
 
-**[Physics-Informed Neural Networks](/sciml-for-physics/methods/physics-informed-neural-networks/).** The state $u_\theta$ and the input $c$ become jointly trainable, with the governing equations as a penalty or a hard constraint, similar in how one can jointly train $u_\theta$ with the parameter $\lambda$ for identifying the coefficient of the [inverse problem](/sciml-for-physics/problems/inverse-problem/).
+**[Physics-Informed Neural Networks](/sciml-for-physics/methods/physics-informed-neural-networks/).** The state $u_\theta$ and the input $c$ become jointly trainable, with the governing equations as a penalty or a hard constraint, similar to how we can jointly train $u_\theta$ with the parameter $\lambda$ for identifying the coefficient of the [inverse problem](/sciml-for-physics/problems/inverse-problem/).
 
 ## Reading
 ---
