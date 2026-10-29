@@ -25,10 +25,10 @@ tags:
 In parametric emulation, a surrogate is learned for a family of systems, which can ==advance the state of any instance of the family in time==. In comparison to [emulation & time stepping](/sciml-for-physics/problems/emulation-and-time-stepping/), where the coefficients are fixed and implicit in the data, they now vary across trajectories. Hence, we seek
 
 $$
-\Phi^\star=\arg\min_{\Phi}\ \mathbb E_{\lambda\sim\mu} \mathbb E\ \sum_{j=1}^{m}\big\|\Phi^{j}(u_t)-u_{t+j}\big\|^2 ,
+\Phi^\star=\arg\min_{\Phi}\ \mathbb E_{\lambda\sim\mu}\,\mathbb E_{u_{t:t+m}\mid\lambda}\sum_{j=1}^{m}\big\|\Phi^{j}(u_t)-u_{t+j}\big\|^2 ,
 $$
 
-where $\Phi$ is the time-stepper, $\mu$ the measure on the parameter range of interest, $u_t, \dots, u_{t+m}$ consecutive states of a trajectory with coefficients $\lambda$, and $\Phi^{j}$ the $j$-fold rollout with $\lambda$ held fixed. Depending on what information is available about the parameters of the system, $\Phi$ needs to implicitly identify these from either a given history window $u_{t:t-k}$ or could be explicitly conditioned on $\lambda$ and possibly the he forcing $f$ or the boundary data $b$. However, an indentification from a history window requires that these parameters are actually identifiable from $k$ steps. Slow or weakly observable parameters may require long windows, and parameters that do not affect the observed dynamics at all cannot be recovered.
+where $\Phi$ is the time-stepper, $\mu$ the measure on the parameter range of interest, $u_t, \dots, u_{t+m}$ consecutive states of a trajectory with coefficients $\lambda$, and $\Phi^{j}$ the $j$-fold rollout with $\lambda$ held fixed. Depending on what information is available about the parameters of the system, $\Phi$ needs to implicitly identify these from either a given history window $u_{t-k:t}$ or could be explicitly conditioned on $\lambda$ and possibly the forcing $f$ or the boundary data $b$. However, an identification from a history window requires that these parameters are actually identifiable from $k$ steps. Slow or weakly observable parameters may require long windows, and parameters that do not affect the observed dynamics at all cannot be recovered.
 
 ## Nearby problems
 ---
