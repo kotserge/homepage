@@ -42,9 +42,11 @@ on the domain $\Omega$ over $(0,T]$, $\mathcal N$ the operator with coefficients
 ## Problems addressed
 ---
 
-**[Forward Problem](/sciml-for-physics/problems/forward-problem/).** The Physics-Informed signal in combination with a neural network for point prediction is historically the classical approach on solving the forward problem by neural networds. It gives everything the method needs.
+**[Forward Problem](/sciml-for-physics/problems/forward-problem/).** The Physics-Informed signal in combination with a neural network for point prediction is historically the classical approach on solving the forward problem by neural networks. It gives everything the method needs.
 
-**[Inverse Problem](/sciml-for-physics/problems/inverse-problem/)** Next to the network, one can learn the coefficient of the system while learning the solution $u$. However, this requires data of the instance in question, else the probelm becomes ill-defined.
+**[Inverse Problem](/sciml-for-physics/problems/inverse-problem/).** Next to the network, we can learn the coefficient of the system while learning the solution $u$. However, this requires data of the instance in question, else the problem becomes ill-defined.
+
+**[Control & Design](/sciml-for-physics/problems/control-and-design/).** The input $c$ is trained jointly with the network $u_\theta$, with the governing equations as a penalty or hard constraint.
 
 ## Reading
 ---
